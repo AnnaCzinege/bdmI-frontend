@@ -10,12 +10,9 @@ function App() {
     <Router>
       <MovieProvider>
         <div className="App">
-          <Route exact path="/">
-            <MovieList />>
-          </Route>
-          <Route path="/movies">
-            <MovieList />
-          </Route>
+          <Route exact path="/" component={MovieList} />
+
+          <Route path="/top-rated-movies" component={MovieList} />
 
           <Route path="/movie/" component={MovieDetails} />
         </div>
