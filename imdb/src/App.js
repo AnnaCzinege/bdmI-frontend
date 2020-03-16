@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 import { MovieProvider } from "./components/MovieContext";
-import { Test } from "./components/Test";
+import MovieList from "./components/MovieList";
 
 function App() {
   return (
     <MovieProvider>
       <div className="App">
-        <Test />
+        <MovieList />
       </div>
     </MovieProvider>
   );

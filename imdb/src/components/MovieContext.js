@@ -5,10 +5,16 @@ export const MovieContext = createContext();
 
 export const MovieProvider = props => {
   const [movies, setMovies] = useState([]);
-  const [books, setBooks] = useState([]);
+
+  const [movieTitle, setMovieTitle] = useState("");
+  const [movieOverview, setMovieOverview] = useState("");
 
   const fetchMovies = url => {
     Axios.get(url).then(resp => setMovies(resp.data.results));
+  };
+
+  const fetchMovieDetails = url => {
+    Axios.get(url).then(resp => resp.data);
   };
 
   useEffect(() => {
@@ -18,7 +24,7 @@ export const MovieProvider = props => {
   }, []);
 
   return (
-    <MovieContext.Provider value={{ movies, setMovies, setBooks }}>
+    <MovieContext.Provider value={{ movies, setMovies }}>
       {props.children}
     </MovieContext.Provider>
   );
