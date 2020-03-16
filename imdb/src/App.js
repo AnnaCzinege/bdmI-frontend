@@ -1,11 +1,16 @@
 import React from "react";
 import "./App.css";
+import {MovieProvider} from "./components/MovieContext";
+import Test from "./components/Test";
 
 function App() {
   return (
-    <div className="App">
-      <h1>IMDb</h1>
-    </div>
+    <MovieProvider>
+      <div className="App">
+      <Test />
+      </div>
+
+    </MovieProvider>
   );
 }
 
