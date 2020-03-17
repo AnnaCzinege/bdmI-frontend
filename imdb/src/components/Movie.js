@@ -18,11 +18,17 @@ import Slide from '@material-ui/core/Slide';
 import { MovieContext } from './MovieContext';
 import YouTube from 'react-youtube-embed';
 
-const useStyles = makeStyles(theme => ({
+const useCardStyles = makeStyles({
   root: {
     maxWidth: 250,
-    margin: 10
+    margin: 2
   },
+  media: {
+    height: 180
+  }
+});
+
+const useDialogStyles = makeStyles(theme => ({
   appBar: {
     position: 'relative'
   },
@@ -38,7 +44,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Movie = props => {
   const { movieVideo, fetchMovieVideo } = useContext(MovieContext);
-  const classes = useStyles();
+  const cardClasses = useCardStyles();
+  const dialogClasses = useDialogStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -57,7 +64,7 @@ const Movie = props => {
 
   return (
     <React.Fragment>
-      <Card className={classes.root}>
+      <Card className={cardClasses.root}>
         <CardActionArea>
           <Link
             to={{
@@ -70,7 +77,6 @@ const Movie = props => {
             <CardMedia
               component="img"
               alt={props.title}
-              height="140"
               image={`https://image.tmdb.org/t/p/w500${props.poster}`}
               title={props.title}
             />
@@ -97,7 +103,7 @@ const Movie = props => {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar className={classes.appBar} color="default">
+        <AppBar className={dialogClasses.appBar} color="default">
           <Toolbar variant="regular">
             <IconButton
               edge="start"
