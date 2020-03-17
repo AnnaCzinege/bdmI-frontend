@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from "react";
-import { MovieContext } from "./MovieContext";
+import React, { useEffect, useContext } from 'react';
+import { MovieContext } from './MovieContext';
 
 const MovieDetails = props => {
   const {
@@ -15,7 +15,7 @@ const MovieDetails = props => {
   } = useContext(MovieContext);
 
   useEffect(() => {
-    console.log("movieDetails");
+    console.log('movieDetails');
     const movieId = props.location.state.id;
     fetchMovieDetails(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
