@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default styled.div`
-text-align: center;
+  text-align: center;
   height: 100%;
   width: 0;
   position: fixed;
