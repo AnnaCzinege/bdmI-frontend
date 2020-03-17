@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, useCallback, createContext } from "react";
 import Axios from "axios";
 
 export const MovieContext = createContext();
@@ -19,18 +19,18 @@ export const MovieProvider = props => {
     Axios.get(url).then(resp => setMovies(resp.data.results));
   };
 
-  const fetchMovieDetails = url => {
-    Axios.get(url).then(resp => {
-      setMovieTitle(resp.data.title);
-      setMovieOverview(resp.data.overview);
-      setMovieGenres(resp.data.genres);
-      setMovieLanguages(resp.data.spoken_languages);
-      setMovieReleaseDate(resp.data.release_date);
-      setMovieRuntime(`${resp.data.runtime} min`);
-      setMovieVoteAverage(resp.data.vote_average);
-      setMovieVoteCount(resp.data.vote_count);
-    });
-  };
+  const fetchMovieDetails = useCallback(
+    url => {
+      Axios.get(url).then(resp => {
+        setMovieTitle(resp.data.title);
+        setMovieOverview(resp.data.overview);
+        setMovieGenres(resp.data.genres);
+        setMovieLanguages(resp.data.spoken_languages);
+        setMovieReleaseDate(resp.data.release_date);
+        setMovieRuntime(`${resp.data.runtime} min`);
+        setMovieVoteAverage(resp.data.vote_average);
+        setMovieVoteCount(resp.data.vote_count);
+      })},[]);
 
   useEffect(() => {
     fetchMovies(
