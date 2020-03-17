@@ -14,23 +14,25 @@ export const MovieProvider = props => {
   const [movieRuntime, setMovieRuntime] = useState(0);
   const [movieVoteAverage, setMovieVoteAverage] = useState(0);
   const [movieVoteCount, setMovieVoteCount] = useState(0);
+  const [moviePoster, setMoviePoster] = useState("");
 
   const fetchMovies = url => {
     Axios.get(url).then(resp => setMovies(resp.data.results));
   };
 
-  const fetchMovieDetails = useCallback(
-    url => {
-      Axios.get(url).then(resp => {
-        setMovieTitle(resp.data.title);
-        setMovieOverview(resp.data.overview);
-        setMovieGenres(resp.data.genres);
-        setMovieLanguages(resp.data.spoken_languages);
-        setMovieReleaseDate(resp.data.release_date);
-        setMovieRuntime(`${resp.data.runtime} min`);
-        setMovieVoteAverage(resp.data.vote_average);
-        setMovieVoteCount(resp.data.vote_count);
-      })},[]);
+  const fetchMovieDetails = useCallback(url => {
+    Axios.get(url).then(resp => {
+      setMovieTitle(resp.data.title);
+      setMovieOverview(resp.data.overview);
+      setMovieGenres(resp.data.genres);
+      setMovieLanguages(resp.data.spoken_languages);
+      setMovieReleaseDate(resp.data.release_date);
+      setMovieRuntime(`${resp.data.runtime} min`);
+      setMovieVoteAverage(resp.data.vote_average);
+      setMovieVoteCount(resp.data.vote_count);
+      setMoviePoster(resp.data.poster_path);
+    });
+  }, []);
 
   useEffect(() => {
     fetchMovies(
@@ -51,6 +53,7 @@ export const MovieProvider = props => {
         movieRuntime,
         movieVoteAverage,
         movieVoteCount,
+        moviePoster,
         fetchMovieDetails
       }}
     >

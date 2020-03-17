@@ -1,15 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import {
-  Layout,
-  Typography,
-  PageHeader,
-  Menu,
-  Dropdown,
-  Button,
-  Tag,
-  Row
-} from "antd";
+import { Layout, Typography, PageHeader, Card, Col, Row } from "antd";
 
 const MovieDetails = props => {
   const {
@@ -21,6 +12,7 @@ const MovieDetails = props => {
     movieRuntime,
     movieVoteAverage,
     movieVoteCount,
+    moviePoster,
     fetchMovieDetails
   } = useContext(MovieContext);
 
@@ -42,6 +34,7 @@ const MovieDetails = props => {
 
   const { Header, Content, Footer } = Layout;
   const { Title, Paragraph } = Typography;
+  const { Meta } = Card;
 
   return (
     <div>
@@ -51,6 +44,19 @@ const MovieDetails = props => {
         </Header>
         <Content style={{ padding: "0 50px" }}>
           <div className="site-layout-content">
+            <div className></div>
+            <Card
+              hoverable
+              style={{ width: 240 }}
+              cover={
+                <img
+                  alt="poster"
+                  src={`https://image.tmdb.org/t/p/w500${moviePoster}`}
+                />
+              }
+            >
+              <Meta title={movieTitle} description="www.imdb.com" />
+            </Card>
             <PageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
