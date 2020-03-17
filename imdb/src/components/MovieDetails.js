@@ -37,9 +37,8 @@ const MovieDetails = props => {
   return (
     <div>
       <Layout className="layout">
-        <Header>
-          <div className="logo" />
-          <h1>{movieTitle}</h1>
+        <Header style={{ padding: "20px 50px" }}>
+          <Title style={{ color: "whitesmoke" }}>{movieTitle}</Title>
         </Header>
         <Content style={{ padding: "0 50px" }}>
           <div className="site-layout-content">
