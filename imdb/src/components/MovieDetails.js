@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
+import { Button } from "antd";
 
 const MovieDetails = props => {
   const {
@@ -32,6 +33,9 @@ const MovieDetails = props => {
 
   return (
     <div>
+      <div className="App">
+        <Button type="primary">Button</Button>
+      </div>
       <p>Title: {movieTitle}</p>
       <p>Overview: {movieOverview}</p>
       <p>Release date: {movieReleaseDate}</p>
