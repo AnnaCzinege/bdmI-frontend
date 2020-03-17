@@ -4,9 +4,7 @@ import Movie from './Movie';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: inline-block;
 `;
 
 const MovieList = () => {
@@ -14,7 +12,7 @@ const MovieList = () => {
 
   return movies.map(movie => (
     <CardContainer>
-      <Movie key={movie.id} id={movie.id} title={movie.title} />
+      <Movie key={movie.id} id={movie.id} title={movie.title} poster={movie.poster_path} />
     </CardContainer>
   ));
 };
