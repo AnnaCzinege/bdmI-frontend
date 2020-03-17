@@ -5,7 +5,6 @@ export const MovieContext = createContext();
 
 export const MovieProvider = props => {
   const [movies, setMovies] = useState([]);
-  const [books, setBooks] = useState([]);
 
   const fetchMovies = url => {
     Axios.get(url).then(resp => setMovies(resp.data.results));
@@ -18,7 +17,7 @@ export const MovieProvider = props => {
   }, []);
 
   return (
-    <MovieContext.Provider value={{ movies, setMovies, setBooks }}>
+    <MovieContext.Provider value={{ movies, setMovies }}>
       {props.children}
     </MovieContext.Provider>
   );
