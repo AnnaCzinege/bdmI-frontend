@@ -16,6 +16,7 @@ const MovieList = () => {
 
   return (
     <CardContainer>
+      <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>Top rated movies</h1>
       {movies.map(movie => (
         <Card>
           <Movie
