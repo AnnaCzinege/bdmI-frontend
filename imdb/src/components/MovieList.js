@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { MovieContext } from "./MovieContext";
-import Movie from "./Movie";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import { MovieContext } from './MovieContext';
+import Movie from './Movie';
+import styled from 'styled-components';
 
 const Card = styled.div`
   display: inline-block;
@@ -23,6 +23,8 @@ const MovieList = () => {
             id={movie.id}
             title={movie.title}
             poster={movie.poster_path}
+            video={movie.video}
+            voteAvg={movie.vote_average}
           />
         </Card>
       ))}

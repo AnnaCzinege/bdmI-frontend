@@ -5,6 +5,7 @@ export const MovieContext = createContext();
 
 export const MovieProvider = props => {
   const [movies, setMovies] = useState([]);
+  const [movieVideo, setMovieVideo] = useState('');
 
   const [movieTitle, setMovieTitle] = useState('');
   const [movieOverview, setMovieOverview] = useState('');
@@ -34,6 +35,12 @@ export const MovieProvider = props => {
     });
   }, []);
 
+  const fetchMovieVideo = useCallback(url => {
+    Axios.get(url).then(resp => {
+      setMovieVideo(resp.data.results[0].key);
+    });
+  }, []);
+
   useEffect(() => {
     fetchMovies(
       'https://api.themoviedb.org/3/movie/top_rated?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=1'
@@ -54,7 +61,9 @@ export const MovieProvider = props => {
         movieVoteAverage,
         movieVoteCount,
         moviePoster,
-        fetchMovieDetails
+        movieVideo,
+        fetchMovieDetails,
+        fetchMovieVideo
       }}
     >
       {props.children}
