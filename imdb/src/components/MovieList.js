@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 import Movie from "./Movie";
 import styled from "styled-components";
@@ -13,11 +13,18 @@ const CardContainer = styled.div`
 `;
 
 const MovieList = () => {
-  const { movies } = useContext(MovieContext);
+  const { movies, fetchMovies } = useContext(MovieContext);
+  const [page, setPage] = useState(1);
 
   const onChange = pageNumber => {
-    console.log("Page: ", pageNumber);
+    setPage(pageNumber);
   };
+
+  useEffect(() => {
+    fetchMovies(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=${page}`
+    );
+  }, [fetchMovies, page]);
 
   return (
     <CardContainer>
@@ -26,7 +33,7 @@ const MovieList = () => {
         <Pagination
           showQuickJumper
           defaultCurrent={1}
-          total={500}
+          total={3500}
           onChange={onChange}
           style={{ paddingBottom: "20px" }}
         />
