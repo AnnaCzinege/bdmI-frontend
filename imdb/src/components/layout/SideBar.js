@@ -1,15 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import StyledSidebar from "../elements/sidebar_elements/SidebarStyle";
+import StyledSidebarLink from "../elements/sidebar_elements/SidebarLinkStyle";
+import StyledSidebarCloseBtn from "../elements/sidebar_elements/SidebarCloseBtnStyle";
 
 const sideBar = props => {
   return (
-    <div>
-      <Link>Top rated movies</Link>
-      <Link>Top rated Series</Link>
-      <Link>About us</Link>
-      <Link>Info</Link>
-      <Link>Rekt</Link>
-    </div>
+    <StyledSidebar>
+      <StyledSidebarCloseBtn>x</StyledSidebarCloseBtn>
+      <StyledSidebarLink>Top rated movies</StyledSidebarLink>
+      <StyledSidebarLink>Top rated Series</StyledSidebarLink>
+      <StyledSidebarLink>About us</StyledSidebarLink>
+      <StyledSidebarLink>Info</StyledSidebarLink>
+      <StyledSidebarLink>Rekt</StyledSidebarLink>
+    </StyledSidebar>
   );
 };
 
