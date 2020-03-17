@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
 
@@ -35,15 +35,25 @@ const MovieDetails = props => {
   const { Header, Content, Footer } = Layout;
   const { Title, Paragraph } = Typography;
   const { Meta } = Card;
+
   const rating = ["terrible", "bad", "normal", "good", "wonderful"];
+  const [ratingValue, setRatingValue] = useState(4);
+  const handleChange = ratingValue => {
+    setRatingValue(ratingValue);
+  };
 
   return (
     <div>
       <Layout className="layout">
-        <Header style={{ padding: "20px 50px" }}>
-          <Title style={{ color: "whitesmoke" }}>{movieTitle}</Title>
-        </Header>
-        <Content style={{ padding: "0 50px", margin: "30px 50px" }}>
+        <Header style={{ padding: "20px 50px" }}></Header>
+        <Content
+          style={{
+            background: "white",
+            padding: "0 50px",
+            margin: "30px 50px"
+          }}
+        >
+          <Title>{movieTitle}</Title>
           <div className="site-layout-content">
             <div className="site-card-wrapper">
               <Row gutter={16}>
@@ -74,7 +84,7 @@ const MovieDetails = props => {
                       </Card>
                     </Col>
                     <Col span={6}>
-                      <Card title="Genres" bordered={false}>
+                      <Card title="Genres" bordered={true}>
                         {genres}
                       </Card>
                     </Col>
@@ -91,10 +101,26 @@ const MovieDetails = props => {
                       </Card>
                     </Col>
                     <Col span={6}>
-                      <Card title="All vote" bordered={false}>
+                      <Card title="All vote" bordered={true}>
                         {movieVoteCount}
                       </Card>
                     </Col>
+                  </Row>
+                  <Row>
+                    <span>
+                      <Rate
+                        tooltips={rating}
+                        onChange={handleChange}
+                        value={ratingValue}
+                      />
+                      {ratingValue ? (
+                        <span className="ant-rate-text">
+                          {rating[ratingValue - 1]}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                    </span>
                   </Row>
                 </Col>
               </Row>
