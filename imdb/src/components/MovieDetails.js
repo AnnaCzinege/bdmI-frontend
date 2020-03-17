@@ -1,6 +1,15 @@
 import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import { Layout, Typography } from "antd";
+import {
+  Layout,
+  Typography,
+  PageHeader,
+  Menu,
+  Dropdown,
+  Button,
+  Tag,
+  Row
+} from "antd";
 
 const MovieDetails = props => {
   const {
@@ -32,7 +41,7 @@ const MovieDetails = props => {
   });
 
   const { Header, Content, Footer } = Layout;
-  const { Title } = Typography;
+  const { Title, Paragraph } = Typography;
 
   return (
     <div>
@@ -42,15 +51,29 @@ const MovieDetails = props => {
         </Header>
         <Content style={{ padding: "0 50px" }}>
           <div className="site-layout-content">
-            <p>Overview: {movieOverview}</p>
-            <p>Release date: {movieReleaseDate}</p>
-            <p>Runtime: {movieRuntime}</p>
-            <p>Genres:</p>
-            <div>{genres}</div>
-            <p>Languages:</p>
-            <div>{languages}</div>
-            <p>Average vote: {movieVoteAverage}</p>
-            <p>All vote: {movieVoteCount}</p>
+            <PageHeader title="Overview" className="site-page-header">
+              <Paragraph style={{ textAlign: "left" }}>
+                {movieOverview}
+              </Paragraph>
+            </PageHeader>
+            <PageHeader title="Release date" className="site-page-header">
+              <Paragraph>{movieReleaseDate}</Paragraph>
+            </PageHeader>
+            <PageHeader title="Runtime" className="site-page-header">
+              <Paragraph>{movieRuntime}</Paragraph>
+            </PageHeader>
+            <PageHeader title="Genres" className="site-page-header">
+              <Paragraph>{genres}</Paragraph>
+            </PageHeader>
+            <PageHeader title="Languages" className="site-page-header">
+              <Paragraph>{languages}</Paragraph>
+            </PageHeader>
+            <PageHeader title="Average vote" className="site-page-header">
+              <Paragraph>{movieVoteAverage}</Paragraph>
+            </PageHeader>
+            <PageHeader title="All vote" className="site-page-header">
+              <Paragraph>{movieVoteCount}</Paragraph>
+            </PageHeader>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
