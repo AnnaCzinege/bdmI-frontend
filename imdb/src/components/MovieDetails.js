@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { MovieContext } from './MovieContext';
-import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from 'antd';
+import React, { useState, useEffect, useContext } from "react";
+import { MovieContext } from "./MovieContext";
+import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
 
 const MovieDetails = props => {
   const {
@@ -17,7 +17,7 @@ const MovieDetails = props => {
   } = useContext(MovieContext);
 
   useEffect(() => {
-    console.log('movieDetails');
+    console.log("movieDetails");
     const movieId = props.location.state.id;
     fetchMovieDetails(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
@@ -32,11 +32,11 @@ const MovieDetails = props => {
     return <div>{item.name}</div>;
   });
 
-  const { Header, Content, Footer } = Layout;
+  const { Content, Footer } = Layout;
   const { Title, Paragraph } = Typography;
   const { Meta } = Card;
 
-  const rating = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
+  const rating = ["terrible", "bad", "normal", "good", "wonderful"];
   const [ratingValue, setRatingValue] = useState(4);
   const handleChange = ratingValue => {
     setRatingValue(ratingValue);
@@ -45,12 +45,11 @@ const MovieDetails = props => {
   return (
     <div>
       <Layout className="layout">
-        <Header style={{ padding: '20px 50px' }}></Header>
         <Content
           style={{
-            background: 'white',
-            padding: '0 50px',
-            margin: '30px 50px'
+            background: "white",
+            padding: "0 50px",
+            margin: "30px 50px"
           }}
         >
           <Title>{movieTitle}</Title>
@@ -72,7 +71,7 @@ const MovieDetails = props => {
                   </Card>
                 </Col>
                 <Col>
-                  <Row gutter={16} style={{ marginTop: '30px' }}>
+                  <Row gutter={16} style={{ marginTop: "30px" }}>
                     <Col span={6}>
                       <Card title="Release date" bordered={true}>
                         {movieReleaseDate}
@@ -89,7 +88,7 @@ const MovieDetails = props => {
                       </Card>
                     </Col>
                   </Row>
-                  <Row gutter={16} style={{ marginTop: '30px' }}>
+                  <Row gutter={16} style={{ marginTop: "30px" }}>
                     <Col span={6}>
                       <Card title="Languages" bordered={true}>
                         {languages}
@@ -118,7 +117,7 @@ const MovieDetails = props => {
                           {rating[ratingValue - 1]}
                         </span>
                       ) : (
-                        ''
+                        ""
                       )}
                     </span>
                   </Row>
@@ -126,13 +125,13 @@ const MovieDetails = props => {
               </Row>
             </div>
             <PageHeader title="Overview" className="site-page-header">
-              <Paragraph style={{ textAlign: 'left' }}>
+              <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
               </Paragraph>
             </PageHeader>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
+        <Footer style={{ textAlign: "center" }}>
           Ant Design ©2018 Created by Ant UED
         </Footer>
       </Layout>
