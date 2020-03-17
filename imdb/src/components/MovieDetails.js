@@ -48,8 +48,8 @@ const MovieDetails = props => {
         <Content
           style={{
             background: "white",
-            padding: "0 50px",
-            margin: "30px 50px"
+            padding: "30px 50px",
+            margin: "110px 50px"
           }}
         >
           <Title>{movieTitle}</Title>

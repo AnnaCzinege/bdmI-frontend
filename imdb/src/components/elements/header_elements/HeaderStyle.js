@@ -13,4 +13,5 @@ export default styled.div`
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
   font-weight: bold;
+  z-index: 1;
 `;
