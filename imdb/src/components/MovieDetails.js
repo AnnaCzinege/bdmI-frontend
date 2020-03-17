@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import { Layout, Typography, PageHeader, Card, Col, Row } from "antd";
+import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
 
 const MovieDetails = props => {
   const {
@@ -35,6 +35,7 @@ const MovieDetails = props => {
   const { Header, Content, Footer } = Layout;
   const { Title, Paragraph } = Typography;
   const { Meta } = Card;
+  const rating = ["terrible", "bad", "normal", "good", "wonderful"];
 
   return (
     <div>
@@ -42,43 +43,66 @@ const MovieDetails = props => {
         <Header style={{ padding: "20px 50px" }}>
           <Title style={{ color: "whitesmoke" }}>{movieTitle}</Title>
         </Header>
-        <Content style={{ padding: "0 50px" }}>
+        <Content style={{ padding: "0 50px", margin: "30px 50px" }}>
           <div className="site-layout-content">
-            <div className></div>
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={
-                <img
-                  alt="poster"
-                  src={`https://image.tmdb.org/t/p/w500${moviePoster}`}
-                />
-              }
-            >
-              <Meta title={movieTitle} description="www.imdb.com" />
-            </Card>
+            <div className="site-card-wrapper">
+              <Row gutter={16}>
+                <Col span={5}>
+                  <Card
+                    hoverable
+                    style={{ width: 240 }}
+                    cover={
+                      <img
+                        alt="poster"
+                        src={`https://image.tmdb.org/t/p/w500${moviePoster}`}
+                      />
+                    }
+                  >
+                    <Meta title={movieTitle} description="www.imdb.com" />
+                  </Card>
+                </Col>
+                <Col>
+                  <Row gutter={16} style={{ marginTop: "30px" }}>
+                    <Col span={6}>
+                      <Card title="Release date" bordered={true}>
+                        {movieReleaseDate}
+                      </Card>
+                    </Col>
+                    <Col span={6}>
+                      <Card title="Runtime" bordered={true}>
+                        {movieRuntime}
+                      </Card>
+                    </Col>
+                    <Col span={6}>
+                      <Card title="Genres" bordered={false}>
+                        {genres}
+                      </Card>
+                    </Col>
+                  </Row>
+                  <Row gutter={16} style={{ marginTop: "30px" }}>
+                    <Col span={6}>
+                      <Card title="Languages" bordered={true}>
+                        {languages}
+                      </Card>
+                    </Col>
+                    <Col span={6}>
+                      <Card title="Average vote" bordered={true}>
+                        {movieVoteAverage}
+                      </Card>
+                    </Col>
+                    <Col span={6}>
+                      <Card title="All vote" bordered={false}>
+                        {movieVoteCount}
+                      </Card>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </div>
             <PageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
               </Paragraph>
-            </PageHeader>
-            <PageHeader title="Release date" className="site-page-header">
-              <Paragraph>{movieReleaseDate}</Paragraph>
-            </PageHeader>
-            <PageHeader title="Runtime" className="site-page-header">
-              <Paragraph>{movieRuntime}</Paragraph>
-            </PageHeader>
-            <PageHeader title="Genres" className="site-page-header">
-              <Paragraph>{genres}</Paragraph>
-            </PageHeader>
-            <PageHeader title="Languages" className="site-page-header">
-              <Paragraph>{languages}</Paragraph>
-            </PageHeader>
-            <PageHeader title="Average vote" className="site-page-header">
-              <Paragraph>{movieVoteAverage}</Paragraph>
-            </PageHeader>
-            <PageHeader title="All vote" className="site-page-header">
-              <Paragraph>{movieVoteCount}</Paragraph>
             </PageHeader>
           </div>
         </Content>
