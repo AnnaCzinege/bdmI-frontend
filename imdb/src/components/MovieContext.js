@@ -14,6 +14,7 @@ export const MovieProvider = props => {
   const [movieRuntime, setMovieRuntime] = useState(0);
   const [movieVoteAverage, setMovieVoteAverage] = useState(0);
   const [movieVoteCount, setMovieVoteCount] = useState(0);
+  const [moviePoster, setMoviePoster] = useState('');
 
   const fetchMovies = url => {
     Axios.get(url).then(resp => setMovies(resp.data.results));
@@ -29,6 +30,7 @@ export const MovieProvider = props => {
       setMovieRuntime(`${resp.data.runtime} min`);
       setMovieVoteAverage(resp.data.vote_average);
       setMovieVoteCount(resp.data.vote_count);
+      setMoviePoster(resp.data.poster_path);
     });
   }, []);
 
@@ -51,6 +53,7 @@ export const MovieProvider = props => {
         movieRuntime,
         movieVoteAverage,
         movieVoteCount,
+        moviePoster,
         fetchMovieDetails
       }}
     >
