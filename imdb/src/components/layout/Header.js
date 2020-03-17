@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { LayoutContext } from "./LayoutContext";
 import ToggleBtn from "../../ToggleBtn.png";
 import Logo from "../../Logo.png";
 import SearchIcon from "../../SearchIcon.png";
@@ -11,6 +12,12 @@ import StyledInput from "../elements/header_elements/HeaderInputStyle";
 import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle";
 
 const Header = props => {
+  const { setIsOpen } = useContext(LayoutContext);
+
+  const onClick = () => {
+    setIsOpen("100%");
+  };
+
   return (
     <StyledHeader>
       <StyledHeaderItem>
@@ -18,7 +25,7 @@ const Header = props => {
           <StyledLogo src={Logo} alt=""></StyledLogo>
         </Link>
       </StyledHeaderItem>
-      <StyledHeaderItem>
+      <StyledHeaderItem onClick={onClick}>
         <StyledToggleBtn src={ToggleBtn} alt=""></StyledToggleBtn> Menu
       </StyledHeaderItem>
       <StyledHeaderItem primary>

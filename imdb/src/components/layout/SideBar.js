@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import StyledSidebar from "../elements/sidebar_elements/SidebarStyle";
 import StyledSidebarLink from "../elements/sidebar_elements/SidebarLinkStyle";
 import StyledSidebarCloseBtn from "../elements/sidebar_elements/SidebarCloseBtnStyle";
+import { LayoutContext } from "./LayoutContext";
 
-const sideBar = props => {
+const SideBar = props => {
+  const { isOpen, setIsOpen } = useContext(LayoutContext);
+
+  const onClick = () => {
+    setIsOpen("0");
+  };
+
   return (
-    <StyledSidebar>
-      <StyledSidebarCloseBtn>x</StyledSidebarCloseBtn>
+    <StyledSidebar isOpen={isOpen}>
+      <StyledSidebarCloseBtn onClick={onClick}>x</StyledSidebarCloseBtn>
       <StyledSidebarLink>Top rated movies</StyledSidebarLink>
       <StyledSidebarLink>Top rated Series</StyledSidebarLink>
       <StyledSidebarLink>About us</StyledSidebarLink>
@@ -16,4 +23,4 @@ const sideBar = props => {
   );
 };
 
-export default sideBar;
+export default SideBar;
