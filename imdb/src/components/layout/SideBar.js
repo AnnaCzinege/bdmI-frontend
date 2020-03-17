@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = props => {
+const sideBar = props => {
   return (
     <div>
       <Link>Top rated movies</Link>
