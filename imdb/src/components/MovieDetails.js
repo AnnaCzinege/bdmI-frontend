@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import { Button } from "antd";
+import { Layout, Typography } from "antd";
 
 const MovieDetails = props => {
   const {
@@ -31,21 +31,33 @@ const MovieDetails = props => {
     return <div>{item.name}</div>;
   });
 
+  const { Header, Content, Footer } = Layout;
+  const { Title } = Typography;
+
   return (
     <div>
-      <div className="App">
-        <Button type="primary">Button</Button>
-      </div>
-      <p>Title: {movieTitle}</p>
-      <p>Overview: {movieOverview}</p>
-      <p>Release date: {movieReleaseDate}</p>
-      <p>Runtime: {movieRuntime}</p>
-      <p>Genres:</p>
-      <div>{genres}</div>
-      <p>Languages:</p>
-      <div>{languages}</div>
-      <p>Average vote: {movieVoteAverage}</p>
-      <p>All vote: {movieVoteCount}</p>
+      <Layout className="layout">
+        <Header>
+          <div className="logo" />
+          <h1>{movieTitle}</h1>
+        </Header>
+        <Content style={{ padding: "0 50px" }}>
+          <div className="site-layout-content">
+            <p>Overview: {movieOverview}</p>
+            <p>Release date: {movieReleaseDate}</p>
+            <p>Runtime: {movieRuntime}</p>
+            <p>Genres:</p>
+            <div>{genres}</div>
+            <p>Languages:</p>
+            <div>{languages}</div>
+            <p>Average vote: {movieVoteAverage}</p>
+            <p>All vote: {movieVoteCount}</p>
+          </div>
+        </Content>
+        <Footer style={{ textAlign: "center" }}>
+          Ant Design ©2018 Created by Ant UED
+        </Footer>
+      </Layout>
     </div>
   );
 };
