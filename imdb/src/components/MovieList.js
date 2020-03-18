@@ -10,26 +10,38 @@ const Card = styled.div`
 `;
 
 const CardContainer = styled.div`
-  margin-top: 80px;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: rgb(122, 58, 46);
+  background: linear-gradient(
+    0deg,
+    rgba(122, 58, 46, 1) 0%,
+    rgba(119, 117, 117, 1) 95%
+  );
 `;
 
-const MovieList = () => {
+const MovieList = props => {
   const { movies, fetchMovies, moviePageNumber } = useContext(MovieContext);
   const [page, setPage] = useState(1);
-
+  const pageTitle =
+    props.url.charAt(0).toUpperCase() +
+    props.url.replace("_", " ").slice(1) +
+    " movies";
   const onChange = pageNumber => {
     setPage(pageNumber);
   };
 
   useEffect(() => {
     fetchMovies(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=${page}`
+      `https://api.themoviedb.org/3/movie/${props.url}?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=${page}`
     );
-  }, [fetchMovies, page]);
+  }, [fetchMovies, page, props.url]);
 
   return (
     <CardContainer>
-      <StyledTitle>Top rated movies</StyledTitle>
+      <StyledTitle>{pageTitle}</StyledTitle>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
@@ -43,6 +55,8 @@ const MovieList = () => {
             id={movie.id}
             title={movie.title}
             poster={movie.poster_path}
+            video={movie.video}
+            voteAvg={movie.vote_average}
           />
         </Card>
       ))}
