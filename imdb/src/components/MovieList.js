@@ -32,29 +32,29 @@ const MovieList = () => {
   }, [fetchMovies, page]);
 
   return (
-    <CardContainer>
+    <React.Fragment>
       <h1 style={{ fontSize: '36px', fontWeight: 'bold' }}>Top rated movies</h1>
-      <div>
-        <Pagination
-          showQuickJumper
-          defaultCurrent={1}
-          total={moviePageNumber * 10}
-          onChange={onChange}
-          style={{ paddingBottom: '20px' }}
-        />
-      </div>
-      {movies.map(movie => (
-        <Movie
-          key={movie.id}
-          id={movie.id}
-          title={movie.title}
-          poster={movie.poster_path}
-          video={movie.video}
-          voteAvg={movie.vote_average}
-        />
-      ))}
-      ;
-    </CardContainer>
+      <Pagination
+        showQuickJumper
+        defaultCurrent={1}
+        total={moviePageNumber * 10}
+        onChange={onChange}
+        style={{ paddingBottom: '20px' }}
+      />
+      <CardContainer>
+        {movies.map(movie => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            poster={movie.poster_path}
+            video={movie.video}
+            voteAvg={movie.vote_average}
+          />
+        ))}
+        ;
+      </CardContainer>
+    </React.Fragment>
   );
 };
 

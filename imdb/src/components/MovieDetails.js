@@ -18,10 +18,11 @@ const MovieDetails = props => {
   } = useContext(MovieContext);
 
   useEffect(() => {
+    const movieId = props.location.state.id;
     fetchMovieDetails(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
     );
-  }, [fetchMovieDetails, movieId]);
+  }, [fetchMovieDetails, movieId, props.location.state.id]);
 
   const genres = movieGenres.map(item => {
     return <div>{item.name}</div>;
