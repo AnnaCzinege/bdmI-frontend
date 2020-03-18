@@ -14,7 +14,7 @@ const CardContainer = styled.div`
 
 const MovieList = props => {
   const { movies, fetchMovies } = useContext(MovieContext);
-  const [page, setPage] = useState(1);
+  const [page, setPage, moviePageNumber] = useState(1);
 
   const onChange = pageNumber => {
     setPage(pageNumber);
@@ -33,7 +33,7 @@ const MovieList = props => {
         <Pagination
           showQuickJumper
           defaultCurrent={1}
-          total={3500}
+          total={moviePageNumber * 10}
           onChange={onChange}
           style={{ paddingBottom: "20px" }}
         />
