@@ -3,8 +3,8 @@ import { Typography } from "antd";
 
 const { Title } = Typography;
 
-export default styled(Title)`
-  padding-top: 100px;
+export default styled.h1`
+  padding-top: 50px;
   font-size: 36px;
   font-weight: bold;
   font-family: fantasy;

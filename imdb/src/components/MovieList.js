@@ -34,7 +34,7 @@ const MovieList = props => {
   }, [fetchMovies, page, props.url]);
 
   return (
-    <div>
+    <div style={{ background: "black" }}>
       <StyledTitle>{pageTitle}</StyledTitle>
       <StyledPagination
         showQuickJumper
