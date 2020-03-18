@@ -42,7 +42,11 @@ export const MovieProvider = props => {
 
   const fetchMovieVideo = useCallback(url => {
     Axios.get(url).then(resp => {
-      setMovieVideo(resp.data.results[0].key);
+      if (resp.data.results.length !== 0) {
+        setMovieVideo(resp.data.results[0].key);
+      } else {
+        setMovieVideo('error');
+      }
     });
   }, []);
 

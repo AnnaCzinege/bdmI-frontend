@@ -11,12 +11,16 @@ import Typography from '@material-ui/core/Typography';
 import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
+import List from '@material-ui/core/List';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { MovieContext } from './MovieContext';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import WarningIcon from '@material-ui/icons/Warning';
 import YouTube from 'react-youtube-embed';
+import { MovieContext } from './MovieContext';
 
 const useCardStyles = makeStyles({
   root: {
@@ -124,7 +128,18 @@ const Movie = props => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <YouTube id={movieVideo} />
+        {movieVideo !== 'error' ? (
+          <YouTube id={movieVideo} />
+        ) : (
+          <List>
+            <ListItem>
+              <ListItemText>
+                Sorry, this Movie does not have a trailer!
+                <WarningIcon></WarningIcon>
+              </ListItemText>
+            </ListItem>
+          </List>
+        )}
       </Dialog>
     </React.Fragment>
   );
