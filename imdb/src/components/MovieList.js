@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 import Movie from "./Movie";
 import styled from "styled-components";
-import { Pagination } from "antd";
+import StyledPagination from "./elements/movie_list_elements/StyledPagination";
 
 const Card = styled.div`
   display: inline-block;
@@ -29,15 +29,12 @@ const MovieList = () => {
   return (
     <CardContainer>
       <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>Top rated movies</h1>
-      <div>
-        <Pagination
-          showQuickJumper
-          defaultCurrent={1}
-          total={3500}
-          onChange={onChange}
-          style={{ paddingBottom: "20px" }}
-        />
-      </div>
+      <StyledPagination
+        showQuickJumper
+        defaultCurrent={1}
+        total={3500}
+        onChange={onChange}
+      />
       {movies.map(movie => (
         <Card>
           <Movie
