@@ -6,6 +6,7 @@ export const MovieContext = createContext();
 export const MovieProvider = props => {
   const [movies, setMovies] = useState([]);
 
+  const [movieId, setMovieId] = useState(0);
   const [movieTitle, setMovieTitle] = useState('');
   const [movieOverview, setMovieOverview] = useState('');
   const [movieGenres, setMovieGenres] = useState([]);
@@ -22,6 +23,7 @@ export const MovieProvider = props => {
 
   const fetchMovieDetails = useCallback(url => {
     Axios.get(url).then(resp => {
+      setMovieId(resp.data.id);
       setMovieTitle(resp.data.title);
       setMovieOverview(resp.data.overview);
       setMovieGenres(resp.data.genres);
@@ -45,6 +47,7 @@ export const MovieProvider = props => {
       value={{
         movies,
         setMovies,
+        movieId,
         movieTitle,
         movieOverview,
         movieGenres,
