@@ -3,6 +3,7 @@ import { MovieContext } from "./MovieContext";
 import Movie from "./Movie";
 import styled from "styled-components";
 import StyledPagination from "./elements/movie_list_elements/StyledPagination";
+import StyledTitle from "./elements/movie_list_elements/StyledTitle";
 
 const Card = styled.div`
   display: inline-block;
@@ -28,7 +29,7 @@ const MovieList = () => {
 
   return (
     <CardContainer>
-      <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>Top rated movies</h1>
+      <StyledTitle>Top rated movies</StyledTitle>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
