@@ -10,6 +10,55 @@ import Header from "./components/layout/Header";
 import Sidebar from "./components/layout/SideBar";
 
 function App() {
+  const indexRoute = (
+    <Route
+      exact
+      path="/"
+      render={props => (
+        <React.Fragment>
+          <MovieList url="top_rated" />
+        </React.Fragment>
+      )}
+    />
+  );
+
+  const topRatedRoute = (
+    <Route
+      path="/top-rated-movies"
+      render={props => (
+        <React.Fragment>
+          <MovieList url="top_rated" />
+        </React.Fragment>
+      )}
+    />
+  );
+
+  const movieRoute = <Route path="/movie/" component={MovieDetails} />;
+
+  const nowPlayingRoute = (
+    <Route
+      exact
+      path="/now-playing-movies"
+      render={props => (
+        <React.Fragment>
+          <MovieList url="now_playing" />
+        </React.Fragment>
+      )}
+    />
+  );
+
+  const popularRoute = (
+    <Route
+      exact
+      path="/popular-movies"
+      render={props => (
+        <React.Fragment>
+          <MovieList url="popular" />
+        </React.Fragment>
+      )}
+    />
+  );
+
   return (
     <Router>
       <MovieProvider>
@@ -18,11 +67,10 @@ function App() {
           <Sidebar />
         </LayoutProvider>
         <div className="App">
-          <Route exact path="/" component={MovieList} />
-
-          <Route path="/top-rated-movies" component={MovieList} />
-
-          <Route path="/movie/" component={MovieDetails} />
+          {indexRoute}
+          {topRatedRoute}
+          {movieRoute}
+          {nowPlayingRoute}
         </div>
       </MovieProvider>
     </Router>

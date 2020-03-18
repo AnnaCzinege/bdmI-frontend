@@ -12,7 +12,7 @@ const CardContainer = styled.div`
   margin-top: 80px;
 `;
 
-const MovieList = () => {
+const MovieList = props => {
   const { movies, fetchMovies } = useContext(MovieContext);
   const [page, setPage] = useState(1);
 
@@ -22,9 +22,9 @@ const MovieList = () => {
 
   useEffect(() => {
     fetchMovies(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=${page}`
+      `https://api.themoviedb.org/3/movie/${props.url}?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=${page}`
     );
-  }, [fetchMovies, page]);
+  }, [fetchMovies, page, props.url]);
 
   return (
     <CardContainer>

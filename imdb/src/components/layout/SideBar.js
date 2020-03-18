@@ -18,11 +18,15 @@ const SideBar = props => {
       <StyledSidebarCloseBtn onClick={onClick} to={{ state: { id: id } }}>
         x
       </StyledSidebarCloseBtn>
-      <StyledSidebarLink>Top rated movies</StyledSidebarLink>
-      <StyledSidebarLink>Top rated Series</StyledSidebarLink>
-      <StyledSidebarLink>About us</StyledSidebarLink>
-      <StyledSidebarLink>Info</StyledSidebarLink>
-      <StyledSidebarLink>Rekt</StyledSidebarLink>
+      <StyledSidebarLink onClick={onClick} to="/top-rated-movies">
+        Top rated
+      </StyledSidebarLink>
+      <StyledSidebarLink onClick={onClick}>Latest</StyledSidebarLink>
+      <StyledSidebarLink onClick={onClick}>Popular</StyledSidebarLink>
+      <StyledSidebarLink onClick={onClick} to="/now-playing-movies">
+        Now Playing
+      </StyledSidebarLink>
+      <StyledSidebarLink onClick={onClick}>Upcoming</StyledSidebarLink>
     </StyledSidebar>
   );
 };
