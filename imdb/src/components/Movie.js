@@ -21,7 +21,7 @@ import YouTube from 'react-youtube-embed';
 const useCardStyles = makeStyles({
   root: {
     maxWidth: 250,
-    margin: 2
+    margin: 5
   },
   media: {
     height: 180
@@ -48,22 +48,29 @@ const Movie = props => {
   const dialogClasses = useDialogStyles();
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  useEffect(() => {
+    let watchbtn = document.getElementById(props.id);
+    watchbtn.addEventListener('click', handleOpen);
+
+    function handleOpen(event) {
+      setOpen(true);
+      fetchMovieVideo(
+        `https://api.themoviedb.org/3/movie/${this.id}/videos?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
+      );
+    }
+
+    return () => {
+      watchbtn.removeEventListener('click', handleOpen);
+    };
+  }, [fetchMovieVideo, movieVideo, props.id]);
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    fetchMovieVideo(
-      `https://api.themoviedb.org/3/movie/${props.id}/videos?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
-    );
-  }, [fetchMovieVideo, props.id]);
-
   return (
     <React.Fragment>
+      {/* Moviecard */}
       <Card className={cardClasses.root}>
         <CardActionArea>
           <Link
@@ -92,11 +99,13 @@ const Movie = props => {
           </CardContent>
         </CardActionArea>
         <CardActions style={{ justifyContent: 'center' }}>
-          <Button variant="contained" color="default" onClick={handleClickOpen}>
+          <Button id={props.id} variant="contained" color="default">
             watch trailer
           </Button>
         </CardActions>
       </Card>
+
+      {/* Popup dialog with embedded youtube trailer*/}
       <Dialog
         fullScreen
         open={open}
