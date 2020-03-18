@@ -5,6 +5,7 @@ export const MovieContext = createContext();
 
 export const MovieProvider = props => {
   const [movies, setMovies] = useState([]);
+  const [moviePageNumber, setMoviePageNumber] = useState(0);
 
   const [movieId, setMovieId] = useState(0);
   const [movieTitle, setMovieTitle] = useState("");
@@ -18,7 +19,10 @@ export const MovieProvider = props => {
   const [moviePoster, setMoviePoster] = useState("");
 
   const fetchMovies = useCallback(url => {
-    Axios.get(url).then(resp => setMovies(resp.data.results));
+    Axios.get(url).then(resp => {
+      setMovies(resp.data.results);
+      setMoviePageNumber(resp.data.total_pages);
+    });
   }, []);
 
   const fetchMovieDetails = useCallback(url => {
@@ -40,6 +44,7 @@ export const MovieProvider = props => {
     <MovieContext.Provider
       value={{
         movies,
+        moviePageNumber,
         setMovies,
         movieId,
         movieTitle,
