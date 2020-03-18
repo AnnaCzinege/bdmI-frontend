@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
+import { Typography, PageHeader, Card, Col, Row, Rate } from "antd";
 import StyledContent from "./elements/movie_details_elements/StyledContent";
+import StyledFooter from "./elements/movie_details_elements/StyledFooter";
 
 const MovieDetails = props => {
   const {
@@ -33,7 +34,6 @@ const MovieDetails = props => {
     return <div>{item.name}</div>;
   });
 
-  const { Footer } = Layout;
   const { Title, Paragraph } = Typography;
   const { Meta } = Card;
 
@@ -126,9 +126,7 @@ const MovieDetails = props => {
             </PageHeader>
           </div>
         </StyledContent>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
+        <StyledFooter>Ant Design ©2018 Created by Ant UED</StyledFooter>
       </Layout>
     </div>
   );
