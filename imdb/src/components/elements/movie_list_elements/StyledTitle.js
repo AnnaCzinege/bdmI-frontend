@@ -4,10 +4,9 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export default styled.h1`
-  padding-top: 50px;
   font-size: 36px;
   font-weight: bold;
-  font-family: fantasy;
-  color: #ffec3d;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  color: orange;
   z-index: 1000;
 `;
