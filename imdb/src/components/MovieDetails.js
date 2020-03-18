@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
+import StyledContent from "./elements/movie_details_elements/StyledContent";
 
 const MovieDetails = props => {
   const {
@@ -32,7 +33,7 @@ const MovieDetails = props => {
     return <div>{item.name}</div>;
   });
 
-  const { Content, Footer } = Layout;
+  const { Footer } = Layout;
   const { Title, Paragraph } = Typography;
   const { Meta } = Card;
 
@@ -45,13 +46,7 @@ const MovieDetails = props => {
   return (
     <div>
       <Layout className="layout">
-        <Content
-          style={{
-            background: "white",
-            padding: "30px 50px",
-            margin: "110px 50px"
-          }}
-        >
+        <StyledContent>
           <Title>{movieTitle}</Title>
           <div className="site-layout-content">
             <div className="site-card-wrapper">
@@ -130,7 +125,7 @@ const MovieDetails = props => {
               </Paragraph>
             </PageHeader>
           </div>
-        </Content>
+        </StyledContent>
         <Footer style={{ textAlign: "center" }}>
           Ant Design ©2018 Created by Ant UED
         </Footer>
