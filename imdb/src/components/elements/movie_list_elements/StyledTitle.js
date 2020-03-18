@@ -6,4 +6,5 @@ const { Title } = Typography;
 export default styled(Title)`
   font-size: 36px;
   font-weight: bold;
+  font-family: fantasy;
 `;

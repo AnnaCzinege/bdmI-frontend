@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import { Typography, PageHeader, Card, Col, Row, Rate } from "antd";
+import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
 import StyledContent from "./elements/movie_details_elements/StyledContent";
 import StyledFooter from "./elements/movie_details_elements/StyledFooter";
+import StyledCard from "./elements/movie_details_elements/StyledCard";
+import StyledTitle from "./elements/movie_list_elements/StyledTitle";
 
 const MovieDetails = props => {
   const {
@@ -34,7 +36,7 @@ const MovieDetails = props => {
     return <div>{item.name}</div>;
   });
 
-  const { Title, Paragraph } = Typography;
+  const { Paragraph } = Typography;
   const { Meta } = Card;
 
   const rating = ["terrible", "bad", "normal", "good", "wonderful"];
@@ -47,11 +49,11 @@ const MovieDetails = props => {
     <div>
       <Layout className="layout">
         <StyledContent>
-          <Title>{movieTitle}</Title>
+          <StyledTitle>{movieTitle}</StyledTitle>
           <div className="site-layout-content">
-            <div className="site-card-wrapper">
-              <Row gutter={16}>
-                <Col span={5}>
+            <Row>
+              <div className="site-card-wrapper">
+                <Col>
                   <Card
                     hoverable
                     style={{ width: 240 }}
@@ -65,60 +67,61 @@ const MovieDetails = props => {
                     <Meta title={movieTitle} description="www.imdb.com" />
                   </Card>
                 </Col>
-                <Col>
-                  <Row gutter={16} style={{ marginTop: "30px" }}>
-                    <Col span={6}>
-                      <Card title="Release date" bordered={true}>
-                        {movieReleaseDate}
-                      </Card>
-                    </Col>
-                    <Col span={6}>
-                      <Card title="Runtime" bordered={true}>
-                        {movieRuntime}
-                      </Card>
-                    </Col>
-                    <Col span={6}>
-                      <Card title="Genres" bordered={true}>
-                        {genres}
-                      </Card>
-                    </Col>
-                  </Row>
-                  <Row gutter={16} style={{ marginTop: "30px" }}>
-                    <Col span={6}>
-                      <Card title="Languages" bordered={true}>
-                        {languages}
-                      </Card>
-                    </Col>
-                    <Col span={6}>
-                      <Card title="Average vote" bordered={true}>
-                        {movieVoteAverage}
-                      </Card>
-                    </Col>
-                    <Col span={6}>
-                      <Card title="All vote" bordered={true}>
-                        {movieVoteCount}
-                      </Card>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <span>
-                      <Rate
-                        tooltips={rating}
-                        onChange={handleChange}
-                        value={ratingValue}
-                      />
-                      {ratingValue ? (
-                        <span className="ant-rate-text">
-                          {rating[ratingValue - 1]}
-                        </span>
-                      ) : (
-                        ""
-                      )}
-                    </span>
-                  </Row>
-                </Col>
-              </Row>
-            </div>
+              </div>
+              <Col>
+                <Row style={{ marginTop: "30px" }}>
+                  <Col>
+                    <StyledCard title="Release date" bordered={true}>
+                      {movieReleaseDate}
+                    </StyledCard>
+                  </Col>
+                  <Col>
+                    <StyledCard title="Runtime" bordered={true}>
+                      {movieRuntime}
+                    </StyledCard>
+                  </Col>
+                  <Col>
+                    <StyledCard title="Genres" bordered={true}>
+                      {genres}
+                    </StyledCard>
+                  </Col>
+                </Row>
+                <Row style={{ marginTop: "30px" }}>
+                  <Col>
+                    <StyledCard title="Languages" bordered={true}>
+                      {languages}
+                    </StyledCard>
+                  </Col>
+                  <Col>
+                    <StyledCard title="Average vote" bordered={true}>
+                      {movieVoteAverage}
+                    </StyledCard>
+                  </Col>
+                  <Col>
+                    <StyledCard title="All vote" bordered={true}>
+                      {movieVoteCount}
+                    </StyledCard>
+                  </Col>
+                </Row>
+                <Row>
+                  <span>
+                    <Rate
+                      tooltips={rating}
+                      onChange={handleChange}
+                      value={ratingValue}
+                    />
+                    {ratingValue ? (
+                      <span className="ant-rate-text">
+                        {rating[ratingValue - 1]}
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                </Row>
+              </Col>
+            </Row>
+
             <PageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
