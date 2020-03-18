@@ -59,6 +59,18 @@ function App() {
     />
   );
 
+  const upcomingRoute = (
+    <Route
+      exact
+      path="/upcoming-movies"
+      render={props => (
+        <React.Fragment>
+          <MovieList url="upcoming" />
+        </React.Fragment>
+      )}
+    />
+  );
+
   return (
     <Router>
       <MovieProvider>
@@ -71,6 +83,8 @@ function App() {
           {topRatedRoute}
           {movieRoute}
           {nowPlayingRoute}
+          {popularRoute}
+          {upcomingRoute}
         </div>
       </MovieProvider>
     </Router>

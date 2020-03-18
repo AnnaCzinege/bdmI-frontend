@@ -13,9 +13,12 @@ const CardContainer = styled.div`
 `;
 
 const MovieList = props => {
-  const { movies, fetchMovies } = useContext(MovieContext);
-  const [page, setPage, moviePageNumber] = useState(1);
-
+  const { movies, fetchMovies, moviePageNumber } = useContext(MovieContext);
+  const [page, setPage] = useState(1);
+  const pageTitle =
+    props.url.charAt(0).toUpperCase() +
+    props.url.replace("_", " ").slice(1) +
+    " movies";
   const onChange = pageNumber => {
     setPage(pageNumber);
   };
@@ -28,7 +31,7 @@ const MovieList = props => {
 
   return (
     <CardContainer>
-      <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>Top rated movies</h1>
+      <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>{pageTitle}</h1>
       <div>
         <Pagination
           showQuickJumper

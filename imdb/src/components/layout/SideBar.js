@@ -21,12 +21,15 @@ const SideBar = props => {
       <StyledSidebarLink onClick={onClick} to="/top-rated-movies">
         Top rated
       </StyledSidebarLink>
-      <StyledSidebarLink onClick={onClick}>Latest</StyledSidebarLink>
-      <StyledSidebarLink onClick={onClick}>Popular</StyledSidebarLink>
+      <StyledSidebarLink onClick={onClick} to="/popular-movies">
+        Popular
+      </StyledSidebarLink>
       <StyledSidebarLink onClick={onClick} to="/now-playing-movies">
         Now Playing
       </StyledSidebarLink>
-      <StyledSidebarLink onClick={onClick}>Upcoming</StyledSidebarLink>
+      <StyledSidebarLink onClick={onClick} to="/upcoming-movies">
+        Upcoming
+      </StyledSidebarLink>
     </StyledSidebar>
   );
 };
