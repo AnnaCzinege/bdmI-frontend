@@ -31,7 +31,11 @@ const MovieList = props => {
 
   return (
     <CardContainer>
-      <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>{pageTitle}</h1>
+      <h1
+        style={{ fontSize: "36px", fontWeight: "bold", fontFamily: "fantasy" }}
+      >
+        {pageTitle}
+      </h1>
       <div>
         <Pagination
           showQuickJumper

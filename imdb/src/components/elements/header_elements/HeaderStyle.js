@@ -10,7 +10,7 @@ export default styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Times New Roman", Times, serif;
+  font-family: fantasy;
   font-size: 20px;
   font-weight: bold;
   z-index: 1;

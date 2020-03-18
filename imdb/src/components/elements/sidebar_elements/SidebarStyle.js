@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export default styled.div`
+  font-family: fantasy;
   text-align: center;
   height: 100%;
   width: ${props => props.isOpen};
