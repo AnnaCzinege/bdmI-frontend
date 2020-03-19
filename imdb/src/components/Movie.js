@@ -23,6 +23,7 @@ import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import YouTube from 'react-youtube-embed';
 import { MovieContext } from './MovieContext';
 import { WatchListContext } from './WatchListContext';
+import { message } from 'antd';
 
 const useCardStyles = makeStyles({
   root: {
@@ -72,8 +73,12 @@ const Movie = props => {
   }, [fetchMovieVideo, movieVideo, props.id]);
 
   const addMovieToWatchList = event => {
-    event.preventDefault();
-    setMoviesToWatch([...moviesToWatch, { ...props.movie }]);
+    if (moviesToWatch.filter(movie => movie.id === props.id).length === 0) {
+      event.preventDefault();
+      setMoviesToWatch([...moviesToWatch, { ...props.movie }]);
+    } else {
+      return message.warning('This movie is already in your watchlist!', 0.5);
+    }
   };
 
   const handleClose = () => {
