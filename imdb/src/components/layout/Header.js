@@ -82,7 +82,7 @@ const Header = props => {
           onClick={searchBasedOnTitle}
         ></StyledSearchIcon>
       </StyledHeaderItem>
-      <StyledHeaderItem>IMDbPRO</StyledHeaderItem>
+      <StyledHeaderItem>bDMIPRO</StyledHeaderItem>
       <StyledHeaderItem>
         <StyledLink to="/watchlist">WatchList</StyledLink>
       </StyledHeaderItem>
