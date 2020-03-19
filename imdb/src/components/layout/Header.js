@@ -15,25 +15,25 @@ import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle"
 const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
   const { allMovies } = useContext(SearchMoviesContext);
-  const [movieTitle, setMovieTitle] = useState("");
+  const [searchedTitle, setSearchedTitle] = useState("");
 
   const onClick = () => {
     setIsOpen("100%");
   };
 
   const onSearchChange = e => {
-    setMovieTitle(e.target.value);
+    setSearchedTitle(e.target.value);
   };
 
   const searchBasedOnTitle = e => {
-    console.log(movieTitle);
+    console.log(searchedTitle);
     console.log(allMovies);
     e.preventDefault();
-    movieTitle.toLowerCase();
+    searchedTitle.toLowerCase();
 
     allMovies.forEach(element => {
       element.forEach(movie => {
-        if (movie.title.toString().toLowerCase() === movieTitle) {
+        if (movie.title.toString().toLowerCase() === searchedTitle) {
           console.log(movie.title);
         }
       });
@@ -55,7 +55,7 @@ const Header = props => {
           <StyledInput
             type="text"
             placeholder="Search..."
-            value={movieTitle}
+            value={searchedTitle}
             onChange={onSearchChange}
           ></StyledInput>
         </form>

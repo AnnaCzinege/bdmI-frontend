@@ -20,7 +20,7 @@ export const SearchMovieProvider = props => {
 
   useEffect(() => {
     fetchAllMovies();
-  }, []);
+  }, [fetchAllMovies]);
 
   return (
     <SearchMoviesContext.Provider value={{ allMovies }}>
