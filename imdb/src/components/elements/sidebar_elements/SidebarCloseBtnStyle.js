@@ -7,14 +7,9 @@ export default styled(Link)`
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
-  margin-top: 10px;
   text-decoration: none;
-  color: black;
+  color: orange;
   &:hover {
     opacity: 0.5;
   }
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: orange;
-  border-radius: 50%;
 `;

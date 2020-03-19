@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "Montserrat-Medium";
+  font-style: normal;
+  src: url("./Montserrat-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Montserrat-Regular";
+  font-style: normal;
+  src: url("./Montserrat-Regular.woff") format("woff");
+}
+
 .App {
   text-align: center;
 }
@@ -47,4 +59,34 @@
 
 .ant-pagination-item-ellipsis {
   color: orange !important;
+}
+
+.MuiCardContent-root {
+  background-color: #1a1a1a;
+}
+
+.MuiSvgIcon-root {
+  color: orange;
+}
+
+.MuiTypography-root {
+  color: white !important;
+  font-family: "Montserrat-Regular" !important;
+  font-weight: bold !important;
+}
+
+.MuiCardActions-root {
+  background-color: #1a1a1a;
+}
+
+.MuiButtonBase-root {
+  background-color: #262626 !important;
+  color: #5799ef !important;
+  text-transform: capitalize !important;
+  font-family: "Montserrat-Medium" !important;
+  font-weight: bold !important;
+}
+
+.MuiButtonBase-root:hover {
+  background-color: #333 !important;
 }

@@ -44,7 +44,7 @@ const MovieList = props => {
       <StyledTitle>{pageTitle}</StyledTitle>
       <CardContainer>
         {movies.map(movie => (
-          <Card>
+          <Card key={movie.id}>
             <Movie
               key={movie.id}
               id={movie.id}
@@ -57,6 +57,12 @@ const MovieList = props => {
         ))}
         ;
       </CardContainer>
+      <StyledPagination
+        showQuickJumper
+        defaultCurrent={1}
+        total={moviePageNumber * 10}
+        onChange={onChange}
+      />
     </div>
   );
 };

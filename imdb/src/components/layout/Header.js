@@ -15,7 +15,7 @@ const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
 
   const onClick = () => {
-    setIsOpen("100%");
+    setIsOpen("15%");
   };
 
   return (
