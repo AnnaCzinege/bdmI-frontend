@@ -10,7 +10,7 @@ const Card = styled.div`
 `;
 
 const CardContainer = styled.div`
-  margin-top: 50px;
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -35,16 +35,16 @@ const MovieList = props => {
 
   return (
     <div style={{ background: 'black' }}>
-      <StyledTitle>{pageTitle}</StyledTitle>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
         total={moviePageNumber * 10}
         onChange={onChange}
       />
+      <StyledTitle>{pageTitle}</StyledTitle>
       <CardContainer>
         {movies.map(movie => (
-          <Card>
+          <Card key={movie.id}>
             <Movie
               key={movie.id}
               id={movie.id}
@@ -58,6 +58,12 @@ const MovieList = props => {
         ))}
         ;
       </CardContainer>
+      <StyledPagination
+        showQuickJumper
+        defaultCurrent={1}
+        total={moviePageNumber * 10}
+        onChange={onChange}
+      />
     </div>
   );
 };

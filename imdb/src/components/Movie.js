@@ -117,7 +117,7 @@ const Movie = props => {
         </CardActionArea>
         <CardActions style={{ justifyContent: "center" }}>
           <Button id={props.id} variant="contained" color="default">
-            watch trailer
+            Watch trailer
           </Button>
           <Button
             name={props.title}

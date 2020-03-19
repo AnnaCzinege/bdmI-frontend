@@ -12,6 +12,7 @@ import StyledToggleBtn from "../elements/header_elements/HeaderToggleBtnStyle";
 import StyledInput from "../elements/header_elements/HeaderInputStyle";
 import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle";
 import { message } from "antd";
+import StyledLink from "../elements/header_elements/HeaderLinkStyle";
 
 const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
@@ -19,7 +20,7 @@ const Header = props => {
   const [searchedTitle, setSearchedTitle] = useState("");
 
   const onClick = () => {
-    setIsOpen("100%");
+    setIsOpen("15%");
   };
 
   const onSearchChange = e => {
@@ -51,9 +52,9 @@ const Header = props => {
   return (
     <StyledHeader>
       <StyledHeaderItem>
-        <Link to="/">
+        <StyledLink to="/">
           <StyledLogo src={Logo} alt=""></StyledLogo>
-        </Link>
+        </StyledLink>
       </StyledHeaderItem>
       <StyledHeaderItem onClick={onClick}>
         <StyledToggleBtn src={ToggleBtn} alt=""></StyledToggleBtn> Menu
@@ -73,7 +74,7 @@ const Header = props => {
       </StyledHeaderItem>
       <StyledHeaderItem>IMDbPRO</StyledHeaderItem>
       <StyledHeaderItem>
-        <Link to="/watchlist">WatchList</Link>
+        <StyledLink to="/watchlist">WatchList</StyledLink>
       </StyledHeaderItem>
       <StyledHeaderItem>Sign In</StyledHeaderItem>
     </StyledHeader>
