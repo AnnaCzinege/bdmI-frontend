@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
+import { Layout, Typography, Card, Col, Row, Rate } from "antd";
 import StyledContent from "./elements/movie_details_elements/StyledContent";
 import StyledFooter from "./elements/movie_details_elements/StyledFooter";
 import StyledCard from "./elements/movie_details_elements/StyledCard";
 import StyledTitle from "./elements/movie_details_elements/StyledDetailsTitle";
 import StyledRate from "./elements/movie_details_elements/StyledRate";
+import StyledPageHeader from "./elements/movie_details_elements/StyledInfoContainer";
 
 const MovieDetails = props => {
   const {
@@ -124,11 +125,11 @@ const MovieDetails = props => {
               </Col>
             </Row>
 
-            <PageHeader title="Overview" className="site-page-header">
+            <StyledPageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
               </Paragraph>
-            </PageHeader>
+            </StyledPageHeader>
           </div>
         </StyledContent>
         <StyledFooter>Ant Design ©2018 Created by Ant UED</StyledFooter>
