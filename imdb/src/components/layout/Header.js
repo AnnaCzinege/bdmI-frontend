@@ -11,6 +11,7 @@ import StyledLogo from "../elements/header_elements/HeaderLogoStyle";
 import StyledToggleBtn from "../elements/header_elements/HeaderToggleBtnStyle";
 import StyledInput from "../elements/header_elements/HeaderInputStyle";
 import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle";
+import { message } from "antd";
 
 const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
@@ -30,14 +31,21 @@ const Header = props => {
     console.log(allMovies);
     e.preventDefault();
     searchedTitle.toLowerCase();
-
+    let isFound = false;
     allMovies.forEach(element => {
       element.forEach(movie => {
         if (movie.title.toString().toLowerCase() === searchedTitle) {
           console.log(movie.title);
+          isFound = true;
         }
       });
     });
+    if (!isFound) {
+      return message.warning(
+        `Couldn't find the movie titled: ${searchedTitle}`,
+        1
+      );
+    }
   };
 
   return (
