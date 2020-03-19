@@ -1,22 +1,22 @@
-import React, { useState, useCallback, createContext, useEffect } from 'react';
-import Axios from 'axios';
+import React, { useState, useCallback, createContext, useEffect } from "react";
+import Axios from "axios";
 
 export const MovieContext = createContext();
 
 export const MovieProvider = props => {
   const [movies, setMovies] = useState([]);
   const [moviePageNumber, setMoviePageNumber] = useState(0);
-  const [movieVideo, setMovieVideo] = useState('');
+  const [movieVideo, setMovieVideo] = useState("");
   const [movieId, setMovieId] = useState(0);
-  const [movieTitle, setMovieTitle] = useState('');
-  const [movieOverview, setMovieOverview] = useState('');
+  const [movieTitle, setMovieTitle] = useState("");
+  const [movieOverview, setMovieOverview] = useState("");
   const [movieGenres, setMovieGenres] = useState([]);
   const [movieLanguages, setMovieLanguages] = useState([]);
-  const [movieReleaseDate, setMovieReleaseDate] = useState('');
+  const [movieReleaseDate, setMovieReleaseDate] = useState("");
   const [movieRuntime, setMovieRuntime] = useState(0);
   const [movieVoteAverage, setMovieVoteAverage] = useState(0);
   const [movieVoteCount, setMovieVoteCount] = useState(0);
-  const [moviePoster, setMoviePoster] = useState('');
+  const [moviePoster, setMoviePoster] = useState("");
 
   const fetchMovies = useCallback(url => {
     Axios.get(url).then(resp => {
@@ -34,7 +34,7 @@ export const MovieProvider = props => {
       setMovieLanguages(resp.data.spoken_languages);
       setMovieReleaseDate(resp.data.release_date);
       setMovieRuntime(`${resp.data.runtime} min`);
-      setMovieVoteAverage(resp.data.vote_average);
+      setMovieVoteAverage(`${resp.data.vote_average}/10`);
       setMovieVoteCount(resp.data.vote_count);
       setMoviePoster(resp.data.poster_path);
     });
@@ -45,14 +45,14 @@ export const MovieProvider = props => {
       if (resp.data.results.length !== 0) {
         setMovieVideo(resp.data.results[0].key);
       } else {
-        setMovieVideo('error');
+        setMovieVideo("error");
       }
     });
   }, []);
 
   useEffect(() => {
     fetchMovies(
-      'https://api.themoviedb.org/3/movie/top_rated?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=1'
+      "https://api.themoviedb.org/3/movie/top_rated?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=1"
     );
   }, [fetchMovies]);
 
