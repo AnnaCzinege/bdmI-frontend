@@ -10,7 +10,7 @@ const Card = styled.div`
 `;
 
 const CardContainer = styled.div`
-  margin-top: 30px;
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

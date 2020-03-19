@@ -10,7 +10,7 @@ export default styled.div`
   z-index: 2;
   top: 0;
   left: 0;
-  background-color: #262626;
+  background-color: #0d0d0d;
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;

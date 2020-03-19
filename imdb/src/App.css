@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-pagination li a {
+  color: orange;
+}
+
+.ant-pagination-options-quick-jumper {
+  color: orange;
+}
+
+.ant-pagination-item-ellipsis {
+  color: orange !important;
+}
