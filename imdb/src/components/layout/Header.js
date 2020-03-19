@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { LayoutContext } from "./LayoutContext";
 import { SearchMoviesContext } from "../SearchMoviesContext";
 import ToggleBtn from "../../ToggleBtn.png";
-import MovieDetails from "../MovieDetails";
 import Logo from "../../Logo.png";
 import SearchIcon from "../../SearchIcon.png";
 import StyledHeader from "../elements/header_elements/HeaderStyle";
@@ -30,8 +29,15 @@ const Header = props => {
     console.log(movieTitle);
     console.log(allMovies);
     e.preventDefault();
+    movieTitle.toLowerCase();
 
-    allMovies.map(movie => {});
+    allMovies.forEach(element => {
+      element.forEach(movie => {
+        if (movie.title.toString().toLowerCase() === movieTitle) {
+          console.log(movie.title);
+        }
+      });
+    });
   };
 
   return (

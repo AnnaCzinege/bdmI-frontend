@@ -12,7 +12,9 @@ export const SearchMovieProvider = props => {
       Axios.get(
         `https://api.themoviedb.org/3/movie/popular?api_key=bb29364ab81ef62380611d162d85ecdb&language=en-US&page=${i +
           1}`
-      ).then(resp => setAllMovies(...allMovies, resp.data.results));
+      ).then(resp =>
+        setAllMovies(prevMovies => [...prevMovies, resp.data.results])
+      );
     }
   }, []);
 
