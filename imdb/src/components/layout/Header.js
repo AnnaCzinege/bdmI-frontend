@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { LayoutContext } from "./LayoutContext";
 import { SearchMoviesContext } from "../SearchMoviesContext";
 import ToggleBtn from "../../ToggleBtn.png";
@@ -18,6 +18,7 @@ const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState("");
+  const [redirect, setRedirect] = useState(<Redirect></Redirect>);
 
   const onClick = () => {
     setIsOpen("15%");
@@ -28,16 +29,19 @@ const Header = props => {
   };
 
   const searchBasedOnTitle = e => {
-    console.log(searchedTitle);
-    console.log(allMovies);
     e.preventDefault();
-    searchedTitle.toLowerCase();
     let isFound = false;
     allMovies.forEach(element => {
       element.forEach(movie => {
-        if (movie.title.toString().toLowerCase() === searchedTitle) {
-          console.log(movie.title);
+        if (
+          movie.title.toString().toLowerCase() === searchedTitle.toLowerCase()
+        ) {
           isFound = true;
+          return setRedirect(
+            <Redirect
+              to={{ pathname: `/movie/${movie.id}`, state: { id: movie.id } }}
+            ></Redirect>
+          );
         }
       });
     });
@@ -51,6 +55,7 @@ const Header = props => {
 
   return (
     <StyledHeader>
+      {redirect}
       <StyledHeaderItem>
         <StyledLink to="/">
           <StyledLogo src={Logo} alt=""></StyledLogo>
@@ -70,7 +75,11 @@ const Header = props => {
         </form>
       </StyledHeaderItem>
       <StyledHeaderItem>
-        <StyledSearchIcon src={SearchIcon} alt=""></StyledSearchIcon>
+        <StyledSearchIcon
+          src={SearchIcon}
+          alt=""
+          onClick={searchBasedOnTitle}
+        ></StyledSearchIcon>
       </StyledHeaderItem>
       <StyledHeaderItem>IMDbPRO</StyledHeaderItem>
       <StyledHeaderItem>
