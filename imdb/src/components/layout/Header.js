@@ -37,6 +37,7 @@ const Header = props => {
           movie.title.toString().toLowerCase() === searchedTitle.toLowerCase()
         ) {
           isFound = true;
+          setSearchedTitle("");
           return setRedirect(
             <Redirect
               to={{ pathname: `/movie/${movie.id}`, state: { id: movie.id } }}
