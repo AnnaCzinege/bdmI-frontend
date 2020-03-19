@@ -35,7 +35,6 @@ const MovieList = props => {
 
   return (
     <div style={{ background: 'black' }}>
-      <StyledTitle>{pageTitle}</StyledTitle>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
