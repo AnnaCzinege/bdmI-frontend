@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { MovieContext } from "./MovieContext";
-import Movie from "./Movie";
-import styled from "styled-components";
-import StyledPagination from "./elements/movie_list_elements/StyledPagination";
-import StyledTitle from "./elements/movie_list_elements/StyledTitle";
+import React, { useState, useEffect, useContext } from 'react';
+import { MovieContext } from './MovieContext';
+import Movie from './Movie';
+import styled from 'styled-components';
+import StyledPagination from './elements/movie_list_elements/StyledPagination';
+import StyledTitle from './elements/movie_list_elements/StyledTitle';
 
 const Card = styled.div`
   display: inline-block;
@@ -21,8 +21,8 @@ const MovieList = props => {
   const [page, setPage] = useState(1);
   const pageTitle =
     props.url.charAt(0).toUpperCase() +
-    props.url.replace("_", " ").slice(1) +
-    " movies";
+    props.url.replace('_', ' ').slice(1) +
+    ' movies';
   const onChange = pageNumber => {
     setPage(pageNumber);
   };
@@ -34,7 +34,8 @@ const MovieList = props => {
   }, [fetchMovies, page, props.url]);
 
   return (
-    <div style={{ background: "black" }}>
+    <div style={{ background: 'black' }}>
+      <StyledTitle>{pageTitle}</StyledTitle>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
@@ -52,6 +53,7 @@ const MovieList = props => {
               poster={movie.poster_path}
               video={movie.video}
               voteAvg={movie.vote_average}
+              movie={movie}
             />
           </Card>
         ))}
