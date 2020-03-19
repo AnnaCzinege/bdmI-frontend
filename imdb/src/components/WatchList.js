@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
-import { Table } from 'antd';
-import { StarTwoTone } from '@ant-design/icons';
+import { Table, Popconfirm } from 'antd';
+import { StarTwoTone, DeleteFilled } from '@ant-design/icons';
 import { WatchListContext } from './WatchListContext';
 
 const WatchList = props => {
-  const { moviesToWatch } = useContext(WatchListContext);
+  const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
 
-  console.log(moviesToWatch);
+  const handleDelete = id => {
+    const UpdatedmoviesToWatch = [...moviesToWatch].filter(
+      item => item.id !== id
+    );
+    setMoviesToWatch(UpdatedmoviesToWatch);
+  };
 
   const columns = [
     {
@@ -41,6 +46,22 @@ const WatchList = props => {
     {
       title: 'OverView',
       dataIndex: 'overview'
+    },
+    {
+      title: 'Delete',
+      dataIndex: 'id',
+      render: (text, record) =>
+        moviesToWatch.length >= 1 ? (
+          <Popconfirm
+            title="Sure to delete?"
+            onConfirm={() => handleDelete(text)}
+          >
+            <a>
+              <DeleteFilled />
+              {record.key}
+            </a>
+          </Popconfirm>
+        ) : null
     }
   ];
 
