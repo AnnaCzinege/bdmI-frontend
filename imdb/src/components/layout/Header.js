@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { LayoutContext } from "./LayoutContext";
+import { SearchMoviesContext } from "../SearchMoviesContext";
 import ToggleBtn from "../../ToggleBtn.png";
+import MovieDetails from "../MovieDetails";
 import Logo from "../../Logo.png";
 import SearchIcon from "../../SearchIcon.png";
 import StyledHeader from "../elements/header_elements/HeaderStyle";
@@ -13,9 +15,23 @@ import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle"
 
 const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
+  const { allMovies } = useContext(SearchMoviesContext);
+  const [movieTitle, setMovieTitle] = useState("");
 
   const onClick = () => {
     setIsOpen("100%");
+  };
+
+  const onSearchChange = e => {
+    setMovieTitle(e.target.value);
+  };
+
+  const searchBasedOnTitle = e => {
+    console.log(movieTitle);
+    console.log(allMovies);
+    e.preventDefault();
+
+    allMovies.map(movie => {});
   };
 
   return (
@@ -29,7 +45,14 @@ const Header = props => {
         <StyledToggleBtn src={ToggleBtn} alt=""></StyledToggleBtn> Menu
       </StyledHeaderItem>
       <StyledHeaderItem primary>
-        <StyledInput type="text" placeholder="Search..."></StyledInput>
+        <form onSubmit={searchBasedOnTitle}>
+          <StyledInput
+            type="text"
+            placeholder="Search..."
+            value={movieTitle}
+            onChange={onSearchChange}
+          ></StyledInput>
+        </form>
       </StyledHeaderItem>
       <StyledHeaderItem>
         <StyledSearchIcon src={SearchIcon} alt=""></StyledSearchIcon>

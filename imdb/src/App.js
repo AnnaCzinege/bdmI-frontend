@@ -3,6 +3,7 @@ import "./App.css";
 import "antd/dist/antd.css";
 import { MovieProvider } from "./components/MovieContext";
 import { LayoutProvider } from "./components/layout/LayoutContext";
+import { SearchMovieProvider } from "./components/SearchMoviesContext";
 import MovieList from "./components/MovieList";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MovieDetails from "./components/MovieDetails";
@@ -73,20 +74,22 @@ function App() {
 
   return (
     <Router>
-      <MovieProvider>
-        <LayoutProvider>
-          <Header />
-          <Sidebar />
-        </LayoutProvider>
-        <div className="App">
-          {indexRoute}
-          {topRatedRoute}
-          {movieRoute}
-          {nowPlayingRoute}
-          {popularRoute}
-          {upcomingRoute}
-        </div>
-      </MovieProvider>
+      <SearchMovieProvider>
+        <MovieProvider>
+          <LayoutProvider>
+            <Header />
+            <Sidebar />
+          </LayoutProvider>
+          <div className="App">
+            {indexRoute}
+            {topRatedRoute}
+            {movieRoute}
+            {nowPlayingRoute}
+            {popularRoute}
+            {upcomingRoute}
+          </div>
+        </MovieProvider>
+      </SearchMovieProvider>
     </Router>
   );
 }
