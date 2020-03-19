@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
-import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
+import { Layout, Typography, Card, Col, Row, Rate } from "antd";
 import StyledContent from "./elements/movie_details_elements/StyledContent";
 import StyledFooter from "./elements/movie_details_elements/StyledFooter";
 import StyledCard from "./elements/movie_details_elements/StyledCard";
-import StyledTitle from "./elements/movie_list_elements/StyledTitle";
+import StyledTitle from "./elements/movie_details_elements/StyledDetailsTitle";
+import StyledRate from "./elements/movie_details_elements/StyledRate";
+import StyledPageHeader from "./elements/movie_details_elements/StyledInfoContainer";
 
 const MovieDetails = props => {
   const {
@@ -71,40 +73,41 @@ const MovieDetails = props => {
               <Col>
                 <Row style={{ marginTop: "30px" }}>
                   <Col>
-                    <StyledCard title="Release date" bordered={true}>
+                    <StyledCard hoverable title="Release date" bordered={true}>
                       {movieReleaseDate}
                     </StyledCard>
                   </Col>
                   <Col>
-                    <StyledCard title="Runtime" bordered={true}>
+                    <StyledCard hoverable title="Runtime" bordered={true}>
                       {movieRuntime}
                     </StyledCard>
                   </Col>
                   <Col>
-                    <StyledCard title="Genres" bordered={true}>
+                    <StyledCard hoverable title="Genres" bordered={true}>
                       {genres}
                     </StyledCard>
                   </Col>
                 </Row>
                 <Row style={{ marginTop: "30px" }}>
                   <Col>
-                    <StyledCard title="Languages" bordered={true}>
+                    <StyledCard hoverable title="Languages" bordered={true}>
                       {languages}
                     </StyledCard>
                   </Col>
                   <Col>
-                    <StyledCard title="Average vote" bordered={true}>
+                    <StyledCard hoverable title="Average vote" bordered={true}>
                       {movieVoteAverage}
                     </StyledCard>
                   </Col>
                   <Col>
-                    <StyledCard title="All vote" bordered={true}>
+                    <StyledCard hoverable title="All vote" bordered={true}>
                       {movieVoteCount}
                     </StyledCard>
                   </Col>
                 </Row>
-                <Row>
+                <StyledRate>
                   <span>
+                    {"Rate this:"}
                     <Rate
                       tooltips={rating}
                       onChange={handleChange}
@@ -118,15 +121,15 @@ const MovieDetails = props => {
                       ""
                     )}
                   </span>
-                </Row>
+                </StyledRate>
               </Col>
             </Row>
 
-            <PageHeader title="Overview" className="site-page-header">
+            <StyledPageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
               </Paragraph>
-            </PageHeader>
+            </StyledPageHeader>
           </div>
         </StyledContent>
         <StyledFooter>Ant Design ©2018 Created by Ant UED</StyledFooter>

@@ -1,29 +1,29 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { LayoutContext } from './LayoutContext';
-import ToggleBtn from '../../ToggleBtn.png';
-import Logo from '../../Logo.png';
-import SearchIcon from '../../SearchIcon.png';
-import StyledHeader from '../elements/header_elements/HeaderStyle';
-import StyledHeaderItem from '../elements/header_elements/HeaderItemStyle';
-import StyledLogo from '../elements/header_elements/HeaderLogoStyle';
-import StyledToggleBtn from '../elements/header_elements/HeaderToggleBtnStyle';
-import StyledInput from '../elements/header_elements/HeaderInputStyle';
-import StyledSearchIcon from '../elements/header_elements/HeaderSearchIconStyle';
+import React, { useContext } from "react";
+import { LayoutContext } from "./LayoutContext";
+import ToggleBtn from "../../ToggleBtn.png";
+import Logo from "../../Logo.png";
+import SearchIcon from "../../SearchIcon.png";
+import StyledHeader from "../elements/header_elements/HeaderStyle";
+import StyledHeaderItem from "../elements/header_elements/HeaderItemStyle";
+import StyledLogo from "../elements/header_elements/HeaderLogoStyle";
+import StyledToggleBtn from "../elements/header_elements/HeaderToggleBtnStyle";
+import StyledInput from "../elements/header_elements/HeaderInputStyle";
+import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle";
+import StyledLink from "../elements/header_elements/HeaderLinkStyle";
 
 const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
 
   const onClick = () => {
-    setIsOpen('100%');
+    setIsOpen("15%");
   };
 
   return (
     <StyledHeader>
       <StyledHeaderItem>
-        <Link to="/">
+        <StyledLink to="/">
           <StyledLogo src={Logo} alt=""></StyledLogo>
-        </Link>
+        </StyledLink>
       </StyledHeaderItem>
       <StyledHeaderItem onClick={onClick}>
         <StyledToggleBtn src={ToggleBtn} alt=""></StyledToggleBtn> Menu
@@ -36,7 +36,7 @@ const Header = props => {
       </StyledHeaderItem>
       <StyledHeaderItem>IMDbPRO</StyledHeaderItem>
       <StyledHeaderItem>
-        <Link to="/watchlist">WatchList</Link>
+        <StyledLink to="/watchlist">WatchList</StyledLink>
       </StyledHeaderItem>
       <StyledHeaderItem>Sign In</StyledHeaderItem>
     </StyledHeader>
