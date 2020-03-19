@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import { MovieContext } from "./MovieContext";
-import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from "antd";
-import StyledContent from "./elements/movie_details_elements/StyledContent";
-import StyledFooter from "./elements/movie_details_elements/StyledFooter";
-import StyledCard from "./elements/movie_details_elements/StyledCard";
-import StyledTitle from "./elements/movie_list_elements/StyledTitle";
+import React, { useState, useEffect, useContext } from 'react';
+import { MovieContext } from './MovieContext';
+import { Layout, Typography, PageHeader, Card, Col, Row, Rate } from 'antd';
+import StyledContent from './elements/movie_details_elements/StyledContent';
+import StyledFooter from './elements/movie_details_elements/StyledFooter';
+import StyledCard from './elements/movie_details_elements/StyledCard';
+import StyledTitle from './elements/movie_list_elements/StyledTitle';
 
 const MovieDetails = props => {
   const {
@@ -39,7 +39,7 @@ const MovieDetails = props => {
   const { Paragraph } = Typography;
   const { Meta } = Card;
 
-  const rating = ["terrible", "bad", "normal", "good", "wonderful"];
+  const rating = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
   const [ratingValue, setRatingValue] = useState(4);
   const handleChange = ratingValue => {
     setRatingValue(ratingValue);
@@ -69,7 +69,7 @@ const MovieDetails = props => {
                 </Col>
               </div>
               <Col>
-                <Row style={{ marginTop: "30px" }}>
+                <Row style={{ marginTop: '30px' }}>
                   <Col>
                     <StyledCard title="Release date" bordered={true}>
                       {movieReleaseDate}
@@ -86,7 +86,7 @@ const MovieDetails = props => {
                     </StyledCard>
                   </Col>
                 </Row>
-                <Row style={{ marginTop: "30px" }}>
+                <Row style={{ marginTop: '30px' }}>
                   <Col>
                     <StyledCard title="Languages" bordered={true}>
                       {languages}
@@ -115,7 +115,7 @@ const MovieDetails = props => {
                         {rating[ratingValue - 1]}
                       </span>
                     ) : (
-                      ""
+                      ''
                     )}
                   </span>
                 </Row>
@@ -123,7 +123,7 @@ const MovieDetails = props => {
             </Row>
 
             <PageHeader title="Overview" className="site-page-header">
-              <Paragraph style={{ textAlign: "left" }}>
+              <Paragraph style={{ textAlign: 'left' }}>
                 {movieOverview}
               </Paragraph>
             </PageHeader>

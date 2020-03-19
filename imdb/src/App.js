@@ -1,13 +1,15 @@
-import React from "react";
-import "./App.css";
-import "antd/dist/antd.css";
-import { MovieProvider } from "./components/MovieContext";
-import { LayoutProvider } from "./components/layout/LayoutContext";
-import MovieList from "./components/MovieList";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import MovieDetails from "./components/MovieDetails";
-import Header from "./components/layout/Header";
-import Sidebar from "./components/layout/SideBar";
+import React from 'react';
+import './App.css';
+import 'antd/dist/antd.css';
+import { MovieProvider } from './components/MovieContext';
+import { WatchListProvider } from './components/WatchListContext';
+import { LayoutProvider } from './components/layout/LayoutContext';
+import MovieList from './components/MovieList';
+import WatchList from './components/WatchList';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MovieDetails from './components/MovieDetails';
+import Header from './components/layout/Header';
+import Sidebar from './components/layout/SideBar';
 
 function App() {
   const indexRoute = (
@@ -71,21 +73,37 @@ function App() {
     />
   );
 
+  const watchListRoute = (
+    <Route
+      exact
+      path="/watchlist"
+      render={props => (
+        <React.Fragment>
+          <WatchList url="watchlist" />
+        </React.Fragment>
+      )}
+    />
+  );
+
   return (
     <Router>
       <MovieProvider>
-        <LayoutProvider>
-          <Header />
-          <Sidebar />
-        </LayoutProvider>
-        <div className="App">
-          {indexRoute}
-          {topRatedRoute}
-          {movieRoute}
-          {nowPlayingRoute}
-          {popularRoute}
-          {upcomingRoute}
-        </div>
+        <WatchListProvider>
+          <LayoutProvider>
+            <Header />
+            liu
+            <Sidebar />
+          </LayoutProvider>
+          <div className="App">
+            {indexRoute}
+            {topRatedRoute}
+            {movieRoute}
+            {nowPlayingRoute}
+            {popularRoute}
+            {upcomingRoute}
+            {watchListRoute}
+          </div>
+        </WatchListProvider>
       </MovieProvider>
     </Router>
   );

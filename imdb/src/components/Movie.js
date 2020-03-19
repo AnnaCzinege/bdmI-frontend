@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -19,8 +19,10 @@ import Slide from '@material-ui/core/Slide';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import WarningIcon from '@material-ui/icons/Warning';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import YouTube from 'react-youtube-embed';
 import { MovieContext } from './MovieContext';
+import { WatchListContext } from './WatchListContext';
 
 const useCardStyles = makeStyles({
   root: {
@@ -47,10 +49,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Movie = props => {
+  const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
   const { movieVideo, fetchMovieVideo } = useContext(MovieContext);
   const cardClasses = useCardStyles();
   const dialogClasses = useDialogStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     let watchbtn = document.getElementById(props.id);
@@ -67,6 +70,11 @@ const Movie = props => {
       watchbtn.removeEventListener('click', handleOpen);
     };
   }, [fetchMovieVideo, movieVideo, props.id]);
+
+  const addMovieToWatchList = event => {
+    event.preventDefault();
+    setMoviesToWatch([...moviesToWatch, { ...props.movie }]);
+  };
 
   const handleClose = () => {
     setOpen(false);
@@ -105,6 +113,14 @@ const Movie = props => {
         <CardActions style={{ justifyContent: 'center' }}>
           <Button id={props.id} variant="contained" color="default">
             watch trailer
+          </Button>
+          <Button
+            name={props.title}
+            onClick={addMovieToWatchList}
+            variant="contained"
+            color="default"
+          >
+            <PlaylistAddIcon></PlaylistAddIcon>
           </Button>
         </CardActions>
       </Card>
