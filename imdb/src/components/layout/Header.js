@@ -58,7 +58,9 @@ const Header = props => {
         <StyledSearchIcon src={SearchIcon} alt=""></StyledSearchIcon>
       </StyledHeaderItem>
       <StyledHeaderItem>IMDbPRO</StyledHeaderItem>
-      <StyledHeaderItem>WatchList</StyledHeaderItem>
+      <StyledHeaderItem>
+        <Link to="/watchlist">WatchList</Link>
+      </StyledHeaderItem>
       <StyledHeaderItem>Sign In</StyledHeaderItem>
     </StyledHeader>
   );

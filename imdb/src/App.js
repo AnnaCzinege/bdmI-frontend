@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import MovieDetails from "./components/MovieDetails";
 import Header from "./components/layout/Header";
 import Sidebar from "./components/layout/SideBar";
+import WatchList from "./components/WatchList";
+import { WatchListProvider } from "./components/WatchListContext";
 
 function App() {
   const indexRoute = (
@@ -72,22 +74,37 @@ function App() {
     />
   );
 
+  const watchListRoute = (
+    <Route
+      exact
+      path="/watchlist"
+      render={props => (
+        <React.Fragment>
+          <WatchList url="watchlist" />
+        </React.Fragment>
+      )}
+    />
+  );
+
   return (
     <Router>
       <SearchMovieProvider>
         <MovieProvider>
-          <LayoutProvider>
-            <Header />
-            <Sidebar />
-          </LayoutProvider>
-          <div className="App">
-            {indexRoute}
-            {topRatedRoute}
-            {movieRoute}
-            {nowPlayingRoute}
-            {popularRoute}
-            {upcomingRoute}
-          </div>
+          <WatchListProvider>
+            <LayoutProvider>
+              <Header />
+              <Sidebar />
+            </LayoutProvider>
+            <div className="App">
+              {indexRoute}
+              {topRatedRoute}
+              {movieRoute}
+              {nowPlayingRoute}
+              {popularRoute}
+              {upcomingRoute}
+              {watchListRoute}
+            </div>
+          </WatchListProvider>
         </MovieProvider>
       </SearchMovieProvider>
     </Router>
