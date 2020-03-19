@@ -91,7 +91,6 @@ function App() {
         <WatchListProvider>
           <LayoutProvider>
             <Header />
-            liu
             <Sidebar />
           </LayoutProvider>
           <div className="App">
