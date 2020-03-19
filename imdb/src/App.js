@@ -27,6 +27,7 @@ function App() {
 
   const topRatedRoute = (
     <Route
+      exact
       path="/top-rated-movies"
       render={props => (
         <React.Fragment>
@@ -40,6 +41,7 @@ function App() {
 
   const nowPlayingRoute = (
     <Route
+      exact
       path="/now-playing-movies"
       render={props => (
         <React.Fragment>
@@ -51,6 +53,7 @@ function App() {
 
   const popularRoute = (
     <Route
+      exact
       path="/popular-movies"
       render={props => (
         <React.Fragment>
@@ -62,6 +65,7 @@ function App() {
 
   const upcomingRoute = (
     <Route
+      exact
       path="/upcoming-movies"
       render={props => (
         <React.Fragment>
@@ -73,6 +77,7 @@ function App() {
 
   const watchListRoute = (
     <Route
+      exact
       path="/watchlist"
       render={props => (
         <React.Fragment>
