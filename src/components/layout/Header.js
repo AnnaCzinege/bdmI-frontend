@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { LayoutContext } from "./LayoutContext";
 import { SearchMoviesContext } from "../SearchMoviesContext";
@@ -19,33 +19,52 @@ const Header = props => {
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState("");
   const [redirect, setRedirect] = useState("");
-  const [options, setOptions] = useState("");
+  const [options, setOptions] = useState([]);
   const [moviesMapped, setMoviesMapped] = useState(false);
 
   const onClick = () => {
     setIsOpen("15%");
   };
 
-  const mapAllMovies = useCallback(() => {
+  const mapAllMovies = () => {
     setMoviesMapped(true);
     allMovies.map(moviePage => {
-      return moviePage.map(movie => {
+      return moviePage.map((movie, index) => {
         return setOptions(prevOptions => [
           ...prevOptions,
-          { id: movie.id, value: movie.title }
+          { key: movie.id, id: movie.id, value: movie.title }
         ]);
       });
     });
-  }, [allMovies]);
+  };
+
+  const removeDuplicates = () => {
+    let temp = [];
+
+    options.forEach(movie => {
+      if (!temp.includes(movie.value)) {
+        temp.push(movie.value);
+      } else {
+        movie.value = movie.value + " /*/";
+        temp.push(movie.value);
+        //options.splice(options.indexOf(movie), 1);
+      }
+    });
+  };
 
   const searchBasedOnTitle = e => {
     e.preventDefault();
     if (!moviesMapped) {
       mapAllMovies();
     }
-    if (options) {
+
+    if (options.length !== 0) {
+      removeDuplicates();
+      console.log(searchedTitle);
+
       options.forEach(movie => {
         if (movie.value.toLowerCase() === searchedTitle) {
+          console.log(movie);
           return setRedirect(
             <Redirect
               to={{ pathname: `/movie/${movie.id}`, state: { id: movie.id } }}
@@ -74,6 +93,7 @@ const Header = props => {
               width: 500
             }}
             options={options}
+            defaultActiveFirstOption={false}
             placeholder="Search..."
             onSelect={(value, option) =>
               setSearchedTitle(option.value.toLowerCase())
