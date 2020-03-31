@@ -11,7 +11,7 @@ import StyledLogo from "../elements/header_elements/HeaderLogoStyle";
 import StyledToggleBtn from "../elements/header_elements/HeaderToggleBtnStyle";
 import StyledInput from "../elements/header_elements/HeaderInputStyle";
 import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle";
-import { message } from "antd";
+import { message, AutoComplete } from "antd";
 import StyledLink from "../elements/header_elements/HeaderLinkStyle";
 
 const Header = props => {
