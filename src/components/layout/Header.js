@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { LayoutContext } from "./LayoutContext";
 import { SearchMoviesContext } from "../SearchMoviesContext";
@@ -19,23 +19,41 @@ const Header = props => {
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState("");
   const [redirect, setRedirect] = useState("");
+  const [options, setOptions] = useState("");
+  const [moviesMapped, setMoviesMapped] = useState(false);
 
   const onClick = () => {
     setIsOpen("15%");
   };
 
-  const onSearchChange = e => {
-    setSearchedTitle(e.target.value);
+  const onSearchChange = inputValue => {
+    setSearchedTitle(inputValue);
   };
 
+  const mapAllMovies = useCallback(() => {
+    setMoviesMapped(true);
+    allMovies.map(moviePage => {
+      moviePage.map(movie => {
+        setOptions(prevOptions => [
+          ...prevOptions,
+          { id: movie.id, value: movie.title }
+        ]);
+      });
+    });
+  }, [allMovies]);
+
   const searchBasedOnTitle = e => {
+    console.log(options);
+
     e.preventDefault();
+    if (!moviesMapped) {
+      mapAllMovies();
+    }
+
     let isFound = false;
-    allMovies.forEach(element => {
-      element.forEach(movie => {
-        if (
-          movie.title.toString().toLowerCase() === searchedTitle.toLowerCase()
-        ) {
+    if (options) {
+      options.forEach(movie => {
+        if (movie.value.toLowerCase() === searchedTitle.toLowerCase()) {
           isFound = true;
           setSearchedTitle("");
           return setRedirect(
@@ -45,12 +63,6 @@ const Header = props => {
           );
         }
       });
-    });
-    if (!isFound) {
-      return message.warning(
-        `Couldn't find the movie titled: ${searchedTitle}`,
-        1
-      );
     }
   };
 
@@ -67,12 +79,27 @@ const Header = props => {
       </StyledHeaderItem>
       <StyledHeaderItem primary>
         <form onSubmit={searchBasedOnTitle}>
-          <StyledInput
+          {/* <StyledInput
             type="text"
             placeholder="Search..."
             value={searchedTitle}
             onChange={onSearchChange}
-          ></StyledInput>
+          ></StyledInput> */}
+          <AutoComplete
+            style={{
+              width: 200
+            }}
+            options={options}
+            placeholder="try to type `b`"
+            onSelect={(value, option) =>
+              setSearchedTitle(option.value.toLowerCase())
+            }
+            //value={{ searchedTitle }}
+            filterOption={(inputValue, option) =>
+              option.value.toLowerCase().indexOf(inputValue.toLowerCase()) !==
+              -1
+            }
+          ></AutoComplete>
         </form>
       </StyledHeaderItem>
       <StyledHeaderItem>
