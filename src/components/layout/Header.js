@@ -18,7 +18,7 @@ const Header = props => {
   const { setIsOpen } = useContext(LayoutContext);
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState("");
-  const [redirect, setRedirect] = useState(<Redirect></Redirect>);
+  const [redirect, setRedirect] = useState("");
 
   const onClick = () => {
     setIsOpen("15%");
@@ -82,7 +82,7 @@ const Header = props => {
           onClick={searchBasedOnTitle}
         ></StyledSearchIcon>
       </StyledHeaderItem>
-      <StyledHeaderItem>IMDbPRO</StyledHeaderItem>
+      <StyledHeaderItem>bDMIPRO</StyledHeaderItem>
       <StyledHeaderItem>
         <StyledLink to="/watchlist">WatchList</StyledLink>
       </StyledHeaderItem>
