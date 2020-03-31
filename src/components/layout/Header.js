@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { LayoutContext } from "./LayoutContext";
 import { SearchMoviesContext } from "../SearchMoviesContext";
@@ -9,9 +9,9 @@ import StyledHeader from "../elements/header_elements/HeaderStyle";
 import StyledHeaderItem from "../elements/header_elements/HeaderItemStyle";
 import StyledLogo from "../elements/header_elements/HeaderLogoStyle";
 import StyledToggleBtn from "../elements/header_elements/HeaderToggleBtnStyle";
-import StyledInput from "../elements/header_elements/HeaderInputStyle";
+//import StyledInput from "../elements/header_elements/HeaderInputStyle";
 import StyledSearchIcon from "../elements/header_elements/HeaderSearchIconStyle";
-import { message, AutoComplete } from "antd";
+import { AutoComplete } from "antd";
 import StyledLink from "../elements/header_elements/HeaderLinkStyle";
 
 const Header = props => {
@@ -26,15 +26,11 @@ const Header = props => {
     setIsOpen("15%");
   };
 
-  const onSearchChange = inputValue => {
-    setSearchedTitle(inputValue);
-  };
-
   const mapAllMovies = useCallback(() => {
     setMoviesMapped(true);
     allMovies.map(moviePage => {
-      moviePage.map(movie => {
-        setOptions(prevOptions => [
+      return moviePage.map(movie => {
+        return setOptions(prevOptions => [
           ...prevOptions,
           { id: movie.id, value: movie.title }
         ]);
@@ -43,19 +39,13 @@ const Header = props => {
   }, [allMovies]);
 
   const searchBasedOnTitle = e => {
-    console.log(options);
-
     e.preventDefault();
     if (!moviesMapped) {
       mapAllMovies();
     }
-
-    let isFound = false;
     if (options) {
       options.forEach(movie => {
-        if (movie.value.toLowerCase() === searchedTitle.toLowerCase()) {
-          isFound = true;
-          setSearchedTitle("");
+        if (movie.value.toLowerCase() === searchedTitle) {
           return setRedirect(
             <Redirect
               to={{ pathname: `/movie/${movie.id}`, state: { id: movie.id } }}
@@ -79,22 +69,15 @@ const Header = props => {
       </StyledHeaderItem>
       <StyledHeaderItem primary>
         <form onSubmit={searchBasedOnTitle}>
-          {/* <StyledInput
-            type="text"
-            placeholder="Search..."
-            value={searchedTitle}
-            onChange={onSearchChange}
-          ></StyledInput> */}
           <AutoComplete
             style={{
-              width: 200
+              width: 500
             }}
             options={options}
-            placeholder="try to type `b`"
+            placeholder="Search..."
             onSelect={(value, option) =>
               setSearchedTitle(option.value.toLowerCase())
             }
-            //value={{ searchedTitle }}
             filterOption={(inputValue, option) =>
               option.value.toLowerCase().indexOf(inputValue.toLowerCase()) !==
               -1

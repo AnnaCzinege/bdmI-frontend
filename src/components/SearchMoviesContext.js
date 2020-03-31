@@ -5,18 +5,6 @@ export const SearchMoviesContext = createContext();
 
 export const SearchMovieProvider = props => {
   const [allMovies, setAllMovies] = useState([]);
-  const [options, setOptions] = useState([]);
-
-  const mapAllMovies = () => {
-    allMovies.map(moviePage => {
-      moviePage.map(movie => {
-        setOptions(prevOptions => [
-          ...prevOptions,
-          { id: movie.id, title: movie.title }
-        ]);
-      });
-    });
-  };
 
   const fetchAllMovies = useCallback(() => {
     const allPages = 500;
