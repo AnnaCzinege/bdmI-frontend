@@ -4,6 +4,14 @@ import Movie from './Movie';
 import styled from 'styled-components';
 import StyledPagination from './elements/movie_list_elements/StyledPagination';
 import StyledTitle from './elements/movie_list_elements/StyledTitle';
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Slide from '@material-ui/core/Slide';
+import YouTube from 'react-youtube-embed';
 
 const Card = styled.div`
   display: inline-block;
@@ -16,8 +24,29 @@ const CardContainer = styled.div`
   justify-content: space-between;
 `;
 
+const useDialogStyles = makeStyles(theme => ({
+  appBar: {
+    position: 'relative'
+  },
+  title: {
+    marginLeft: theme.spacing(2),
+    flex: 1
+  }
+}));
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const MovieList = props => {
-  const { movies, fetchMovies, moviePageNumber } = useContext(MovieContext);
+  const {
+    movies,
+    fetchMovies,
+    moviePageNumber,
+    movieVideo,
+    isMovieDialogOpen,
+    setMovieDialogOpenStatus
+  } = useContext(MovieContext);
   const [page, setPage] = useState(1);
   const pageTitle =
     props.url.charAt(0).toUpperCase() +
@@ -25,6 +54,11 @@ const MovieList = props => {
     ' movies';
   const onChange = pageNumber => {
     setPage(pageNumber);
+  };
+  const dialogClasses = useDialogStyles();
+
+  const handleClose = () => {
+    setMovieDialogOpenStatus(false);
   };
 
   useEffect(() => {
@@ -64,6 +98,27 @@ const MovieList = props => {
         total={moviePageNumber * 10}
         onChange={onChange}
       />
+      {/* Popup dialog with embedded youtube trailer*/}
+      <Dialog
+        fullScreen
+        open={isMovieDialogOpen}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar className={dialogClasses.appBar} color="default">
+          <Toolbar variant="regular">
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <YouTube id={movieVideo} />
+      </Dialog>
     </div>
   );
 };
