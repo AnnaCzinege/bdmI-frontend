@@ -25,13 +25,15 @@ const Header = props => {
 
   const mapAllMovies = () => {
     setMoviesMapped(true);
-    allMovies.map(moviePage => {
-      return moviePage.map((movie, index) => {
-        return setOptions(prevOptions => [
-          ...prevOptions,
-          { year: movie.release_date, id: movie.id, value: movie.title }
-        ]);
-      });
+    allMovies.map((movie, index) => {
+      return setOptions(prevOptions => [
+        ...prevOptions,
+        {
+          year: movie.releaseDate,
+          id: movie.originalId,
+          value: movie.originalTitle
+        }
+      ]);
     });
   };
 
@@ -44,8 +46,10 @@ const Header = props => {
         year = movie.year.slice(0, 4);
       }
       if (!temp.includes(movie.value)) {
+        console.log("not in temp");
         temp.push(movie.value);
       } else {
+        console.log("in temp already");
         movie.value = `${movie.value} (${year})`;
         temp.push(movie.value);
       }

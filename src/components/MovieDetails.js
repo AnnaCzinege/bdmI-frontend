@@ -25,18 +25,16 @@ const MovieDetails = props => {
 
   useEffect(() => {
     const movieId = props.location.state.id;
-    fetchMovieDetails(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
-    );
+    fetchMovieDetails(`https://localhost:44338/moviedetails/${movieId}`);
   }, [fetchMovieDetails, movieId, props.location.state.id]);
 
-  const genres = movieGenres.map(item => {
-    return <div>{item.name}</div>;
-  });
+  // const genres = movieGenres.map(item => {
+  //   return <div>{item.name}</div>;
+  // });
 
-  const languages = movieLanguages.map(item => {
-    return <div>{item.name}</div>;
-  });
+  // const languages = movieLanguages.map(item => {
+  //   return <div>{item.name}</div>;
+  // });
 
   const { Paragraph } = Typography;
   const { Meta } = Card;
@@ -84,14 +82,14 @@ const MovieDetails = props => {
                   </Col>
                   <Col>
                     <StyledCard hoverable title="Genres" bordered={true}>
-                      {genres}
+                      {/*{genres}*/}
                     </StyledCard>
                   </Col>
                 </Row>
                 <Row style={{ marginTop: "30px" }}>
                   <Col>
                     <StyledCard hoverable title="Languages" bordered={true}>
-                      {languages}
+                      {/* {languages} */}
                     </StyledCard>
                   </Col>
                   <Col>

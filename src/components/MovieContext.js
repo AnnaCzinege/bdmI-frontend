@@ -31,8 +31,8 @@ export const MovieProvider = props => {
       setMovieId(resp.data.id);
       setMovieTitle(resp.data.originalTitle);
       setMovieOverview(resp.data.overview);
-      //setMovieGenres(resp.data.genres);
-      //setMovieLanguages(resp.data.spoken_languages);
+      setMovieGenres(resp.data.movieGenres);
+      setMovieLanguages(resp.data.movieLanguages);
       setMovieReleaseDate(resp.data.releaseDate);
       setMovieRuntime(`${resp.data.runtime} min`);
       setMovieVoteAverage(`${resp.data.voteAverage}/10`);
