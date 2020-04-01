@@ -4,12 +4,16 @@ import Movie from './Movie';
 import styled from 'styled-components';
 import StyledPagination from './elements/movie_list_elements/StyledPagination';
 import StyledTitle from './elements/movie_list_elements/StyledTitle';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import WarningIcon from '@material-ui/icons/Warning';
+import List from '@material-ui/core/List';
 import Slide from '@material-ui/core/Slide';
 import YouTube from 'react-youtube-embed';
 
@@ -117,7 +121,18 @@ const MovieList = props => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <YouTube id={movieVideo} />
+        {movieVideo !== 'unknown' ? (
+          <YouTube id={movieVideo} />
+        ) : (
+          <List>
+            <ListItem>
+              <ListItemText>
+                Sorry, this Movie does not have a trailer!
+                <WarningIcon></WarningIcon>
+              </ListItemText>
+            </ListItem>
+          </List>
+        )}
       </Dialog>
     </div>
   );

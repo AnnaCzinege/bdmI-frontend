@@ -13,6 +13,7 @@ import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import { MovieContext } from './MovieContext';
 import { WatchListContext } from './WatchListContext';
 import { message } from 'antd';
+import Axios from 'axios';
 
 const useCardStyles = makeStyles({
   root: {
@@ -26,7 +27,7 @@ const useCardStyles = makeStyles({
 
 const Movie = props => {
   const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
-  const { movieVideo, fetchMovieVideo, setMovieDialogOpenStatus } = useContext(
+  const { movieVideo, setMovieVideo, setMovieDialogOpenStatus } = useContext(
     MovieContext
   );
   const cardClasses = useCardStyles();
@@ -34,20 +35,22 @@ const Movie = props => {
   useEffect(() => {
     let watchbtn = document.getElementById(props.id);
     watchbtn.addEventListener('click', handleOpen);
-    function handleOpen() {
-      fetchMovieVideo(
-        `https://api.themoviedb.org/3/movie/${this.id}/videos?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
-      );
-      console.log(movieVideo);
-      movieVideo !== 'unknown'
-        ? setMovieDialogOpenStatus(true)
-        : message.warning('Sorry, this movie does not have a trailer!', 1);
-    }
 
+    function handleOpen() {
+      Axios.get(
+        `https://api.themoviedb.org/3/movie/${this.id}/videos?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
+      ).then(resp => {
+        console.log(movieVideo);
+        resp.data.results.length > 0
+          ? setMovieVideo(resp.data.results[0].key)
+          : setMovieVideo('unknown');
+        setMovieDialogOpenStatus(true);
+      });
+    }
     return () => {
       watchbtn.removeEventListener('click', handleOpen);
     };
-  }, [fetchMovieVideo, movieVideo, props.id, setMovieDialogOpenStatus]);
+  }, [movieVideo, props.id, setMovieDialogOpenStatus, setMovieVideo]);
 
   const addMovieToWatchList = event => {
     if (moviesToWatch.filter(movie => movie.id === props.id).length === 0) {

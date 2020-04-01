@@ -41,14 +41,6 @@ export const MovieProvider = props => {
     });
   }, []);
 
-  const fetchMovieVideo = useCallback(url => {
-    Axios.get(url).then(resp => {
-      resp.data.results.length > 0
-        ? setMovieVideo(resp.data.results[0].key)
-        : setMovieVideo('unknown');
-    });
-  }, []);
-
   return (
     <MovieContext.Provider
       value={{
@@ -66,7 +58,7 @@ export const MovieProvider = props => {
         movieVoteCount,
         moviePoster,
         movieVideo,
-        fetchMovieVideo,
+        setMovieVideo,
         fetchMovies,
         fetchMovieDetails,
         isMovieDialogOpen,
