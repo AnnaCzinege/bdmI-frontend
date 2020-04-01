@@ -99,3 +99,34 @@
 .MuiTypography-body1 {
   color: black !important;
 }
+
+.ant-table-row {
+  background-color: black;
+  color: #8b8a8a !important;
+  border-color: #262626 !important;
+}
+
+.anticon-delete {
+  color: orange !important;
+}
+
+.ant-btn-primary {
+  background-color: orange !important;
+  border-color: orange !important;
+}
+
+th {
+  background-color: #262626 !important;
+  color: orange !important;
+  text-align: center !important;
+  border-color: #8b8a8a !important;
+}
+
+td {
+  border-color: #262626 !important;
+}
+
+.delete-btn {
+  background-color: #333 !important;
+  border-color: #333 !important;
+}
