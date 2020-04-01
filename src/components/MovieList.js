@@ -66,7 +66,7 @@ const MovieList = props => {
   };
 
   useEffect(() => {
-    fetchMovies(`https://localhost:44338/${props.url}/${page}`);
+    fetchMovies(`https://localhost:44314/${props.url}/${page}`);
   }, [fetchMovies, page, props.url]);
 
   return (

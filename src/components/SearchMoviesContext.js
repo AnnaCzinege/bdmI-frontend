@@ -9,7 +9,7 @@ export const SearchMovieProvider = props => {
   const fetchAllMovies = useCallback(() => {
     const allPages = 500;
     for (let i = 0; i < allPages; i++) {
-      Axios.get(`https://localhost:44338/allmovies`).then(resp =>
+      Axios.get(`https://localhost:44314/allmovies`).then(resp =>
         setAllMovies(resp.data)
       );
     }
