@@ -46,10 +46,8 @@ const Header = props => {
         year = movie.year.slice(0, 4);
       }
       if (!temp.includes(movie.value)) {
-        console.log("not in temp");
         temp.push(movie.value);
       } else {
-        console.log("in temp already");
         movie.value = `${movie.value} (${year})`;
         temp.push(movie.value);
       }
