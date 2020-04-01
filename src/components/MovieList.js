@@ -83,7 +83,7 @@ const MovieList = props => {
           <Card key={movie.id}>
             <Movie
               key={movie.id}
-              id={movie.originalId}
+              id={movie.id}
               title={movie.originalTitle}
               poster={movie.posterPath}
               video={movie.video}

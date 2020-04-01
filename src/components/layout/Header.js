@@ -30,7 +30,7 @@ const Header = props => {
         ...prevOptions,
         {
           year: movie.releaseDate,
-          id: movie.originalId,
+          id: movie.id,
           value: movie.originalTitle
         }
       ]);
