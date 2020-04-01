@@ -40,8 +40,9 @@ const WatchList = props => {
       )
     },
     {
-      title: 'Release date',
-      dataIndex: 'release_date'
+      title: 'Release year',
+      dataIndex: 'release_date',
+      render: text => text.substring(0, 4)
     },
     {
       title: 'OverView',
