@@ -32,7 +32,7 @@ const Header = props => {
       return moviePage.map((movie, index) => {
         return setOptions(prevOptions => [
           ...prevOptions,
-          { key: movie.id, id: movie.id, value: movie.title }
+          { year: movie.release_date, id: movie.id, value: movie.title }
         ]);
       });
     });
@@ -40,14 +40,17 @@ const Header = props => {
 
   const removeDuplicates = () => {
     let temp = [];
+    let year = " *";
 
     options.forEach(movie => {
+      if (movie.year) {
+        year = movie.year.slice(0, 4);
+      }
       if (!temp.includes(movie.value)) {
         temp.push(movie.value);
       } else {
-        movie.value = movie.value + " /*/";
+        movie.value = `${movie.value} (${year})`;
         temp.push(movie.value);
-        //options.splice(options.indexOf(movie), 1);
       }
     });
   };
@@ -105,13 +108,7 @@ const Header = props => {
           ></AutoComplete>
         </form>
       </StyledHeaderItem>
-      <StyledHeaderItem>
-        <StyledSearchIcon
-          src={SearchIcon}
-          alt=""
-          onClick={searchBasedOnTitle}
-        ></StyledSearchIcon>
-      </StyledHeaderItem>
+
       <StyledHeaderItem>bDMIPRO</StyledHeaderItem>
       <StyledHeaderItem>
         <StyledLink to="/watchlist">WatchList</StyledLink>
