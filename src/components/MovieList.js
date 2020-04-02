@@ -1,36 +1,30 @@
-import React, { useState, useEffect, useContext } from "react";
-import { MovieContext } from "./MovieContext";
-import Movie from "./Movie";
-import styled from "styled-components";
-import StyledPagination from "./elements/movie_list_elements/StyledPagination";
-import StyledTitle from "./elements/movie_list_elements/StyledTitle";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import WarningIcon from "@material-ui/icons/Warning";
-import List from "@material-ui/core/List";
-import Slide from "@material-ui/core/Slide";
-import YouTube from "react-youtube-embed";
+import React, { useState, useEffect, useContext } from 'react';
+import { MovieContext } from './MovieContext';
+import Movie from './Movie';
+import styled from 'styled-components';
+import StyledPagination from './elements/movie_list_elements/StyledPagination';
+import StyledTitle from './elements/movie_list_elements/StyledTitle';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import WarningIcon from '@material-ui/icons/Warning';
+import List from '@material-ui/core/List';
+import Slide from '@material-ui/core/Slide';
+import YouTube from 'react-youtube-embed';
+import Box from '@material-ui/core/Box';
 
 const Card = styled.div`
   display: inline-block;
 `;
 
-const CardContainer = styled.div`
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
 const useDialogStyles = makeStyles(theme => ({
   appBar: {
-    position: "relative"
+    position: 'relative'
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -54,8 +48,8 @@ const MovieList = props => {
   const [page, setPage] = useState(1);
   const pageTitle =
     props.url.charAt(0).toUpperCase() +
-    props.url.replace("-", " ").slice(1) +
-    " movies";
+    props.url.replace('-', ' ').slice(1) +
+    ' movies';
   const onChange = pageNumber => {
     setPage(pageNumber);
   };
@@ -70,7 +64,7 @@ const MovieList = props => {
   }, [fetchMovies, page, props.url]);
 
   return (
-    <div style={{ background: "black" }}>
+    <div style={{ background: 'black' }}>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
@@ -78,7 +72,7 @@ const MovieList = props => {
         onChange={onChange}
       />
       <StyledTitle>{pageTitle}</StyledTitle>
-      <CardContainer>
+      <Box display="flex" justifyContent="center" flexWrap="wrap">
         {movies.map(movie => (
           <Card key={movie.id}>
             <Movie
@@ -94,7 +88,7 @@ const MovieList = props => {
           </Card>
         ))}
         ;
-      </CardContainer>
+      </Box>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
@@ -120,7 +114,7 @@ const MovieList = props => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        {movieVideo !== "unknown" ? (
+        {movieVideo !== 'unknown' ? (
           <YouTube id={movieVideo} />
         ) : (
           <List>
