@@ -6,6 +6,8 @@ import { WatchListContext } from './WatchListContext';
 const WatchList = props => {
   const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
 
+  console.log(moviesToWatch);
+
   const handleDelete = id => {
     const UpdatedmoviesToWatch = [...moviesToWatch].filter(
       item => item.id !== id
@@ -16,11 +18,11 @@ const WatchList = props => {
   const columns = [
     {
       title: 'Title',
-      dataIndex: 'title'
+      dataIndex: 'originalTitle'
     },
     {
       title: 'Poster',
-      dataIndex: 'poster_path',
+      dataIndex: 'posterPath',
       render: text => (
         <img
           style={{ height: '120px', width: '80px' }}
@@ -31,7 +33,7 @@ const WatchList = props => {
     },
     {
       title: 'Vote average',
-      dataIndex: 'vote_average',
+      dataIndex: 'voteAverage',
       render: text => (
         <React.Fragment>
           <StarFilled style={{ color: 'orange' }} />
@@ -41,7 +43,7 @@ const WatchList = props => {
     },
     {
       title: 'Release year',
-      dataIndex: 'release_date',
+      dataIndex: 'releaseDate',
       render: text => text.substring(0, 4)
     },
     {
