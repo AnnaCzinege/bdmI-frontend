@@ -23,15 +23,11 @@ const useCardStyles = makeStyles({
 });
 
 const Movie = props => {
-  const { addMovieToWatchList, setMovie } = useContext(WatchListContext);
+  const { addMovieToWatchList } = useContext(WatchListContext);
   const { movieVideo, setMovieVideo, setMovieDialogOpenStatus } = useContext(
     MovieContext
   );
   const cardClasses = useCardStyles();
-
-  const passDownMovieObject = () => {
-    setMovie(props.movie);
-  };
 
   useEffect(() => {
     let watchbtn = document.getElementById(props.originalId);
@@ -67,35 +63,30 @@ const Movie = props => {
     <React.Fragment>
       <Card className={cardClasses.root}>
         <CardActionArea>
-          <button
-            onClick={passDownMovieObject}
-            style={{ backgroundColor: "black", border: "solid black 1px" }}
+          <Link
+            to={{
+              pathname: `/movie/${props.id}`,
+              state: {
+                id: props.id
+              }
+            }}
           >
-            <Link
-              to={{
-                pathname: `/movie/${props.id}`,
-                state: {
-                  id: props.id
-                }
-              }}
-            >
-              {props.poster.length > 0 ? (
-                <CardMedia
-                  component="img"
-                  alt={props.title}
-                  image={`https://image.tmdb.org/t/p/w500${props.poster}`}
-                  title={props.title}
-                />
-              ) : (
-                <CardMedia
-                  component="img"
-                  alt={props.title}
-                  image={DefaultMoviePoster}
-                  title={props.title}
-                />
-              )}
-            </Link>
-          </button>
+            {props.poster.length > 0 ? (
+              <CardMedia
+                component="img"
+                alt={props.title}
+                image={`https://image.tmdb.org/t/p/w500${props.poster}`}
+                title={props.title}
+              />
+            ) : (
+              <CardMedia
+                component="img"
+                alt={props.title}
+                image={DefaultMoviePoster}
+                title={props.title}
+              />
+            )}
+          </Link>
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.title}
