@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Table, Popconfirm, Button } from 'antd';
 import { StarFilled, DeleteFilled } from '@ant-design/icons';
 import { WatchListContext } from './WatchListContext';
+import { Link } from 'react-router-dom';
 
 const WatchList = props => {
   const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
@@ -23,12 +24,21 @@ const WatchList = props => {
     {
       title: 'Poster',
       dataIndex: 'posterPath',
-      render: text => (
-        <img
-          style={{ height: '120px', width: '80px' }}
-          src={`https://image.tmdb.org/t/p/w500${text}`}
-          alt="poster"
-        />
+      render: (text, row) => (
+        <Link
+          to={{
+            pathname: `/movie/${row.id}`,
+            state: {
+              id: row.id
+            }
+          }}
+        >
+          <img
+            style={{ height: '120px', width: '80px' }}
+            src={`https://image.tmdb.org/t/p/w500${text}`}
+            alt="poster"
+          />
+        </Link>
       )
     },
     {
