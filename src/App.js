@@ -19,7 +19,7 @@ function App() {
       path="/"
       render={props => (
         <React.Fragment>
-          <MovieList url="toprated" />
+          <MovieList url="top-rated" />
         </React.Fragment>
       )}
     />
@@ -31,7 +31,7 @@ function App() {
       path="/top-rated-movies"
       render={props => (
         <React.Fragment>
-          <MovieList url="toprated" />
+          <MovieList url="top-rated" />
         </React.Fragment>
       )}
     />
@@ -45,7 +45,7 @@ function App() {
       path="/now-playing-movies"
       render={props => (
         <React.Fragment>
-          <MovieList url="nowplaying" />
+          <MovieList url="now-playing" />
         </React.Fragment>
       )}
     />

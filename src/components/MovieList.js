@@ -54,7 +54,7 @@ const MovieList = props => {
   const [page, setPage] = useState(1);
   const pageTitle =
     props.url.charAt(0).toUpperCase() +
-    props.url.replace("_", " ").slice(1) +
+    props.url.replace("-", " ").slice(1) +
     " movies";
   const onChange = pageNumber => {
     setPage(pageNumber);
