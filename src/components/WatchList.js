@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 const WatchList = props => {
   const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
 
-  console.log(moviesToWatch);
-
   const handleDelete = id => {
     const UpdatedmoviesToWatch = [...moviesToWatch].filter(
       item => item.id !== id
