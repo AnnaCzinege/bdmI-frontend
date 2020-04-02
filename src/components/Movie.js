@@ -1,19 +1,20 @@
-import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import LocalActivityIcon from "@material-ui/icons/LocalActivity";
-import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
-import { MovieContext } from "./MovieContext";
-import { WatchListContext } from "./WatchListContext";
-import { message } from "antd";
-import Axios from "axios";
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import LocalActivityIcon from '@material-ui/icons/LocalActivity';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import { MovieContext } from './MovieContext';
+import { WatchListContext } from './WatchListContext';
+import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
+import { message } from 'antd';
+import Axios from 'axios';
 
 const useCardStyles = makeStyles({
   root: {
@@ -34,7 +35,7 @@ const Movie = props => {
 
   useEffect(() => {
     let watchbtn = document.getElementById(props.originalId);
-    watchbtn.addEventListener("click", handleOpen);
+    watchbtn.addEventListener('click', handleOpen);
 
     function handleOpen() {
       Axios.get(
@@ -43,12 +44,12 @@ const Movie = props => {
         console.log(movieVideo);
         resp.data.results.length > 0
           ? setMovieVideo(resp.data.results[0].key)
-          : setMovieVideo("unknown");
+          : setMovieVideo('unknown');
         setMovieDialogOpenStatus(true);
       });
     }
     return () => {
-      watchbtn.removeEventListener("click", handleOpen);
+      watchbtn.removeEventListener('click', handleOpen);
     };
   }, [
     movieVideo,
@@ -63,7 +64,7 @@ const Movie = props => {
       event.preventDefault();
       setMoviesToWatch([...moviesToWatch, { ...props.movie }]);
     } else {
-      return message.warning("This movie is already in your watchlist!", 1);
+      return message.warning('This movie is already in your watchlist!', 1);
     }
   };
 
@@ -80,12 +81,21 @@ const Movie = props => {
               }
             }}
           >
-            <CardMedia
-              component="img"
-              alt={props.title}
-              image={`https://image.tmdb.org/t/p/w500${props.poster}`}
-              title={props.title}
-            />
+            {props.poster.length > 0 ? (
+              <CardMedia
+                component="img"
+                alt={props.title}
+                image={`https://image.tmdb.org/t/p/w500${props.poster}`}
+                title={props.title}
+              />
+            ) : (
+              <CardMedia
+                component="img"
+                alt={props.title}
+                image={DefaultMoviePoster}
+                title={props.title}
+              />
+            )}
           </Link>
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
@@ -97,7 +107,7 @@ const Movie = props => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions style={{ justifyContent: "center" }}>
+        <CardActions style={{ justifyContent: 'center' }}>
           <Button id={props.originalId} variant="contained" color="default">
             Watch trailer
           </Button>
