@@ -28,13 +28,13 @@ const MovieDetails = props => {
     fetchMovieDetails(`https://localhost:44314/moviedetails/${movieId}`);
   }, [fetchMovieDetails, movieId, props.location.state.id]);
 
-  // const genres = movieGenres.map(item => {
-  //   return <div>{item.name}</div>;
-  // });
+  const genres = movieGenres.map(item => {
+    return <div>{item.name}</div>;
+  });
 
-  // const languages = movieLanguages.map(item => {
-  //   return <div>{item.name}</div>;
-  // });
+  const languages = movieLanguages.map(item => {
+    return <div>{item.name}</div>;
+  });
 
   const { Paragraph } = Typography;
   const { Meta } = Card;
