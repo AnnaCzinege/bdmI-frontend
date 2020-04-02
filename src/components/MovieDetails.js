@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { MovieContext } from './MovieContext';
-import { Layout, Typography, Card, Col, Row, Rate } from 'antd';
-import StyledContent from './elements/movie_details_elements/StyledContent';
-import StyledFooter from './elements/movie_details_elements/StyledFooter';
-import StyledCard from './elements/movie_details_elements/StyledCard';
-import StyledTitle from './elements/movie_details_elements/StyledDetailsTitle';
-import StyledRate from './elements/movie_details_elements/StyledRate';
-import StyledPageHeader from './elements/movie_details_elements/StyledInfoContainer';
-import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
+import React, { useState, useEffect, useContext } from "react";
+import { MovieContext } from "./MovieContext";
+import { Layout, Typography, Card, Col, Row, Rate } from "antd";
+import StyledContent from "./elements/movie_details_elements/StyledContent";
+import StyledFooter from "./elements/movie_details_elements/StyledFooter";
+import StyledCard from "./elements/movie_details_elements/StyledCard";
+import StyledTitle from "./elements/movie_details_elements/StyledDetailsTitle";
+import StyledRate from "./elements/movie_details_elements/StyledRate";
+import StyledPageHeader from "./elements/movie_details_elements/StyledInfoContainer";
+import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 
 const MovieDetails = props => {
   const {
@@ -30,17 +30,17 @@ const MovieDetails = props => {
   }, [fetchMovieDetails, movieId, props.location.state.id]);
 
   const genres = movieGenres.map(item => {
-    return <div>{item.name}</div>;
+    return <div>{item}</div>;
   });
 
   const languages = movieLanguages.map(item => {
-    return <div>{item.name}</div>;
+    return <div>{item}</div>;
   });
 
   const { Paragraph } = Typography;
   const { Meta } = Card;
 
-  const rating = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
+  const rating = ["terrible", "bad", "normal", "good", "wonderful"];
   const [ratingValue, setRatingValue] = useState(4);
   const handleChange = ratingValue => {
     setRatingValue(ratingValue);
@@ -80,7 +80,7 @@ const MovieDetails = props => {
                 </Col>
               </div>
               <Col>
-                <Row style={{ marginTop: '30px' }}>
+                <Row style={{ marginTop: "30px" }}>
                   <Col>
                     <StyledCard hoverable title="Release date" bordered={true}>
                       {movieReleaseDate}
@@ -97,7 +97,7 @@ const MovieDetails = props => {
                     </StyledCard>
                   </Col>
                 </Row>
-                <Row style={{ marginTop: '30px' }}>
+                <Row style={{ marginTop: "30px" }}>
                   <Col>
                     <StyledCard hoverable title="Languages" bordered={true}>
                       {languages}
@@ -116,7 +116,7 @@ const MovieDetails = props => {
                 </Row>
                 <StyledRate>
                   <span>
-                    {'Rate this:'}
+                    {"Rate this:"}
                     <Rate
                       tooltips={rating}
                       onChange={handleChange}
@@ -127,7 +127,7 @@ const MovieDetails = props => {
                         {rating[ratingValue - 1]}
                       </span>
                     ) : (
-                      ''
+                      ""
                     )}
                   </span>
                 </StyledRate>
@@ -135,7 +135,7 @@ const MovieDetails = props => {
             </Row>
 
             <StyledPageHeader title="Overview" className="site-page-header">
-              <Paragraph style={{ textAlign: 'left' }}>
+              <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
               </Paragraph>
             </StyledPageHeader>
