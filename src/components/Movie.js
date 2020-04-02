@@ -33,7 +33,7 @@ const Movie = props => {
   const cardClasses = useCardStyles();
 
   useEffect(() => {
-    let watchbtn = document.getElementById(props.id);
+    let watchbtn = document.getElementById(props.originalId);
     watchbtn.addEventListener("click", handleOpen);
 
     function handleOpen() {
@@ -50,7 +50,13 @@ const Movie = props => {
     return () => {
       watchbtn.removeEventListener("click", handleOpen);
     };
-  }, [movieVideo, props.originalId, setMovieDialogOpenStatus, setMovieVideo]);
+  }, [
+    movieVideo,
+    props.id,
+    props.originalId,
+    setMovieDialogOpenStatus,
+    setMovieVideo
+  ]);
 
   const addMovieToWatchList = event => {
     if (moviesToWatch.filter(movie => movie.id === props.id).length === 0) {
