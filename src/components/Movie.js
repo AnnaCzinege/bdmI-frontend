@@ -1,20 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import LocalActivityIcon from '@material-ui/icons/LocalActivity';
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
-import { MovieContext } from './MovieContext';
-import { WatchListContext } from './WatchListContext';
-import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
-import { message } from 'antd';
-import Axios from 'axios';
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import LocalActivityIcon from "@material-ui/icons/LocalActivity";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import { MovieContext } from "./MovieContext";
+import { WatchListContext } from "./WatchListContext";
+import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
+import Axios from "axios";
 
 const useCardStyles = makeStyles({
   root: {
@@ -27,7 +26,7 @@ const useCardStyles = makeStyles({
 });
 
 const Movie = props => {
-  const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
+  const { addMovieToWatchList } = useContext(WatchListContext);
   const { movieVideo, setMovieVideo, setMovieDialogOpenStatus } = useContext(
     MovieContext
   );
@@ -35,7 +34,7 @@ const Movie = props => {
 
   useEffect(() => {
     let watchbtn = document.getElementById(props.originalId);
-    watchbtn.addEventListener('click', handleOpen);
+    watchbtn.addEventListener("click", handleOpen);
 
     function handleOpen() {
       Axios.get(
@@ -44,12 +43,12 @@ const Movie = props => {
         console.log(movieVideo);
         resp.data.results.length > 0
           ? setMovieVideo(resp.data.results[0].key)
-          : setMovieVideo('unknown');
+          : setMovieVideo("unknown");
         setMovieDialogOpenStatus(true);
       });
     }
     return () => {
-      watchbtn.removeEventListener('click', handleOpen);
+      watchbtn.removeEventListener("click", handleOpen);
     };
   }, [
     movieVideo,
@@ -59,14 +58,20 @@ const Movie = props => {
     setMovieVideo
   ]);
 
-  const addMovieToWatchList = event => {
-    if (moviesToWatch.filter(movie => movie.id === props.id).length === 0) {
-      event.preventDefault();
-      setMoviesToWatch([...moviesToWatch, { ...props.movie }]);
-    } else {
-      return message.warning('This movie is already in your watchlist!', 1);
-    }
+  const clickedOnWatchlistBtn = event => {
+    console.log(props.movie);
+
+    addMovieToWatchList(event, props);
   };
+
+  // const addMovieToWatchList = event => {
+  //   if (moviesToWatch.filter(movie => movie.id === props.id).length === 0) {
+  //     event.preventDefault();
+  //     setMoviesToWatch([...moviesToWatch, { ...props.movie }]);
+  //   } else {
+  //     return message.warning('This movie is already in your watchlist!', 1);
+  //   }
+  // };
 
   return (
     <React.Fragment>
@@ -107,13 +112,13 @@ const Movie = props => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions style={{ justifyContent: 'center' }}>
+        <CardActions style={{ justifyContent: "center" }}>
           <Button id={props.originalId} variant="contained" color="default">
             Watch trailer
           </Button>
           <Button
             name={props.title}
-            onClick={addMovieToWatchList}
+            onClick={clickedOnWatchlistBtn}
             variant="contained"
             color="default"
           >

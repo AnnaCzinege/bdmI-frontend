@@ -8,6 +8,10 @@ import StyledTitle from "./elements/movie_details_elements/StyledDetailsTitle";
 import StyledRate from "./elements/movie_details_elements/StyledRate";
 import StyledPageHeader from "./elements/movie_details_elements/StyledInfoContainer";
 import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
+import CardActions from "@material-ui/core/CardActions";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import Button from "@material-ui/core/Button";
+import { WatchListContext } from "./WatchListContext";
 
 const MovieDetails = props => {
   const {
@@ -23,6 +27,8 @@ const MovieDetails = props => {
     moviePoster,
     fetchMovieDetails
   } = useContext(MovieContext);
+
+  const { addMovieToWatchList } = useContext(WatchListContext);
 
   useEffect(() => {
     const movieId = props.location.state.id;
@@ -139,9 +145,19 @@ const MovieDetails = props => {
                 {movieOverview}
               </Paragraph>
             </StyledPageHeader>
+            <CardActions style={{ justifyContent: "center" }}>
+              <Button
+                name={props.title}
+                onClick={addMovieToWatchList}
+                variant="contained"
+                color="default"
+              >
+                <PlaylistAddIcon></PlaylistAddIcon>
+              </Button>
+            </CardActions>
           </div>
         </StyledContent>
-        <StyledFooter>Ant Design ©2018 Created by Ant UED</StyledFooter>
+        <StyledFooter>dBMI ©2020</StyledFooter>
       </Layout>
     </div>
   );
