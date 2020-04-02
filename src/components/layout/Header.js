@@ -45,7 +45,6 @@ const Header = props => {
     if (options.length !== 0) {
       options.forEach(movie => {
         if (movie.value.toLowerCase() === searchedTitle) {
-          console.log(movie);
           return setRedirect(
             <Redirect
               to={{ pathname: `/movie/${movie.id}`, state: { id: movie.id } }}

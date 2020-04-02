@@ -5,8 +5,10 @@ export const WatchListContext = createContext();
 
 export const WatchListProvider = props => {
   const [moviesToWatch, setMoviesToWatch] = useState([]);
+  const [movie, setMovie] = useState({});
 
   const addMovieToWatchList = (event, properties) => {
+    console.log(properties);
     if (
       moviesToWatch.filter(movie => movie.id === properties.id).length === 0
     ) {
@@ -19,7 +21,13 @@ export const WatchListProvider = props => {
 
   return (
     <WatchListContext.Provider
-      value={{ moviesToWatch, setMoviesToWatch, addMovieToWatchList }}
+      value={{
+        moviesToWatch,
+        setMoviesToWatch,
+        addMovieToWatchList,
+        movie,
+        setMovie
+      }}
     >
       {props.children}
     </WatchListContext.Provider>

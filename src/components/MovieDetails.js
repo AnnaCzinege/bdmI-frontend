@@ -16,6 +16,7 @@ import { WatchListContext } from "./WatchListContext";
 const MovieDetails = props => {
   const {
     movieId,
+    movieOriginalId,
     movieTitle,
     movieOverview,
     movieLanguages,
@@ -43,11 +44,27 @@ const MovieDetails = props => {
     return <div>{item}</div>;
   });
 
+  const movieObject = {
+    id: movieId,
+    originalId: movieOriginalId,
+    originalTitle: movieTitle,
+    overview: movieOverview,
+    movieGenres: null,
+    movieLanguages: null,
+    releaseDate: movieReleaseDate,
+    runtime: movieRuntime,
+    voteAverage: movieVoteAverage,
+    voteCount: movieVoteCount,
+    popularity: null,
+    posterPath: moviePoster
+  };
+
   const { Paragraph } = Typography;
   const { Meta } = Card;
 
   const clickedOnWatchlistBtn = event => {
-    addMovieToWatchList(event, props.location.state);
+    let properties = { id: movieId, movie: movieObject };
+    addMovieToWatchList(event, properties);
   };
 
   const rating = ["terrible", "bad", "normal", "good", "wonderful"];
