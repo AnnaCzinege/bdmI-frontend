@@ -33,12 +33,12 @@ const Movie = props => {
   const cardClasses = useCardStyles();
 
   useEffect(() => {
-    let watchbtn = document.getElementById(props.originalId);
+    let watchbtn = document.getElementById(props.id);
     watchbtn.addEventListener("click", handleOpen);
 
     function handleOpen() {
       Axios.get(
-        `https://api.themoviedb.org/3/movie/${this.originalId}/videos?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
+        `https://api.themoviedb.org/3/movie/${this.id}/videos?api_key=bc3417b21d3ce5c6f51a602d8422eff9&language=en-US`
       ).then(resp => {
         console.log(movieVideo);
         resp.data.results.length > 0
