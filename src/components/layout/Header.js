@@ -29,28 +29,10 @@ const Header = props => {
       return setOptions(prevOptions => [
         ...prevOptions,
         {
-          year: movie.releaseDate,
           id: movie.id,
           value: movie.originalTitle
         }
       ]);
-    });
-  };
-
-  const removeDuplicates = () => {
-    let temp = [];
-    let year = " *";
-
-    options.forEach(movie => {
-      if (movie.year) {
-        year = movie.year.slice(0, 4);
-      }
-      if (!temp.includes(movie.value)) {
-        temp.push(movie.value);
-      } else {
-        movie.value = `${movie.value} (${year})`;
-        temp.push(movie.value);
-      }
     });
   };
 
@@ -61,9 +43,6 @@ const Header = props => {
     }
 
     if (options.length !== 0) {
-      removeDuplicates();
-      console.log(searchedTitle);
-
       options.forEach(movie => {
         if (movie.value.toLowerCase() === searchedTitle) {
           console.log(movie);
