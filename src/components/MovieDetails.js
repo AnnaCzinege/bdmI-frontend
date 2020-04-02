@@ -46,6 +46,10 @@ const MovieDetails = props => {
   const { Paragraph } = Typography;
   const { Meta } = Card;
 
+  const clickedOnWatchlistBtn = event => {
+    addMovieToWatchList(event, props.location.state);
+  };
+
   const rating = ["terrible", "bad", "normal", "good", "wonderful"];
   const [ratingValue, setRatingValue] = useState(4);
   const handleChange = ratingValue => {
@@ -148,7 +152,7 @@ const MovieDetails = props => {
             <CardActions style={{ justifyContent: "center" }}>
               <Button
                 name={props.title}
-                onClick={addMovieToWatchList}
+                onClick={clickedOnWatchlistBtn}
                 variant="contained"
                 color="default"
               >

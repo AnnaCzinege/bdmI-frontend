@@ -59,31 +59,19 @@ const Movie = props => {
   ]);
 
   const clickedOnWatchlistBtn = event => {
-    console.log(props.movie);
-
     addMovieToWatchList(event, props);
   };
 
-  // const addMovieToWatchList = event => {
-  //   if (moviesToWatch.filter(movie => movie.id === props.id).length === 0) {
-  //     event.preventDefault();
-  //     setMoviesToWatch([...moviesToWatch, { ...props.movie }]);
-  //   } else {
-  //     return message.warning('This movie is already in your watchlist!', 1);
-  //   }
-  // };
+  const state = { id: props.id, movie: props.movie };
 
   return (
     <React.Fragment>
-      {/* Moviecard */}
       <Card className={cardClasses.root}>
         <CardActionArea>
           <Link
             to={{
               pathname: `/movie/${props.id}`,
-              state: {
-                id: props.id
-              }
+              state: state
             }}
           >
             {props.poster.length > 0 ? (
