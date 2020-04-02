@@ -20,9 +20,6 @@ const useCardStyles = makeStyles({
   root: {
     maxWidth: 250,
     margin: 40
-  },
-  media: {
-    height: 180
   }
 });
 

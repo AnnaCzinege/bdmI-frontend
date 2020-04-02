@@ -76,6 +76,10 @@
   font-weight: bold !important;
 }
 
+.MuiCardMedia-img {
+  height: 400px;
+}
+
 .MuiCardActions-root {
   background-color: #1a1a1a;
 }
