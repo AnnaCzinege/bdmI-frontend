@@ -82,14 +82,14 @@ const MovieDetails = props => {
                   </Col>
                   <Col>
                     <StyledCard hoverable title="Genres" bordered={true}>
-                      {/*{genres}*/}
+                      {genres}
                     </StyledCard>
                   </Col>
                 </Row>
                 <Row style={{ marginTop: "30px" }}>
                   <Col>
                     <StyledCard hoverable title="Languages" bordered={true}>
-                      {/* {languages} */}
+                      {languages}
                     </StyledCard>
                   </Col>
                   <Col>
