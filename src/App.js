@@ -45,7 +45,7 @@ function App() {
       path="/now-playing-movies"
       render={props => (
         <React.Fragment>
-          <MovieList url="now_playing" />
+          <MovieList url="nowplaying" />
         </React.Fragment>
       )}
     />
