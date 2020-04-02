@@ -67,7 +67,10 @@ const Movie = props => {
     <React.Fragment>
       <Card className={cardClasses.root}>
         <CardActionArea>
-          <button onClick={passDownMovieObject}>
+          <button
+            onClick={passDownMovieObject}
+            style={{ backgroundColor: "black", border: "solid black 1px" }}
+          >
             <Link
               to={{
                 pathname: `/movie/${props.id}`,
