@@ -18,10 +18,7 @@ import Axios from "axios";
 const useCardStyles = makeStyles({
   root: {
     maxWidth: 250,
-    margin: 5
-  },
-  media: {
-    height: 180
+    margin: 40
   }
 });
 

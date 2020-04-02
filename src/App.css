@@ -63,6 +63,7 @@
 
 .MuiCardContent-root {
   background-color: #1a1a1a;
+  height: 100px;
 }
 
 .MuiSvgIcon-root {
@@ -73,6 +74,10 @@
   color: white !important;
   font-family: 'Montserrat-Regular' !important;
   font-weight: bold !important;
+}
+
+.MuiCardMedia-img {
+  height: 400px;
 }
 
 .MuiCardActions-root {
