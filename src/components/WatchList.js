@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Table, Popconfirm, Button } from 'antd';
 import { StarFilled, DeleteFilled } from '@ant-design/icons';
 import { WatchListContext } from './WatchListContext';
+import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
 import { Link } from 'react-router-dom';
 
 const WatchList = props => {
@@ -33,11 +34,19 @@ const WatchList = props => {
             }
           }}
         >
-          <img
-            style={{ height: '120px', width: '80px' }}
-            src={`https://image.tmdb.org/t/p/w500${text}`}
-            alt="poster"
-          />
+          {row.posterPath.length > 0 ? (
+            <img
+              style={{ height: '120px', width: '80px' }}
+              src={`https://image.tmdb.org/t/p/w500${text}`}
+              alt="poster"
+            />
+          ) : (
+            <img
+              style={{ height: '120px', width: '80px' }}
+              src={DefaultMoviePoster}
+              alt="poster"
+            />
+          )}
         </Link>
       )
     },
