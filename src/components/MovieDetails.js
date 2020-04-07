@@ -33,7 +33,7 @@ const MovieDetails = props => {
 
   useEffect(() => {
     const movieId = props.location.state.id;
-    fetchMovieDetails(`https://localhost:44314/moviedetails/${movieId}`);
+    fetchMovieDetails(`https://localhost:44314/api/moviedetails/${movieId}`);
   }, [fetchMovieDetails, movieId, props.location.state.id]);
 
   const genres = movieGenres.map(item => {

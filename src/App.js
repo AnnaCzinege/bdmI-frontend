@@ -19,7 +19,7 @@ function App() {
       path="/"
       render={props => (
         <React.Fragment>
-          <MovieList url="top-rated" />
+          <MovieList url="api/top-rated" />
         </React.Fragment>
       )}
     />
@@ -31,7 +31,7 @@ function App() {
       path="/top-rated-movies"
       render={props => (
         <React.Fragment>
-          <MovieList url="top-rated" />
+          <MovieList url="api/top-rated" />
         </React.Fragment>
       )}
     />
@@ -45,7 +45,7 @@ function App() {
       path="/now-playing-movies"
       render={props => (
         <React.Fragment>
-          <MovieList url="now-playing" />
+          <MovieList url="api/now-playing" />
         </React.Fragment>
       )}
     />
@@ -57,7 +57,7 @@ function App() {
       path="/popular-movies"
       render={props => (
         <React.Fragment>
-          <MovieList url="popular" />
+          <MovieList url="api/popular" />
         </React.Fragment>
       )}
     />
@@ -69,7 +69,7 @@ function App() {
       path="/upcoming-movies"
       render={props => (
         <React.Fragment>
-          <MovieList url="upcoming" />
+          <MovieList url="api/upcoming" />
         </React.Fragment>
       )}
     />

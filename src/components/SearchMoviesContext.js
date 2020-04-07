@@ -7,7 +7,7 @@ export const SearchMovieProvider = props => {
   const [allMovies, setAllMovies] = useState([]);
 
   const fetchAllMovies = useCallback(() => {
-    Axios.get(`https://localhost:44314/allmovies`).then(resp =>
+    Axios.get(`https://localhost:44314/api/allmovies`).then(resp =>
       setAllMovies(resp.data)
     );
   }, []);
