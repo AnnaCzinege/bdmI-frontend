@@ -17,9 +17,9 @@ function App() {
     <Route
       exact
       path="/"
-      render={props => (
+      render={(props) => (
         <React.Fragment>
-          <MovieList url="api/top-rated" />
+          <MovieList url="top-rated" />
         </React.Fragment>
       )}
     />
@@ -29,9 +29,9 @@ function App() {
     <Route
       exact
       path="/top-rated-movies"
-      render={props => (
+      render={(props) => (
         <React.Fragment>
-          <MovieList url="api/top-rated" />
+          <MovieList url="top-rated" />
         </React.Fragment>
       )}
     />
@@ -43,9 +43,9 @@ function App() {
     <Route
       exact
       path="/now-playing-movies"
-      render={props => (
+      render={(props) => (
         <React.Fragment>
-          <MovieList url="api/now-playing" />
+          <MovieList url="now-playing" />
         </React.Fragment>
       )}
     />
@@ -55,9 +55,9 @@ function App() {
     <Route
       exact
       path="/popular-movies"
-      render={props => (
+      render={(props) => (
         <React.Fragment>
-          <MovieList url="api/popular" />
+          <MovieList url="popular" />
         </React.Fragment>
       )}
     />
@@ -67,9 +67,9 @@ function App() {
     <Route
       exact
       path="/upcoming-movies"
-      render={props => (
+      render={(props) => (
         <React.Fragment>
-          <MovieList url="api/upcoming" />
+          <MovieList url="upcoming" />
         </React.Fragment>
       )}
     />
@@ -79,7 +79,7 @@ function App() {
     <Route
       exact
       path="/watchlist"
-      render={props => (
+      render={(props) => (
         <React.Fragment>
           <WatchList url="watchlist" />
         </React.Fragment>
