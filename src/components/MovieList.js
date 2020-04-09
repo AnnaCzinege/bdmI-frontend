@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 import Movie from "./Movie";
-import styled from "styled-components";
-import StyledPagination from "./elements/movie_list_elements/StyledPagination";
-import StyledTitle from "./elements/movie_list_elements/StyledTitle";
+import {
+  StyledPagination,
+  StyledTitle,
+  Card
+} from "./elements/MovieListElements";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,10 +19,6 @@ import List from "@material-ui/core/List";
 import Slide from "@material-ui/core/Slide";
 import YouTube from "react-youtube-embed";
 import Box from "@material-ui/core/Box";
-
-const Card = styled.div`
-  display: inline-block;
-`;
 
 const useDialogStyles = makeStyles(theme => ({
   appBar: {
@@ -64,7 +62,7 @@ const MovieList = props => {
   }, [fetchMovies, page, props.url]);
 
   return (
-    <div style={{ background: "black" }}>
+    <div>
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}

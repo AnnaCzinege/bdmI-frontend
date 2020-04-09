@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 import { Layout, Typography, Card, Col, Row, Rate } from "antd";
-import StyledContent from "./elements/movie_details_elements/StyledContent";
-import StyledFooter from "./elements/movie_details_elements/StyledFooter";
-import StyledCard from "./elements/movie_details_elements/StyledCard";
-import StyledTitle from "./elements/movie_details_elements/StyledDetailsTitle";
-import StyledRate from "./elements/movie_details_elements/StyledRate";
-import StyledPageHeader from "./elements/movie_details_elements/StyledInfoContainer";
+import {
+  StyledCard,
+  StyledContent,
+  StyledDetailsTitle as StyledTitle,
+  StyledFooter,
+  StyledInfoContainer as StyledPageHeader,
+  StyledRate
+} from "./elements/MovieDetailsElements";
 import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 import CardActions from "@material-ui/core/CardActions";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
