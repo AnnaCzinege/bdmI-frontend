@@ -5,8 +5,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { MovieProvider } from "./components/MovieContext";
 import { LayoutProvider } from "./components/layout/LayoutContext";
 import { SearchMovieProvider } from "./components/SearchMoviesContext";
-import RespHeader from "./components/layout/RespHeader";
-import Sidebar from "./components/layout/SideBar";
+import Header from "./components/layout/Header";
+import SideBar from "./components/layout/SideBar";
+import Backdrop from "./components/backdrop/Backdrop";
 import { WatchListProvider } from "./components/WatchListContext";
 import {
   indexRoute,
@@ -15,32 +16,36 @@ import {
   nowPlayingRoute,
   popularRoute,
   upcomingRoute,
-  watchListRoute
+  watchListRoute,
 } from "./components/elements/RouteElements";
+import { AppContainer } from "./components/elements/AppContainerElements";
 
 function App() {
   return (
-    <Router>
-      <SearchMovieProvider>
-        <MovieProvider>
-          <WatchListProvider>
-            <LayoutProvider>
-              <RespHeader />
-              <Sidebar />
-            </LayoutProvider>
-            <div className="App">
-              {indexRoute}
-              {topRatedRoute}
-              {movieRoute}
-              {nowPlayingRoute}
-              {popularRoute}
-              {upcomingRoute}
-              {watchListRoute}
-            </div>
-          </WatchListProvider>
-        </MovieProvider>
-      </SearchMovieProvider>
-    </Router>
+    <AppContainer>
+      <Router>
+        <SearchMovieProvider>
+          <MovieProvider>
+            <WatchListProvider>
+              <LayoutProvider>
+                <Header />
+                <SideBar />
+                <Backdrop />
+              </LayoutProvider>
+              <div className="App">
+                {indexRoute}
+                {topRatedRoute}
+                {movieRoute}
+                {nowPlayingRoute}
+                {popularRoute}
+                {upcomingRoute}
+                {watchListRoute}
+              </div>
+            </WatchListProvider>
+          </MovieProvider>
+        </SearchMovieProvider>
+      </Router>
+    </AppContainer>
   );
 }
 

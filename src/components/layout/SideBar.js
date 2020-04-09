@@ -1,37 +1,60 @@
-import React, { useContext } from 'react';
-import StyledSidebar from '../elements/sidebar_elements/SidebarStyle';
-import StyledSidebarLink from '../elements/sidebar_elements/SidebarLinkStyle';
-import StyledSidebarCloseBtn from '../elements/sidebar_elements/SidebarCloseBtnStyle';
-import { LayoutContext } from './LayoutContext';
-import { MovieContext } from '../../components/MovieContext';
+import React, { useContext } from "react";
+import { LayoutContext } from "./LayoutContext";
+import { SLink, Nav, Ul, Li } from "../elements/SideBarElements";
 
-const SideBar = props => {
-  const { isOpen, setIsOpen } = useContext(LayoutContext);
-  const { id } = useContext(MovieContext);
+function RespSideBar(props) {
+  const { sideSize, setSideSize, setBackdropStatus } = useContext(
+    LayoutContext
+  );
 
   const onClick = () => {
-    setIsOpen('0');
+    setSideSize("0");
+    setTimeout(() => {
+      setBackdropStatus("none");
+    }, 500);
   };
 
   return (
-    <StyledSidebar isOpen={isOpen}>
-      <StyledSidebarCloseBtn onClick={onClick} to={{ state: { id: id } }}>
-        x
-      </StyledSidebarCloseBtn>
-      <StyledSidebarLink onClick={onClick} to="/top-rated-movies">
-        Top rated
-      </StyledSidebarLink>
-      <StyledSidebarLink onClick={onClick} to="/popular-movies">
-        Popular
-      </StyledSidebarLink>
-      <StyledSidebarLink onClick={onClick} to="/now-playing-movies">
-        Now Playing
-      </StyledSidebarLink>
-      <StyledSidebarLink onClick={onClick} to="/upcoming-movies">
-        Upcoming
-      </StyledSidebarLink>
-    </StyledSidebar>
+    <Nav sideSize={sideSize}>
+      <Ul>
+        <Li>
+          <SLink onClick={onClick} to="/top-rated-movies">
+            Top rated movies
+          </SLink>
+        </Li>
+        <Li>
+          <SLink onClick={onClick} to="/popular-movies">
+            Popular movies
+          </SLink>
+        </Li>
+        <Li>
+          <SLink onClick={onClick} to="/now-playing-movies">
+            Now playing movies
+          </SLink>
+        </Li>
+        <Li>
+          <SLink onClick={onClick} to="/upcoming-movies">
+            Upcoming movies
+          </SLink>
+        </Li>
+        <Li optional>
+          <SLink onClick={onClick} to="">
+            bDMIPRO
+          </SLink>
+        </Li>
+        <Li optional>
+          <SLink onClick={onClick} to="/watchlist">
+            Watchlist
+          </SLink>
+        </Li>
+        <Li optional>
+          <SLink onClick={onClick} to="">
+            Sign In
+          </SLink>
+        </Li>
+      </Ul>
+    </Nav>
   );
-};
+}
 
-export default SideBar;
+export default RespSideBar;

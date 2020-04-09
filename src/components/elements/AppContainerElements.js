@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export default styled.img`
+export const AppContainer = styled.div`
   height: 100%;
 `;
