@@ -4,7 +4,7 @@ import Movie from "./Movie";
 import {
   StyledPagination,
   StyledTitle,
-  Card
+  Card,
 } from "./elements/MovieListElements";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -20,35 +20,35 @@ import Slide from "@material-ui/core/Slide";
 import YouTube from "react-youtube-embed";
 import Box from "@material-ui/core/Box";
 
-const useDialogStyles = makeStyles(theme => ({
+const useDialogStyles = makeStyles((theme) => ({
   appBar: {
-    position: "relative"
+    position: "relative",
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1
-  }
+    flex: 1,
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const MovieList = props => {
+const MovieList = (props) => {
   const {
     movies,
     fetchMovies,
     moviePageNumber,
     movieVideo,
     isMovieDialogOpen,
-    setMovieDialogOpenStatus
+    setMovieDialogOpenStatus,
   } = useContext(MovieContext);
   const [page, setPage] = useState(1);
   const pageTitle =
     props.url.charAt(0).toUpperCase() +
     props.url.replace("-", " ").slice(1) +
     " movies";
-  const onChange = pageNumber => {
+  const onChange = (pageNumber) => {
     setPage(pageNumber);
   };
   const dialogClasses = useDialogStyles();
@@ -71,7 +71,7 @@ const MovieList = props => {
       />
       <StyledTitle>{pageTitle}</StyledTitle>
       <Box display="flex" justifyContent="center" flexWrap="wrap">
-        {movies.map(movie => (
+        {movies.map((movie) => (
           <Card key={movie.id}>
             <Movie
               key={movie.id}
@@ -90,7 +90,7 @@ const MovieList = props => {
       <StyledPagination
         showQuickJumper
         defaultCurrent={1}
-        total={moviePageNumber}
+        total={moviePageNumber * 10}
         onChange={onChange}
       />
       {/* Popup dialog with embedded youtube trailer*/}
