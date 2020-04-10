@@ -13,7 +13,7 @@ import {
   Ul,
   Li,
   MenuContainer,
-  AutoComplete
+  AutoComplete,
 } from "../elements/HeaderElements";
 import LogoImg from "../../Logo.png";
 import ToggleBtn from "./ToggleBtn";
@@ -27,31 +27,31 @@ function RespHeader() {
   const [moviesMapped, setMoviesMapped] = useState(false);
 
   const onClick = () => {
-    setSideSize("70%");
+    setSideSize("0");
     setBackdropStatus("block");
   };
 
   const mapAllMovies = () => {
     setMoviesMapped(true);
     allMovies.map((movie, index) => {
-      return setOptions(prevOptions => [
+      return setOptions((prevOptions) => [
         ...prevOptions,
         {
           id: movie.id,
-          value: movie.originalTitle
-        }
+          value: movie.originalTitle,
+        },
       ]);
     });
   };
 
-  const searchBasedOnTitle = e => {
+  const searchBasedOnTitle = (e) => {
     e.preventDefault();
     if (!moviesMapped) {
       mapAllMovies();
     }
 
     if (options.length !== 0) {
-      options.forEach(movie => {
+      options.forEach((movie) => {
         if (movie.value.toLowerCase() === searchedTitle) {
           return setRedirect(
             <Redirect
@@ -67,6 +67,7 @@ function RespHeader() {
     <Header>
       {redirect}
       <Nav>
+        <Spacer />
         <ToggleBtnContainer onClick={onClick}>
           <ToggleBtn />
         </ToggleBtnContainer>
@@ -75,7 +76,6 @@ function RespHeader() {
             <Logo src={LogoImg} alt="" />
           </SLink>
         </LogoContainer>
-        <Spacer />
         <div>
           <form onSubmit={searchBasedOnTitle}>
             <AutoComplete
@@ -92,7 +92,6 @@ function RespHeader() {
             ></AutoComplete>
           </form>
         </div>
-        <Spacer />
         <MenuContainer>
           <Ul>
             <Li>
@@ -106,6 +105,7 @@ function RespHeader() {
             </Li>
           </Ul>
         </MenuContainer>
+        <Spacer />
       </Nav>
     </Header>
   );

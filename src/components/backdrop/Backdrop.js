@@ -7,7 +7,7 @@ function Backdrop() {
     LayoutContext
   );
   const onClick = () => {
-    setSideSize("0");
+    setSideSize("-100%");
     setTimeout(() => {
       setBackdropStatus("none");
     }, 500);

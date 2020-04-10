@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const SLink = styled(Link)`
+  overflow: hidden;
   text-decoration: none;
   color: white;
   &:hover {
@@ -13,16 +14,21 @@ export const Nav = styled.nav`
   font-family: fantasy;
   font-size: 24px;
   height: 100%;
-  width: ${(props) => props.sideSize};
+  width: 70%;
   max-width: 300px;
   background-color: #1a1a1a;
   position: fixed;
+  overflow-y: hidden;
   z-index: 3;
   top: 0;
   left: 0;
   box-shadow: 2px 0px 5px black;
-  overflow: hidden;
-  transition: 0.5s ease-out;
+  transform: ${(props) => `translateX(${props.sideSize})`};
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -ms-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all 0.7s ease;
 `;
 
 export const Ul = styled.ul`
@@ -39,7 +45,7 @@ export const Li = styled.li`
     props.optional &&
     css`
       display: none;
-      @media (max-width: 567px) {
+      @media (max-width: 617px) {
         display: block;
       }
     `};

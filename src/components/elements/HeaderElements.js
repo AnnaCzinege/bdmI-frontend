@@ -11,7 +11,7 @@ export const SLink = styled(Link)`
 `;
 
 export const LogoContainer = styled.div`
-  margin-left: 1rem;
+  padding: 0 1rem;
   height: 55%;
 `;
 
@@ -61,7 +61,7 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 `;
 
 export const Spacer = styled.div`
@@ -69,15 +69,15 @@ export const Spacer = styled.div`
 `;
 
 export const MenuContainer = styled.div`
-  @media (max-width: 567px) {
+  @media (max-width: 617px) {
     display: none;
   }
 `;
 
 export const AutoComplete = styled(autoComplete)`
   width: 500px;
-  @media (max-width: 768px) {
+  padding: 0 1rem;
+  @media (max-width: 925px) {
     width: 185px;
-    margin-left: 10px;
   }
 `;
