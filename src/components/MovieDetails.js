@@ -7,7 +7,7 @@ import {
   StyledDetailsTitle as StyledTitle,
   StyledFooter,
   StyledInfoContainer as StyledPageHeader,
-  StyledRate
+  StyledRate,
 } from "./elements/MovieDetailsElements";
 import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 import CardActions from "@material-ui/core/CardActions";
@@ -15,7 +15,7 @@ import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import Button from "@material-ui/core/Button";
 import { WatchListContext } from "./WatchListContext";
 
-const MovieDetails = props => {
+const MovieDetails = (props) => {
   const {
     movieId,
     movieOriginalId,
@@ -28,7 +28,7 @@ const MovieDetails = props => {
     movieVoteAverage,
     movieVoteCount,
     moviePoster,
-    fetchMovieDetails
+    fetchMovieDetails,
   } = useContext(MovieContext);
 
   const { addMovieToWatchList } = useContext(WatchListContext);
@@ -38,11 +38,11 @@ const MovieDetails = props => {
     fetchMovieDetails(`https://localhost:44314/api/moviedetails/${movieId}`);
   }, [fetchMovieDetails, movieId, props.location.state.id]);
 
-  const genres = movieGenres.map(item => {
+  const genres = movieGenres.map((item) => {
     return <div>{item}</div>;
   });
 
-  const languages = movieLanguages.map(item => {
+  const languages = movieLanguages.map((item) => {
     return <div>{item}</div>;
   });
 
@@ -58,20 +58,20 @@ const MovieDetails = props => {
     voteAverage: movieVoteAverage,
     voteCount: movieVoteCount,
     popularity: null,
-    posterPath: moviePoster
+    posterPath: moviePoster,
   };
 
   const { Paragraph } = Typography;
   const { Meta } = Card;
 
-  const clickedOnWatchlistBtn = event => {
+  const clickedOnWatchlistBtn = (event) => {
     let properties = { id: movieId, movie: movieObject };
     addMovieToWatchList(event, properties);
   };
 
   const rating = ["terrible", "bad", "normal", "good", "wonderful"];
   const [ratingValue, setRatingValue] = useState(4);
-  const handleChange = ratingValue => {
+  const handleChange = (ratingValue) => {
     setRatingValue(ratingValue);
   };
 
@@ -95,7 +95,7 @@ const MovieDetails = props => {
                         />
                       }
                     >
-                      <Meta title={movieTitle} description="www.imdb.com" />
+                      <Meta title={movieTitle} description="www.dBMI.com" />
                     </Card>
                   ) : (
                     <Card
