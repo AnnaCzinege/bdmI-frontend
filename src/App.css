@@ -50,13 +50,40 @@
 }
 
 /* Forced antDesign css */
+.ant-pagination-item-link {
+  background-color: #1a1a1a !important;
+  border: none !important;
+}
 
-.ant-pagination li a {
-  color: orange;
+.ant-pagination-item {
+  background-color: #1a1a1a !important;
+  border: none !important;
+}
+
+.anticon {
+  color: orange !important;
+}
+
+.anticon:hover {
+  color: white !important;
+}
+
+.ant-pagination-item a {
+  color: orange !important;
+}
+
+.ant-pagination-item a:hover {
+  color: white !important;
 }
 
 .ant-pagination-options-quick-jumper {
   color: orange;
+}
+
+.ant-pagination-options-quick-jumper input {
+  background-color: #1a1a1a !important;
+  border: solid orange 1px !important;
+  color: white !important;
 }
 
 .ant-pagination-item-ellipsis {
