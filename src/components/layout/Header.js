@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { LayoutContext } from "./LayoutContext";
-import { SearchMoviesContext } from "../SearchMoviesContext";
+import { LayoutContext } from "../contexts/LayoutContext";
+import { SearchMoviesContext } from "../contexts/SearchMoviesContext";
 import {
   Header,
   Nav,
@@ -19,7 +19,7 @@ import LogoImg from "../../Logo.png";
 import ToggleBtn from "./ToggleBtn";
 
 function RespHeader() {
-  const { setSideSize, setBackdropStatus } = useContext(LayoutContext);
+  const { setSideSize, setBackdropStatus, setAuthenticationSize } = useContext(LayoutContext);
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState("");
   const [redirect, setRedirect] = useState("");
@@ -28,6 +28,11 @@ function RespHeader() {
 
   const onClick = () => {
     setSideSize("0");
+    setBackdropStatus("block");
+  };
+
+  const ClickOnSignIn = () => {
+    setAuthenticationSize("0");
     setBackdropStatus("block");
   };
 
@@ -101,7 +106,7 @@ function RespHeader() {
               <SLink to="/watchlist">WatchList</SLink>
             </Li>
             <Li>
-              <SLink to="">SignIn</SLink>
+              <SLink onClick={ClickOnSignIn}>SignIn</SLink>
             </Li>
           </Ul>
         </MenuContainer>

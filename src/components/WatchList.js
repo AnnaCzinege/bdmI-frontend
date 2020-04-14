@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Table, Popconfirm, Button } from 'antd';
 import { StarFilled, DeleteFilled } from '@ant-design/icons';
-import { WatchListContext } from './WatchListContext';
+import { WatchListContext } from './contexts/WatchListContext';
 import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
 import { Link } from 'react-router-dom';
 

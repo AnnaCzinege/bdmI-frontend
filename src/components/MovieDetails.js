@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { MovieContext } from "./MovieContext";
+import { MovieContext } from "./contexts/MovieContext";
 import { Layout, Typography, Card, Col, Row, Rate } from "antd";
 import {
   StyledCard,
@@ -13,7 +13,7 @@ import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 import CardActions from "@material-ui/core/CardActions";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import Button from "@material-ui/core/Button";
-import { WatchListContext } from "./WatchListContext";
+import { WatchListContext } from "./contexts/WatchListContext";
 
 const MovieDetails = (props) => {
   const {

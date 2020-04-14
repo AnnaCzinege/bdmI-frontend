@@ -1,17 +1,27 @@
 import React, { useContext } from "react";
-import { LayoutContext } from "./LayoutContext";
+import { LayoutContext } from "../contexts/LayoutContext";
 import { SLink, Nav, Ul, Li } from "../elements/SideBarElements";
 
 function RespSideBar(props) {
-  const { sideSize, setSideSize, setBackdropStatus } = useContext(
-    LayoutContext
-  );
+  const {
+    sideSize,
+    setSideSize,
+    setBackdropStatus,
+    setAuthenticationSize,
+  } = useContext(LayoutContext);
 
   const onClick = () => {
     setSideSize("-100%");
     setTimeout(() => {
       setBackdropStatus("none");
     }, 500);
+  };
+
+  const ClickOnSignUp = () => {
+    setSideSize("-100%");
+    setTimeout(() => {
+      setAuthenticationSize("0");
+    }, 700);
   };
 
   return (
@@ -48,9 +58,7 @@ function RespSideBar(props) {
           </SLink>
         </Li>
         <Li optional>
-          <SLink onClick={onClick} to="">
-            Sign In
-          </SLink>
+          <SLink onClick={ClickOnSignUp}>Sign In</SLink>
         </Li>
       </Ul>
     </Nav>

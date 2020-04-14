@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { MovieContext } from "./MovieContext";
+import { MovieContext } from "./contexts/MovieContext";
 import Movie from "./Movie";
 import {
   StyledPagination,

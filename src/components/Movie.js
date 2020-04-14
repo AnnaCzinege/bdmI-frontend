@@ -10,8 +10,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import LocalActivityIcon from "@material-ui/icons/LocalActivity";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
-import { MovieContext } from "./MovieContext";
-import { WatchListContext } from "./WatchListContext";
+import { MovieContext } from "./contexts/MovieContext";
+import { WatchListContext } from "./contexts/WatchListContext";
 import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 import Axios from "axios";
 

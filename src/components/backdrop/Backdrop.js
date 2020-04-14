@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
 import { StyledBackdrop } from "../elements/BackdropElements";
-import { LayoutContext } from "../layout/LayoutContext";
+import { LayoutContext } from "../contexts/LayoutContext";
 
 function Backdrop() {
-  const { backdropStatus, setBackdropStatus, setSideSize } = useContext(
-    LayoutContext
-  );
+  const {
+    backdropStatus,
+    setBackdropStatus,
+    setSideSize,
+    setAuthenticationSize,
+  } = useContext(LayoutContext);
   const onClick = () => {
     setSideSize("-100%");
+    setAuthenticationSize("-100%");
     setTimeout(() => {
       setBackdropStatus("none");
     }, 500);
