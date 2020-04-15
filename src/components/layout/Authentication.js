@@ -15,13 +15,13 @@ function Authentication() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [reEnter, setReEnter] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
   const { authenticationSize } = useContext(LayoutContext);
-  const { setNewUser } = useContext(UserContext);
+  const { registerNewUser } = useContext(UserContext);
 
   const onSubmit = () => {
-    if (reEnter === password) {
-      setNewUser({ Name: name, Email: email, Password: password });
+    if (confirmPass === password) {
+      registerNewUser({ UserName: name, Email: email, Password: password });
     } else {
       console.log("U cant write");
     }
@@ -63,11 +63,11 @@ function Authentication() {
         </Li>
         <Li>
           <label>
-            Re-enter password
+            Confirm password
             <br />
             <Input
               type="password"
-              onChange={(event) => setReEnter(event.target.value)}
+              onChange={(event) => setConfirmPass(event.target.value)}
             />
           </label>
         </Li>
