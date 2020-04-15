@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { LayoutContext } from "../contexts/LayoutContext";
+import { UserContext } from "../contexts/UserContext";
 import { SLink, Nav, Ul, Li } from "../elements/SideBarElements";
 
 function RespSideBar(props) {
+  const { setDrawerType } = useContext(UserContext);
   const {
     sideSize,
     setSideSize,
@@ -18,6 +20,7 @@ function RespSideBar(props) {
   };
 
   const ClickOnSignUp = () => {
+    setDrawerType("SignIn");
     setSideSize("-100%");
     setTimeout(() => {
       setAuthenticationSize("0");

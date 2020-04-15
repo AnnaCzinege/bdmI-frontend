@@ -6,6 +6,8 @@ import {
   Input,
   Title,
   Button,
+  P,
+  PLink,
 } from "../elements/AuthenticationElements";
 import { useContext, useState } from "react";
 import { LayoutContext } from "../contexts/LayoutContext";
@@ -17,9 +19,11 @@ function Authentication() {
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const { authenticationSize } = useContext(LayoutContext);
-  const { registerNewUser } = useContext(UserContext);
+  const { registerNewUser, signInUser, drawerType, setDrawerType } = useContext(
+    UserContext
+  );
 
-  const onSubmit = () => {
+  const registration = () => {
     if (confirmPass === password) {
       registerNewUser({ UserName: name, Email: email, Password: password });
     } else {
@@ -27,13 +31,25 @@ function Authentication() {
     }
   };
 
-  return (
+  const signIn = () => {
+    signInUser({ UserName: name, Password: password });
+  };
+
+  const changeToSignIn = () => {
+    setDrawerType("SignIn");
+  };
+
+  const changeToRegister = () => {
+    setDrawerType("Register");
+  };
+
+  const regTemplate = (
     <AuthenticationContainer authenticationSize={authenticationSize}>
       <Ul>
         <Title>Create account</Title>
         <Li>
           <label>
-            Your name
+            Username
             <br />
             <Input
               type="text"
@@ -72,11 +88,52 @@ function Authentication() {
           </label>
         </Li>
         <Li>
-          <Button onClick={onSubmit}>Creat your bDMI account</Button>
+          <Button onClick={registration}>Creat your bDMI account</Button>
         </Li>
+        <P>
+          Already have an account?
+          <PLink onClick={changeToSignIn}>Sign in</PLink>
+        </P>
       </Ul>
     </AuthenticationContainer>
   );
+
+  const signInTemplate = (
+    <AuthenticationContainer authenticationSize={authenticationSize}>
+      <Ul>
+        <Title>Sign-In</Title>
+        <Li>
+          <label>
+            Username
+            <br />
+            <Input
+              type="text"
+              onChange={(event) => setName(event.target.value)}
+            />
+          </label>
+        </Li>
+        <Li>
+          <label>
+            Password
+            <br />
+            <Input
+              type="password"
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+        </Li>
+        <Li>
+          <Button onClick={signIn}>Sign-In</Button>
+        </Li>
+        <P>
+          New to bDMI?
+          <PLink onClick={changeToRegister}>Create account</PLink>
+        </P>
+      </Ul>
+    </AuthenticationContainer>
+  );
+
+  return drawerType === "SignIn" ? signInTemplate : regTemplate;
 }
 
 export default Authentication;

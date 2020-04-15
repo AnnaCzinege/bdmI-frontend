@@ -9,7 +9,7 @@ export const AuthenticationContainer = styled.div`
   background: #1a1a1a;
   color: orange;
   overflow: hidden;
-  height: 466px;
+  height: 500px;
   transform: ${(props) => `translateY(${props.authenticationSize})`};
   font-family: Montserrat-Medium;
   font-size: 20px;
@@ -63,5 +63,18 @@ export const Button = styled.button`
   }
   &:focus {
     outline: none;
+  }
+`;
+
+export const P = styled.p`
+  font-size: 12px;
+  color: white;
+`;
+
+export const PLink = styled.p`
+  color: orange;
+  cursor: pointer;
+  &:hover {
+    color: white;
   }
 `;

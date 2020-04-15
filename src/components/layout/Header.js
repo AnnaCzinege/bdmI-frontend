@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { LayoutContext } from "../contexts/LayoutContext";
 import { SearchMoviesContext } from "../contexts/SearchMoviesContext";
+import { UserContext } from "../contexts/UserContext";
 import {
   Header,
   Nav,
@@ -19,7 +20,10 @@ import LogoImg from "../../Logo.png";
 import ToggleBtn from "./ToggleBtn";
 
 function RespHeader() {
-  const { setSideSize, setBackdropStatus, setAuthenticationSize } = useContext(LayoutContext);
+  const { setSideSize, setBackdropStatus, setAuthenticationSize } = useContext(
+    LayoutContext
+  );
+  const { setDrawerType } = useContext(UserContext);
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState("");
   const [redirect, setRedirect] = useState("");
@@ -32,6 +36,7 @@ function RespHeader() {
   };
 
   const ClickOnSignIn = () => {
+    setDrawerType("SignIn");
     setAuthenticationSize("0");
     setBackdropStatus("block");
   };
@@ -103,10 +108,10 @@ function RespHeader() {
               <SLink to="">bDMIPRO</SLink>
             </Li>
             <Li>
-              <SLink to="/watchlist">WatchList</SLink>
+              <SLink to="/watchlist">Watchlist</SLink>
             </Li>
             <Li>
-              <SLink onClick={ClickOnSignIn}>SignIn</SLink>
+              <SLink onClick={ClickOnSignIn}>Sign in</SLink>
             </Li>
           </Ul>
         </MenuContainer>
