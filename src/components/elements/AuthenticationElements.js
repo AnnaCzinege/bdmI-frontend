@@ -73,6 +73,7 @@ export const P = styled.p`
 
 export const PLink = styled.p`
   color: orange;
+  font-size: 16px;
   cursor: pointer;
   &:hover {
     color: white;

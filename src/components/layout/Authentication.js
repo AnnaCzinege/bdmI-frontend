@@ -19,7 +19,7 @@ function Authentication() {
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const { authenticationSize } = useContext(LayoutContext);
-  const { registerNewUser, signInUser, drawerType, setDrawerType } = useContext(
+  const { registerNewUser, logInUser, drawerType, setDrawerType } = useContext(
     UserContext
   );
 
@@ -32,7 +32,7 @@ function Authentication() {
   };
 
   const signIn = () => {
-    signInUser({ UserName: name, Password: password });
+    logInUser({ UserName: name, Password: password });
   };
 
   const changeToSignIn = () => {
@@ -47,53 +47,55 @@ function Authentication() {
     <AuthenticationContainer authenticationSize={authenticationSize}>
       <Ul>
         <Title>Create account</Title>
-        <Li>
-          <label>
-            Username
-            <br />
-            <Input
-              type="text"
-              onChange={(event) => setName(event.target.value)}
-            />
-          </label>
-        </Li>
-        <Li>
-          <label>
-            Email
-            <br />
-            <Input
-              type="text"
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
-        </Li>
-        <Li>
-          <label>
-            Password
-            <br />
-            <Input
-              type="password"
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
-        </Li>
-        <Li>
-          <label>
-            Confirm password
-            <br />
-            <Input
-              type="password"
-              onChange={(event) => setConfirmPass(event.target.value)}
-            />
-          </label>
-        </Li>
-        <Li>
-          <Button onClick={registration}>Creat your bDMI account</Button>
-        </Li>
-        <P>
-          Already have an account?
-          <PLink onClick={changeToSignIn}>Sign in</PLink>
-        </P>
+        <form>
+          <Li>
+            <label>
+              Username
+              <br />
+              <Input
+                type="text"
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+          </Li>
+          <Li>
+            <label>
+              Password
+              <br />
+              <Input
+                type="password"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </label>
+          </Li>
+          <Li>
+            <label>
+              Confirm password
+              <br />
+              <Input
+                type="password"
+                onChange={(event) => setConfirmPass(event.target.value)}
+              />
+            </label>
+          </Li>
+          <Li>
+            <label>
+              Email
+              <br />
+              <Input
+                type="email"
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </label>
+          </Li>
+          <Li>
+            <Button type="reset" onClick={registration}>
+              Creat your bDMI account
+            </Button>
+          </Li>
+        </form>
+        <P>Already have an account?</P>
+        <PLink onClick={changeToSignIn}>Sign in</PLink>
       </Ul>
     </AuthenticationContainer>
   );
@@ -102,33 +104,32 @@ function Authentication() {
     <AuthenticationContainer authenticationSize={authenticationSize}>
       <Ul>
         <Title>Sign-In</Title>
-        <Li>
-          <label>
-            Username
-            <br />
-            <Input
-              type="text"
-              onChange={(event) => setName(event.target.value)}
-            />
-          </label>
-        </Li>
-        <Li>
-          <label>
-            Password
-            <br />
-            <Input
-              type="password"
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
-        </Li>
-        <Li>
-          <Button onClick={signIn}>Sign-In</Button>
-        </Li>
-        <P>
-          New to bDMI?
-          <PLink onClick={changeToRegister}>Create account</PLink>
-        </P>
+        <form>
+          <Li>
+            <label>
+              Username
+              <br />
+              <Input onChange={(event) => setName(event.target.value)} />
+            </label>
+          </Li>
+          <Li>
+            <label>
+              Password
+              <br />
+              <Input
+                type="password"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </label>
+          </Li>
+          <Li>
+            <Button type="reset" onClick={signIn}>
+              Sign-In
+            </Button>
+          </Li>
+        </form>
+        <P>New to bDMI?</P>
+        <PLink onClick={changeToRegister}>Create account</PLink>
       </Ul>
     </AuthenticationContainer>
   );
