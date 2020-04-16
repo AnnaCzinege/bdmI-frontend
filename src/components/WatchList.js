@@ -5,20 +5,30 @@ import { WatchListContext } from './contexts/WatchListContext';
 import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
 import { Link } from 'react-router-dom';
 
-const WatchList = props => {
-  const { moviesToWatch, setMoviesToWatch } = useContext(WatchListContext);
+const WatchList = (props) => {
+  const {
+    moviesToWatch,
+    setMoviesToWatch,
+    getCurrentUser,
+    deleteMovieFromWatchList,
+  } = useContext(WatchListContext);
 
-  const handleDelete = id => {
-    const UpdatedmoviesToWatch = [...moviesToWatch].filter(
-      item => item.id !== id
-    );
-    setMoviesToWatch(UpdatedmoviesToWatch);
+  const handleDelete = (id) => {
+    // const UpdatedmoviesToWatch = [...moviesToWatch].filter(
+    //   (item) => item.id !== id
+    // );
+
+    //setMoviesToWatch(UpdatedmoviesToWatch);
+    let watchListItem = { userId: getCurrentUser().id, movieid: id };
+    console.log(watchListItem);
+    deleteMovieFromWatchList(watchListItem);
+    console.log(moviesToWatch);
   };
 
   const columns = [
     {
       title: 'Title',
-      dataIndex: 'originalTitle'
+      dataIndex: 'originalTitle',
     },
     {
       title: 'Poster',
@@ -28,8 +38,8 @@ const WatchList = props => {
           to={{
             pathname: `/movie/${row.id}`,
             state: {
-              id: row.id
-            }
+              id: row.id,
+            },
           }}
         >
           {row.posterPath.length > 0 ? (
@@ -46,26 +56,26 @@ const WatchList = props => {
             />
           )}
         </Link>
-      )
+      ),
     },
     {
       title: 'Vote average',
       dataIndex: 'voteAverage',
-      render: text => (
+      render: (text) => (
         <React.Fragment>
           <StarFilled style={{ color: 'orange' }} />
           {text}
         </React.Fragment>
-      )
+      ),
     },
     {
       title: 'Release year',
       dataIndex: 'releaseDate',
-      render: text => text.substring(0, 4)
+      render: (text) => text.substring(0, 4),
     },
     {
       title: 'OverView',
-      dataIndex: 'overview'
+      dataIndex: 'overview',
     },
     {
       title: 'Delete',
@@ -81,8 +91,8 @@ const WatchList = props => {
               {record.key}
             </Button>
           </Popconfirm>
-        ) : null
-    }
+        ) : null,
+    },
   ];
 
   return (

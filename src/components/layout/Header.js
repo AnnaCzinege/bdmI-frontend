@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
-import { Redirect } from "react-router-dom";
-import { LayoutContext } from "../contexts/LayoutContext";
-import { SearchMoviesContext } from "../contexts/SearchMoviesContext";
-import { UserContext } from "../contexts/UserContext";
+import React, { useContext, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { LayoutContext } from '../contexts/LayoutContext';
+import { SearchMoviesContext } from '../contexts/SearchMoviesContext';
+import { UserContext } from '../contexts/UserContext';
+import { WatchListContext } from '../contexts/WatchListContext';
 import {
   Header,
   Nav,
@@ -15,9 +16,9 @@ import {
   Li,
   MenuContainer,
   AutoComplete,
-} from "../elements/HeaderElements";
-import LogoImg from "../../Logo.png";
-import ToggleBtn from "./ToggleBtn";
+} from '../elements/HeaderElements';
+import LogoImg from '../../Logo.png';
+import ToggleBtn from './ToggleBtn';
 
 function RespHeader() {
   const { setSideSize, setBackdropStatus, setAuthenticationSize } = useContext(
@@ -25,20 +26,25 @@ function RespHeader() {
   );
   const { setDrawerType } = useContext(UserContext);
   const { allMovies } = useContext(SearchMoviesContext);
-  const [searchedTitle, setSearchedTitle] = useState("");
-  const [redirect, setRedirect] = useState("");
+  const [searchedTitle, setSearchedTitle] = useState('');
+  const [redirect, setRedirect] = useState('');
   const [options, setOptions] = useState([]);
   const [moviesMapped, setMoviesMapped] = useState(false);
+  const { getWatchlistOfUser, getCurrentUser } = useContext(WatchListContext);
 
   const onClick = () => {
-    setSideSize("0");
-    setBackdropStatus("block");
+    setSideSize('0');
+    setBackdropStatus('block');
   };
 
   const ClickOnSignIn = () => {
-    setDrawerType("SignIn");
-    setAuthenticationSize("0");
-    setBackdropStatus("block");
+    setDrawerType('SignIn');
+    setAuthenticationSize('0');
+    setBackdropStatus('block');
+  };
+
+  const ClickOnWatchList = () => {
+    getWatchlistOfUser(getCurrentUser());
   };
 
   const mapAllMovies = () => {
@@ -108,7 +114,9 @@ function RespHeader() {
               <SLink to="">bDMIPRO</SLink>
             </Li>
             <Li>
-              <SLink to="/watchlist">Watchlist</SLink>
+              <SLink to="/watchlist" onClick={ClickOnWatchList}>
+                Watchlist
+              </SLink>
             </Li>
             <Li>
               <SLink onClick={ClickOnSignIn}>Sign in</SLink>
