@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import { MovieContext } from './contexts/MovieContext';
-import { WatchListContext } from './contexts/WatchListContext';
+import { UserContext } from './contexts/UserContext';
 import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
 import Axios from 'axios';
 
@@ -23,7 +23,7 @@ const useCardStyles = makeStyles({
 });
 
 const Movie = (props) => {
-  const { addMovieToWatchList, addMovieToWatchListDb, getCurrentUser } = useContext(WatchListContext);
+  const { addMovieToWatchList, addMovieToWatchListDb, getCurrentUser } = useContext(UserContext);
   const { movieVideo, setMovieVideo, setMovieDialogOpenStatus } = useContext(
     MovieContext
   );
