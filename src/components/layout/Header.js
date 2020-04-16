@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import { LayoutContext } from '../contexts/LayoutContext';
-import { SearchMoviesContext } from '../contexts/SearchMoviesContext';
-import { UserContext } from '../contexts/UserContext';
-import {MovieContext} from "../contexts/MovieContext";
+import React, { useContext, useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import { LayoutContext } from "../contexts/LayoutContext";
+import { SearchMoviesContext } from "../contexts/SearchMoviesContext";
+import { UserContext } from "../contexts/UserContext";
+import { MovieContext } from "../contexts/MovieContext";
 import {
   Header,
   Nav,
@@ -18,12 +18,11 @@ import {
   AutoComplete,
   P,
   AvatarContainer,
-} from '../elements/HeaderElements';
-import LogoImg from '../../Logo.png';
-import AvatarImg from '../../avatar.png';
-import ToggleBtn from './ToggleBtn';
-import Cookies from 'universal-cookie';
-import { message } from 'antd';
+} from "../elements/HeaderElements";
+import LogoImg from "../../Logo.png";
+import AvatarImg from "../../avatar.png";
+import ToggleBtn from "./ToggleBtn";
+import { message } from "antd";
 
 function RespHeader() {
   const { setSideSize, setBackdropStatus, setAuthenticationSize } = useContext(
@@ -36,29 +35,29 @@ function RespHeader() {
     getWatchlistOfUser,
     getCurrentUser,
   } = useContext(UserContext);
-  const {setMovieId} = useContext(MovieContext);
+  const { setMovieId } = useContext(MovieContext);
   const { allMovies } = useContext(SearchMoviesContext);
-  const [searchedTitle, setSearchedTitle] = useState('');
-  const [redirect, setRedirect] = useState('');
+  const [searchedTitle, setSearchedTitle] = useState("");
+  const [redirect, setRedirect] = useState("");
   const [options, setOptions] = useState([]);
   const [moviesMapped, setMoviesMapped] = useState(false);
 
   const onClick = () => {
-    setSideSize('0');
-    setBackdropStatus('block');
+    setSideSize("0");
+    setBackdropStatus("block");
   };
 
   const ClickOnSignIn = () => {
-    setDrawerType('SignIn');
-    setAuthenticationSize('0');
-    setBackdropStatus('block');
+    setDrawerType("SignIn");
+    setAuthenticationSize("0");
+    setBackdropStatus("block");
   };
 
   const ClickOnWatchList = () => {
     if (getCurrentUser()) {
       getWatchlistOfUser(getCurrentUser());
     } else {
-      message.warning('Please sign in to access your watchlist!', 2);
+      message.warning("Please sign in to access your watchlist!", 2);
     }
   };
 
@@ -89,9 +88,7 @@ function RespHeader() {
         if (movie.value.toLowerCase() === searchedTitle) {
           setMovieId(movie.id);
           return setRedirect(
-            <Redirect
-              to={{ pathname: `/movie/${movie.id}`}}
-            ></Redirect>
+            <Redirect to={{ pathname: `/movie/${movie.id}` }}></Redirect>
           );
         }
       });
@@ -101,18 +98,18 @@ function RespHeader() {
   useEffect(() => {}, [signInStatus]);
 
   const choseBtn = () => {
-    if (signInStatus === 'out') {
+    if (signInStatus === "out") {
       return <SLink onClick={ClickOnSignIn}>Sign in</SLink>;
     }
     return <SLink onClick={logOut}>Log out</SLink>;
   };
 
   const setAvatar = () => {
-    if (signInStatus === 'in') {
+    if (signInStatus === "in") {
       return (
         <AvatarContainer>
           <Logo src={AvatarImg} alt="" />
-          <P>{new Cookies().get('c_user').userName}</P>
+          <P>{getCurrentUser().userName}</P>
         </AvatarContainer>
       );
     }

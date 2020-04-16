@@ -69,7 +69,11 @@ const MovieDetails = (props) => {
 
   const clickedOnWatchlistBtn = (event) => {
     addMovieToWatchList(event, { id: movieId, movie: movieObject });
-    addMovieToWatchListDb({ userId: getCurrentUser().id, movieId: movieId });
+    addMovieToWatchListDb({
+      userId: getCurrentUser().id,
+      movieId: movieId,
+      token: getCurrentUser().token,
+    });
   };
 
   const rating = ["terrible", "bad", "normal", "good", "wonderful"];

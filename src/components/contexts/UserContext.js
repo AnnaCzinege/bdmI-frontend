@@ -50,7 +50,6 @@ export const UserProvider = (props) => {
   };
 
   const addMovieToWatchList = (event, properties) => {
-    console.log(properties);
     if (watchlist.filter((movie) => movie.id === properties.id).length === 0) {
       event.preventDefault();
       setWatchlist([...watchlist, { ...properties.movie }]);
@@ -77,7 +76,9 @@ export const UserProvider = (props) => {
     Axios.post(
       `https://localhost:44314/api/user/addToWatchList`,
       watchlisItem
-    ).then((resp) => console.log(resp));
+    ).then((resp) => {
+      message.warning(resp.data);
+    });
   };
 
   const deleteMovieFromWatchList = (watchlisItem) => {

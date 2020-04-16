@@ -64,7 +64,11 @@ const Movie = (props) => {
 
   const clickedOnWatchlistBtn = (event) => {
     addMovieToWatchList(event, props);
-    addMovieToWatchListDb({ userId: getCurrentUser().id, movieId: props.id });
+    addMovieToWatchListDb({
+      userId: getCurrentUser().id,
+      movieId: props.id,
+      token: getCurrentUser().token,
+    });
   };
 
   const clickedOnMovieCard = () => {
