@@ -29,6 +29,10 @@ function RespSideBar(props) {
 
   const logOut = () => {
     logOutUser();
+    setSideSize("-100%");
+    setTimeout(() => {
+      setAuthenticationSize("0");
+    }, 700);
   };
 
   useEffect(() => {}, [signInStatus]);
