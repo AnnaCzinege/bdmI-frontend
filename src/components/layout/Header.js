@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { LayoutContext } from '../contexts/LayoutContext';
 import { SearchMoviesContext } from '../contexts/SearchMoviesContext';
 import { UserContext } from '../contexts/UserContext';
+import {MovieContext} from "../contexts/MovieContext";
 import {
   Header,
   Nav,
@@ -35,6 +36,7 @@ function RespHeader() {
     getWatchlistOfUser,
     getCurrentUser,
   } = useContext(UserContext);
+  const {setMovieId} = useContext(MovieContext);
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState('');
   const [redirect, setRedirect] = useState('');
@@ -85,9 +87,10 @@ function RespHeader() {
     if (options.length !== 0) {
       options.forEach((movie) => {
         if (movie.value.toLowerCase() === searchedTitle) {
+          setMovieId(movie.id);
           return setRedirect(
             <Redirect
-              to={{ pathname: `/movie/${movie.id}`, state: { id: movie.id } }}
+              to={{ pathname: `/movie/${movie.id}`}}
             ></Redirect>
           );
         }

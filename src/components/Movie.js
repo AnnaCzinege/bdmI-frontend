@@ -1,19 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import LocalActivityIcon from '@material-ui/icons/LocalActivity';
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
-import { MovieContext } from './contexts/MovieContext';
-import { UserContext } from './contexts/UserContext';
-import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
-import Axios from 'axios';
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import LocalActivityIcon from "@material-ui/icons/LocalActivity";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import { MovieContext } from "./contexts/MovieContext";
+import { UserContext } from "./contexts/UserContext";
+import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
+import Axios from "axios";
 
 const useCardStyles = makeStyles({
   root: {
@@ -23,15 +23,22 @@ const useCardStyles = makeStyles({
 });
 
 const Movie = (props) => {
-  const { addMovieToWatchList, addMovieToWatchListDb, getCurrentUser } = useContext(UserContext);
-  const { movieVideo, setMovieVideo, setMovieDialogOpenStatus } = useContext(
-    MovieContext
-  );
+  const {
+    addMovieToWatchList,
+    addMovieToWatchListDb,
+    getCurrentUser,
+  } = useContext(UserContext);
+  const {
+    movieVideo,
+    setMovieVideo,
+    setMovieDialogOpenStatus,
+    setMovieId,
+  } = useContext(MovieContext);
   const cardClasses = useCardStyles();
 
   useEffect(() => {
     let watchbtn = document.getElementById(props.originalId);
-    watchbtn.addEventListener('click', handleOpen);
+    watchbtn.addEventListener("click", handleOpen);
 
     function handleOpen() {
       Axios.get(
@@ -40,12 +47,12 @@ const Movie = (props) => {
         console.log(movieVideo);
         resp.data.results.length > 0
           ? setMovieVideo(resp.data.results[0].key)
-          : setMovieVideo('unknown');
+          : setMovieVideo("unknown");
         setMovieDialogOpenStatus(true);
       });
     }
     return () => {
-      watchbtn.removeEventListener('click', handleOpen);
+      watchbtn.removeEventListener("click", handleOpen);
     };
   }, [
     movieVideo,
@@ -57,7 +64,11 @@ const Movie = (props) => {
 
   const clickedOnWatchlistBtn = (event) => {
     addMovieToWatchList(event, props);
-    addMovieToWatchListDb({userId: getCurrentUser().id, movieId: props.id})
+    addMovieToWatchListDb({ userId: getCurrentUser().id, movieId: props.id });
+  };
+
+  const clickedOnMovieCard = () => {
+    setMovieId(props.id);
   };
 
   return (
@@ -67,10 +78,8 @@ const Movie = (props) => {
           <Link
             to={{
               pathname: `/movie/${props.id}`,
-              state: {
-                id: props.id,
-              },
             }}
+            onClick={clickedOnMovieCard}
           >
             {props.poster.length > 0 ? (
               <CardMedia
@@ -98,7 +107,7 @@ const Movie = (props) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions style={{ justifyContent: 'center' }}>
+        <CardActions style={{ justifyContent: "center" }}>
           <Button id={props.originalId} variant="contained" color="default">
             Watch trailer
           </Button>

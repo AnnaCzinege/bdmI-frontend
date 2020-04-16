@@ -1,38 +1,36 @@
-import React, { createContext, useState, useEffect } from 'react';
-import Cookies from 'universal-cookie';
-import Axios from 'axios';
-import { message } from 'antd';
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import Cookies from "universal-cookie";
+import Axios from "axios";
+import { message } from "antd";
 
 export const UserContext = createContext();
 
 export const UserProvider = (props) => {
-  const [drawerType, setDrawerType] = useState('SignIn');
-  const [signInStatus, setSignInStatus] = useState('out');
+  const [drawerType, setDrawerType] = useState("SignIn");
+  const [signInStatus, setSignInStatus] = useState("out");
   const [watchlist, setWatchlist] = useState([]);
 
-  useEffect(() => {
-    checkCookiesForLog();
-  }, []);
-
-  const checkCookiesForLog = () => {
+  const checkCookiesForLog = useCallback(() => {
     const cookies = new Cookies();
-    if (!cookies.get('c_user')) {
-      setSignInStatus('out');
+    if (!cookies.get("c_user")) {
+      setSignInStatus("out");
+      setWatchlist([]);
     } else {
-      setSignInStatus('in');
+      setSignInStatus("in");
+      getWatchlistOfUser(getCurrentUser());
     }
-  };
+  }, []);
 
   const registerNewUser = (newUser) => {
     Axios.post(
-      'https://localhost:44314/api/user/register',
+      "https://localhost:44314/api/user/register",
       newUser
     ).then((resp) => console.log(resp)); //TODO
   };
 
   const logInUser = (User) => {
-    Axios.post('https://localhost:44314/api/user/login', User).then((resp) => {
-      new Cookies().set('c_user', resp.data);
+    Axios.post("https://localhost:44314/api/user/login", User).then((resp) => {
+      new Cookies().set("c_user", resp.data);
       checkCookiesForLog();
       console.log(resp.data);
     }); //TODO
@@ -41,11 +39,11 @@ export const UserProvider = (props) => {
   const logOutUser = () => {
     const cookies = new Cookies();
     Axios.post(
-      'https://localhost:44314/api/user/logout',
-      cookies.get('c_user')
+      "https://localhost:44314/api/user/logout",
+      cookies.get("c_user")
     ).then((resp) => {
-      if (resp.data === 'You have been logged out') {
-        cookies.remove('c_user');
+      if (resp.data === "You have been logged out") {
+        cookies.remove("c_user");
         checkCookiesForLog();
       }
     });
@@ -57,13 +55,13 @@ export const UserProvider = (props) => {
       event.preventDefault();
       setWatchlist([...watchlist, { ...properties.movie }]);
     } else {
-      return message.warning('This movie is already in your watchlist!', 1);
+      return message.warning("This movie is already in your watchlist!", 1);
     }
   };
 
   const getCurrentUser = () => {
     const cookies = new Cookies();
-    return cookies.get('c_user');
+    return cookies.get("c_user");
   };
 
   const getWatchlistOfUser = (user) => {
@@ -82,12 +80,16 @@ export const UserProvider = (props) => {
     ).then((resp) => console.log(resp));
   };
 
-  const deleteMovieFromWatchList = async (watchlisItem) => {
-    await Axios.delete(
+  const deleteMovieFromWatchList = (watchlisItem) => {
+    Axios.post(
       `https://localhost:44314/api/user/deleteFromWatchList`,
       watchlisItem
     ).then((resp) => console.log(resp));
   };
+
+  useEffect(() => {
+    checkCookiesForLog();
+  }, [checkCookiesForLog]);
 
   return (
     <UserContext.Provider
