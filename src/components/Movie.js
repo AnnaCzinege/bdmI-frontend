@@ -23,7 +23,7 @@ const useCardStyles = makeStyles({
 });
 
 const Movie = (props) => {
-  const { addMovieToWatchList } = useContext(WatchListContext);
+  const { addMovieToWatchList, addMovieToWatchListDb, getCurrentUser } = useContext(WatchListContext);
   const { movieVideo, setMovieVideo, setMovieDialogOpenStatus } = useContext(
     MovieContext
   );
@@ -57,6 +57,7 @@ const Movie = (props) => {
 
   const clickedOnWatchlistBtn = (event) => {
     addMovieToWatchList(event, props);
+    addMovieToWatchListDb({userId: getCurrentUser().id, movieId: props.id})
   };
 
   return (

@@ -1,28 +1,28 @@
 import React, { useState, createContext } from 'react';
 import Cookies from 'universal-cookie';
-import { message } from 'antd';
 import Axios from 'axios';
+import { message } from "antd";
 
 export const WatchListContext = createContext();
 
 export const WatchListProvider = (props) => {
   const [moviesToWatch, setMoviesToWatch] = useState([]);
 
-  // const addMovieToWatchList = (event, properties) => {
-  //   console.log(properties);
-  //   if (
-  //     moviesToWatch.filter(movie => movie.id === properties.id).length === 0
-  //   ) {
-  //     event.preventDefault();
-  //     setMoviesToWatch([...moviesToWatch, { ...properties.movie }]);
-  //   } else {
-  //     return message.warning("This movie is already in your watchlist!", 1);
-  //   }
-  // };
+  const addMovieToWatchList = (event, properties) => {
+    console.log(properties);
+    if (
+      moviesToWatch.filter(movie => movie.id === properties.id).length === 0
+    ) {
+      event.preventDefault();
+      setMoviesToWatch([...moviesToWatch, { ...properties.movie }]);
+    } else {
+      return message.warning("This movie is already in your watchlist!", 1);
+    }
+  };
 
   const getCurrentUser = () => {
     const cookies = new Cookies();
-    return cookies.get('c_user').data;
+    return cookies.get('c_user');
   };
 
   const getWatchlistOfUser = (user) => {
@@ -34,7 +34,7 @@ export const WatchListProvider = (props) => {
     );
   };
 
-  const addMovieToWatchList = (watchlisItem) => {
+  const addMovieToWatchListDb = (watchlisItem) => {
     Axios.post(
       `https://localhost:44314/api/user/addToWatchList`,
       watchlisItem
@@ -55,8 +55,9 @@ export const WatchListProvider = (props) => {
         setMoviesToWatch,
         getCurrentUser,
         getWatchlistOfUser,
-        addMovieToWatchList,
+        addMovieToWatchListDb,
         deleteMovieFromWatchList,
+        addMovieToWatchList
       }}
     >
       {props.children}

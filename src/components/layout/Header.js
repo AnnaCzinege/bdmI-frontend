@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Redirect } from 'react-router-dom';
-import { LayoutContext } from '../contexts/LayoutContext';
-import { SearchMoviesContext } from '../contexts/SearchMoviesContext';
-import { UserContext } from '../contexts/UserContext';
-import { WatchListContext } from '../contexts/WatchListContext';
+import { Redirect } from "react-router-dom";
+import { LayoutContext } from "../contexts/LayoutContext";
+import { SearchMoviesContext } from "../contexts/SearchMoviesContext";
+import { UserContext } from "../contexts/UserContext";
+import { WatchListContext } from "../contexts/WatchListContext";
 import {
   Header,
   Nav,
@@ -23,6 +23,7 @@ import LogoImg from "../../Logo.png";
 import AvatarImg from "../../avatar.png";
 import ToggleBtn from "./ToggleBtn";
 import Cookies from "universal-cookie";
+import { message } from "antd";
 
 function RespHeader() {
   const { setSideSize, setBackdropStatus, setAuthenticationSize } = useContext(
@@ -30,25 +31,29 @@ function RespHeader() {
   );
   const { setDrawerType, logOutUser, signInStatus } = useContext(UserContext);
   const { allMovies } = useContext(SearchMoviesContext);
-  const [searchedTitle, setSearchedTitle] = useState('');
-  const [redirect, setRedirect] = useState('');
+  const [searchedTitle, setSearchedTitle] = useState("");
+  const [redirect, setRedirect] = useState("");
   const [options, setOptions] = useState([]);
   const [moviesMapped, setMoviesMapped] = useState(false);
   const { getWatchlistOfUser, getCurrentUser } = useContext(WatchListContext);
 
   const onClick = () => {
-    setSideSize('0');
-    setBackdropStatus('block');
+    setSideSize("0");
+    setBackdropStatus("block");
   };
 
   const ClickOnSignIn = () => {
-    setDrawerType('SignIn');
-    setAuthenticationSize('0');
-    setBackdropStatus('block');
+    setDrawerType("SignIn");
+    setAuthenticationSize("0");
+    setBackdropStatus("block");
   };
 
   const ClickOnWatchList = () => {
-    getWatchlistOfUser(getCurrentUser());
+    if (getCurrentUser()) {
+      getWatchlistOfUser(getCurrentUser());
+    } else {
+      message.warning("Please sign in to access your watchlist!", 2);
+    }
   };
 
   const mapAllMovies = () => {
