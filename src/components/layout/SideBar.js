@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { LayoutContext } from "../contexts/LayoutContext";
 import { UserContext } from "../contexts/UserContext";
 import { SLink, Nav, Ul, Li } from "../elements/SideBarElements";
 
 function RespSideBar(props) {
-  const { setDrawerType } = useContext(UserContext);
+  const { setDrawerType, signInStatus, logOutUser } = useContext(UserContext);
   const {
     sideSize,
     setSideSize,
@@ -25,6 +25,19 @@ function RespSideBar(props) {
     setTimeout(() => {
       setAuthenticationSize("0");
     }, 700);
+  };
+
+  const logOut = () => {
+    logOutUser();
+  };
+
+  useEffect(() => {}, [signInStatus]);
+
+  const choseBtn = () => {
+    if (signInStatus === "out") {
+      return <SLink onClick={ClickOnSignUp}>Sign in</SLink>;
+    }
+    return <SLink onClick={logOut}>Log out</SLink>;
   };
 
   return (
@@ -60,9 +73,7 @@ function RespSideBar(props) {
             Watchlist
           </SLink>
         </Li>
-        <Li optional>
-          <SLink onClick={ClickOnSignUp}>Sign In</SLink>
-        </Li>
+        <Li optional>{choseBtn()}</Li>
       </Ul>
     </Nav>
   );
