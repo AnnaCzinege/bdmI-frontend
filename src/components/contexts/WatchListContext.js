@@ -34,10 +34,10 @@ export const WatchListProvider = (props) => {
     );
   };
 
-  const addMovieToWatchList = (user) => {
+  const addMovieToWatchList = (watchlisItem) => {
     Axios.post(
       `https://localhost:44314/api/user/addToWatchList`,
-      user
+      watchlisItem
     ).then((resp) => console.log(resp));
   };
 
