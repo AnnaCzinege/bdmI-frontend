@@ -25,14 +25,17 @@ export const UserProvider = (props) => {
     Axios.post(
       "https://localhost:44314/api/user/register",
       newUser
-    ).then((resp) => console.log(resp)); //TODO
+    ).then((resp) => message.warning(resp.data, 1)); //TODO
   };
 
   const logInUser = (User) => {
     Axios.post("https://localhost:44314/api/user/login", User).then((resp) => {
-      new Cookies().set("c_user", resp.data);
-      checkCookiesForLog();
-      console.log(resp.data);
+      if (resp.data.errorMessage === "Username or password was invalid") {
+        message.warning(resp.data.errorMessage, 1);
+      } else {
+        new Cookies().set("c_user", resp.data);
+        checkCookiesForLog();
+      }
     }); //TODO
   };
 

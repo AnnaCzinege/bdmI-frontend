@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MovieContext } from "./contexts/MovieContext";
-import { Layout, Typography, Card, Col, Row, Rate } from "antd";
+import { Layout, Typography, Card, Col, Row, Rate, message } from "antd";
 import {
   StyledCard,
   StyledContent,
@@ -68,12 +68,16 @@ const MovieDetails = (props) => {
   const { Meta } = Card;
 
   const clickedOnWatchlistBtn = (event) => {
-    addMovieToWatchList(event, { id: movieId, movie: movieObject });
-    addMovieToWatchListDb({
-      userId: getCurrentUser().id,
-      movieId: movieId,
-      token: getCurrentUser().token,
-    });
+    if(getCurrentUser()) {
+      addMovieToWatchList(event, { id: movieId, movie: movieObject });
+      addMovieToWatchListDb({
+        userId: getCurrentUser().id,
+        movieId: movieId,
+        token: getCurrentUser().token,
+      });
+    } else {
+      message.warning("You are not logged in!")
+    }
   };
 
   const rating = ["terrible", "bad", "normal", "good", "wonderful"];

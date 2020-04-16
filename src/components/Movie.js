@@ -14,6 +14,7 @@ import { MovieContext } from "./contexts/MovieContext";
 import { UserContext } from "./contexts/UserContext";
 import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 import Axios from "axios";
+import {message} from "antd";
 
 const useCardStyles = makeStyles({
   root: {
@@ -63,12 +64,16 @@ const Movie = (props) => {
   ]);
 
   const clickedOnWatchlistBtn = (event) => {
-    addMovieToWatchList(event, props);
-    addMovieToWatchListDb({
-      userId: getCurrentUser().id,
-      movieId: props.id,
-      token: getCurrentUser().token,
-    });
+    if(getCurrentUser()) {
+      addMovieToWatchList(event, props);
+      addMovieToWatchListDb({
+        userId: getCurrentUser().id,
+        movieId: props.id,
+        token: getCurrentUser().token,
+      });
+    } else {
+      message.warning("You are not logged in!")
+    }
   };
 
   const clickedOnMovieCard = () => {
