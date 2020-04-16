@@ -18,7 +18,11 @@ function Authentication() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  const { authenticationSize } = useContext(LayoutContext);
+  const {
+    authenticationSize,
+    setAuthenticationSize,
+    setBackdropStatus,
+  } = useContext(LayoutContext);
   const { registerNewUser, logInUser, drawerType, setDrawerType } = useContext(
     UserContext
   );
@@ -29,12 +33,16 @@ function Authentication() {
     } else {
       console.log("U cant write");
     }
+    setAuthenticationSize("-100%");
+    setBackdropStatus("none");
   };
 
   const signIn = () => {
     logInUser({ UserName: name, Password: password });
+    setAuthenticationSize("-100%");
+    setBackdropStatus("none");
   };
-
+  
   const changeToSignIn = () => {
     setDrawerType("SignIn");
   };
@@ -64,6 +72,7 @@ function Authentication() {
               <br />
               <Input
                 type="password"
+                name="pass"
                 onChange={(event) => setPassword(event.target.value)}
               />
             </label>

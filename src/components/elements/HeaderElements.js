@@ -81,3 +81,17 @@ export const AutoComplete = styled(autoComplete)`
     width: 185px;
   }
 `;
+
+export const AvatarContainer = styled.div`
+  padding: 0 1rem;
+  height: 70%;
+  @media (max-width: 1175px) {
+    display: none;
+  }
+`;
+
+export const P = styled.p`
+  display: inline-block;
+  color: orange;
+  font-size: 16px;
+`;

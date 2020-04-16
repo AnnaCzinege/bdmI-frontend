@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import { LayoutContext } from '../contexts/LayoutContext';
 import { SearchMoviesContext } from '../contexts/SearchMoviesContext';
@@ -16,15 +16,19 @@ import {
   Li,
   MenuContainer,
   AutoComplete,
-} from '../elements/HeaderElements';
-import LogoImg from '../../Logo.png';
-import ToggleBtn from './ToggleBtn';
+  P,
+  AvatarContainer,
+} from "../elements/HeaderElements";
+import LogoImg from "../../Logo.png";
+import AvatarImg from "../../avatar.png";
+import ToggleBtn from "./ToggleBtn";
+import Cookies from "universal-cookie";
 
 function RespHeader() {
   const { setSideSize, setBackdropStatus, setAuthenticationSize } = useContext(
     LayoutContext
   );
-  const { setDrawerType } = useContext(UserContext);
+  const { setDrawerType, logOutUser, signInStatus } = useContext(UserContext);
   const { allMovies } = useContext(SearchMoviesContext);
   const [searchedTitle, setSearchedTitle] = useState('');
   const [redirect, setRedirect] = useState('');
@@ -60,12 +64,15 @@ function RespHeader() {
     });
   };
 
+  const logOut = () => {
+    logOutUser();
+  };
+
   const searchBasedOnTitle = (e) => {
     e.preventDefault();
     if (!moviesMapped) {
       mapAllMovies();
     }
-
     if (options.length !== 0) {
       options.forEach((movie) => {
         if (movie.value.toLowerCase() === searchedTitle) {
@@ -76,6 +83,26 @@ function RespHeader() {
           );
         }
       });
+    }
+  };
+
+  useEffect(() => {}, [signInStatus]);
+
+  const choseBtn = () => {
+    if (signInStatus === "out") {
+      return <SLink onClick={ClickOnSignIn}>Sign in</SLink>;
+    }
+    return <SLink onClick={logOut}>Log out</SLink>;
+  };
+
+  const setAvatar = () => {
+    if (signInStatus === "in") {
+      return (
+        <AvatarContainer>
+          <Logo src={AvatarImg} alt="" />
+          <P>{new Cookies().get("c_user").userName}</P>
+        </AvatarContainer>
+      );
     }
   };
 
@@ -118,11 +145,10 @@ function RespHeader() {
                 Watchlist
               </SLink>
             </Li>
-            <Li>
-              <SLink onClick={ClickOnSignIn}>Sign in</SLink>
-            </Li>
+            <Li>{choseBtn()}</Li>
           </Ul>
         </MenuContainer>
+        {setAvatar()}
         <Spacer />
       </Nav>
     </Header>
