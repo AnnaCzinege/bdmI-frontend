@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./contexts/MovieContext";
 import { Layout, Typography, Card, Col, Row, Rate, message } from "antd";
 import {
