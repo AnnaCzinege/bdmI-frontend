@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./contexts/MovieContext";
-import { Layout, Typography, Card, Col, Row, Rate, message } from "antd";
+import { Layout, Typography, Card, Col, Row, message } from "antd";
 import {
   StyledCard,
   StyledContent,
