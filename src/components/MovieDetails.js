@@ -7,6 +7,7 @@ import {
   StyledDetailsTitle as StyledTitle,
   StyledFooter,
   StyledInfoContainer as StyledPageHeader,
+  StyledRate,
 } from "./elements/MovieDetailsElements";
 import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 import CardActions from "@material-ui/core/CardActions";
@@ -139,9 +140,6 @@ const MovieDetails = (props) => {
                   <Col>
                     <StyledCard hoverable title="Average vote" bordered={true}>
                       {movieVoteAverage}
-                      <div>
-                        <Rate count={10} allowHalf={true} defaultValue={2.5} />
-                      </div>
                     </StyledCard>
                   </Col>
                   <Col>
@@ -152,6 +150,14 @@ const MovieDetails = (props) => {
                 </Row>
               </Col>
             </Row>
+            <StyledRate>
+              <Rate
+                count={10}
+                disabled
+                allowHalf={true}
+                defaultValue={Math.round(movieVoteAverage * 2) / 2}
+              />
+            </StyledRate>
 
             <StyledPageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
