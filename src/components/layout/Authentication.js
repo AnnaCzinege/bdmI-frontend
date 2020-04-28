@@ -8,6 +8,7 @@ import {
   Button,
   P,
   PLink,
+  InputInfo,
 } from "../elements/AuthenticationElements";
 import { useContext, useState } from "react";
 import { LayoutContext } from "../contexts/LayoutContext";
@@ -42,7 +43,7 @@ function Authentication() {
     setAuthenticationSize("-100%");
     setBackdropStatus("none");
   };
-  
+
   const changeToSignIn = () => {
     setDrawerType("SignIn");
   };
@@ -57,8 +58,8 @@ function Authentication() {
         <Title>Create account</Title>
         <form>
           <Li>
-            <label>
-              Username
+            <label style={{ fontSize: "14px" }}>
+              Username (3-10 characters)
               <br />
               <Input
                 type="text"
@@ -67,9 +68,13 @@ function Authentication() {
             </label>
           </Li>
           <Li>
-            <label>
-              Password
+            <label style={{ fontSize: "14px" }}>
+              Password (at least 6 characters)
               <br />
+              <InputInfo>
+                Please use uppercase, lowercase, digit and non-alphanumeric
+                characters
+              </InputInfo>
               <Input
                 type="password"
                 name="pass"
@@ -78,7 +83,7 @@ function Authentication() {
             </label>
           </Li>
           <Li>
-            <label>
+            <label style={{ fontSize: "14px" }}>
               Confirm password
               <br />
               <Input
@@ -88,7 +93,7 @@ function Authentication() {
             </label>
           </Li>
           <Li>
-            <label>
+            <label style={{ fontSize: "14px" }}>
               Email
               <br />
               <Input

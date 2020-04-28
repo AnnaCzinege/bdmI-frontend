@@ -79,3 +79,11 @@ export const PLink = styled.p`
     color: white;
   }
 `;
+
+export const InputInfo = styled.p`
+  font-size: 8px;
+  font-style: italic;
+  &:hover {
+    color: white;
+  }
+`;
