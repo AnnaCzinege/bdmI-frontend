@@ -150,21 +150,21 @@ const MovieDetails = (props) => {
                 </Row>
               </Col>
             </Row>
-            <StyledRate>
-              <Rate
-                count={10}
-                disabled
-                allowHalf={true}
-                defaultValue={Math.round(movieVoteAverage * 2) / 2}
-              />
-            </StyledRate>
+            <StyledRate></StyledRate>
 
             <StyledPageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
               </Paragraph>
             </StyledPageHeader>
-            <CardActions style={{ justifyContent: "center" }}>
+            <CardActions
+              style={{
+                justifyContent: "center",
+                color: "white",
+                fontFamily: "Montserrat-Regular",
+              }}
+            >
+              <div>Add to watchlist</div>
               <Button
                 name={props.title}
                 onClick={clickedOnWatchlistBtn}

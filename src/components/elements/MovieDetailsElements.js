@@ -37,7 +37,7 @@ export const StyledInfoContainer = styled(PageHeader)`
 `;
 
 export const StyledRate = styled(Row)`
-  margin-top: 30px;
+  margin-top: 20px;
   font-family: "Montserrat-Medium";
   font-size: 15px;
 `;
