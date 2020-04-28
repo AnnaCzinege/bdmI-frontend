@@ -8,6 +8,8 @@ import {
   Button,
   P,
   PLink,
+  InputInfo,
+  StyledLabel,
 } from "../elements/AuthenticationElements";
 import { useContext, useState } from "react";
 import { LayoutContext } from "../contexts/LayoutContext";
@@ -43,7 +45,7 @@ function Authentication() {
     setAuthenticationSize("-100%");
     setBackdropStatus("none");
   };
-  
+
   const changeToSignIn = () => {
     setDrawerType("SignIn");
   };
@@ -58,45 +60,49 @@ function Authentication() {
         <Title>Create account</Title>
         <form>
           <Li>
-            <label>
-              Username
+            <StyledLabel>
+              Username (3-10 characters)
               <br />
               <Input
                 type="text"
                 onChange={(event) => setName(event.target.value)}
               />
-            </label>
+            </StyledLabel>
           </Li>
           <Li>
-            <label>
-              Password
+            <StyledLabel>
+              Password (at least 6 characters)
               <br />
+              <InputInfo>
+                Please use uppercase, lowercase, digit and non-alphanumeric
+                characters
+              </InputInfo>
               <Input
                 type="password"
                 name="pass"
                 onChange={(event) => setPassword(event.target.value)}
               />
-            </label>
+            </StyledLabel>
           </Li>
           <Li>
-            <label>
+            <StyledLabel>
               Confirm password
               <br />
               <Input
                 type="password"
                 onChange={(event) => setConfirmPass(event.target.value)}
               />
-            </label>
+            </StyledLabel>
           </Li>
           <Li>
-            <label>
+            <StyledLabel>
               Email
               <br />
               <Input
                 type="email"
                 onChange={(event) => setEmail(event.target.value)}
               />
-            </label>
+            </StyledLabel>
           </Li>
           <Li>
             <Button type="reset" onClick={registration}>
