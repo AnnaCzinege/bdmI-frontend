@@ -22,10 +22,37 @@ export const UserProvider = (props) => {
   }, []);
 
   const registerNewUser = (newUser) => {
-    Axios.post(
-      "https://localhost:44314/api/user/register",
-      newUser
-    ).then((resp) => message.warning(resp.data, 1)); //TODO
+    Axios.post("https://localhost:44314/api/user/register", newUser)
+      .then((resp) => {
+        if (resp.status === 200) {
+          message.warning(
+            `We sent a confirmation email to ${newUser.Email}. In order to enjoy the full benefits of your bDMI account you need to click the link in that email!`,
+            10
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        switch (error.response.status) {
+          case 422:
+            message.warning("Username already exists", 5);
+            break;
+          case 409:
+            message.warning(
+              `Account already exists with the e-mail ${newUser.Email}`,
+              5
+            );
+            break;
+          case 400:
+            message.warning("There was a problem with input validation");
+            break;
+          case 500:
+            message.warning("Cannot connect to bDMI database", 5);
+            break;
+          default:
+            break;
+        }
+      });
   };
 
   const logInUser = (User) => {
