@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { MovieContext } from "./contexts/MovieContext";
-import { Layout, Typography, Card, Col, Row, Rate, message } from "antd";
+import { Layout, Typography, Card, Col, Row, message } from "antd";
 import {
   StyledCard,
   StyledContent,
@@ -68,7 +68,7 @@ const MovieDetails = (props) => {
   const { Meta } = Card;
 
   const clickedOnWatchlistBtn = (event) => {
-    if(getCurrentUser()) {
+    if (getCurrentUser()) {
       addMovieToWatchList(event, { id: movieId, movie: movieObject });
       addMovieToWatchListDb({
         userId: getCurrentUser().id,
@@ -76,14 +76,8 @@ const MovieDetails = (props) => {
         token: getCurrentUser().token,
       });
     } else {
-      message.warning("You are not logged in!")
+      message.warning("You are not logged in!");
     }
-  };
-
-  const rating = ["terrible", "bad", "normal", "good", "wonderful"];
-  const [ratingValue, setRatingValue] = useState(4);
-  const handleChange = (ratingValue) => {
-    setRatingValue(ratingValue);
   };
 
   return (
@@ -154,32 +148,23 @@ const MovieDetails = (props) => {
                     </StyledCard>
                   </Col>
                 </Row>
-                <StyledRate>
-                  <span>
-                    {"Rate this:"}
-                    <Rate
-                      tooltips={rating}
-                      onChange={handleChange}
-                      value={ratingValue}
-                    />
-                    {ratingValue ? (
-                      <span className="ant-rate-text">
-                        {rating[ratingValue - 1]}
-                      </span>
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                </StyledRate>
               </Col>
             </Row>
+            <StyledRate></StyledRate>
 
             <StyledPageHeader title="Overview" className="site-page-header">
               <Paragraph style={{ textAlign: "left" }}>
                 {movieOverview}
               </Paragraph>
             </StyledPageHeader>
-            <CardActions style={{ justifyContent: "center" }}>
+            <CardActions
+              style={{
+                justifyContent: "center",
+                color: "white",
+                fontFamily: "Montserrat-Regular",
+              }}
+            >
+              <div>Add to watchlist</div>
               <Button
                 name={props.title}
                 onClick={clickedOnWatchlistBtn}
