@@ -14,6 +14,7 @@ import {
 import { useContext, useState } from "react";
 import { LayoutContext } from "../contexts/LayoutContext";
 import { UserContext } from "../contexts/UserContext";
+import { message } from "antd";
 
 function Authentication() {
   const [name, setName] = useState("");
@@ -33,7 +34,7 @@ function Authentication() {
     if (confirmPass === password) {
       registerNewUser({ UserName: name, Email: email, Password: password });
     } else {
-      console.log("U cant write");
+      message.warning("Passwords must match!", 5);
     }
     setAuthenticationSize("-100%");
     setBackdropStatus("none");
