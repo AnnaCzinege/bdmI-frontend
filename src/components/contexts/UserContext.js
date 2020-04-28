@@ -27,7 +27,7 @@ export const UserProvider = (props) => {
         if (resp.status === 200) {
           message.warning(
             `We sent a confirmation email to ${newUser.Email}. In order to enjoy the full benefits of your bDMI account you need to click the link in that email!`,
-            10
+            7
           );
         }
       })
@@ -96,7 +96,7 @@ export const UserProvider = (props) => {
       event.preventDefault();
       setWatchlist([...watchlist, { ...properties.movie }]);
     } else {
-      return message.warning('This movie is already in your watchlist!', 1);
+      return message.warning('This movie is already in your watchlist!', 2);
     }
   };
 
@@ -113,7 +113,7 @@ export const UserProvider = (props) => {
       .catch((error) => {
         switch (error.message.status) {
           case 500:
-            return message.warning('Can not connect to dbmI database', 5);
+            return message.warning('Cannot connect to dbmI database', 5);
           default:
             break;
         }
@@ -132,7 +132,7 @@ export const UserProvider = (props) => {
       .catch((error) => {
         switch (error.message.status) {
           case 500:
-            return message.warning('Can not connect to dbmI database', 5);
+            return message.warning('Cannot connect to dbmI database', 5);
           default:
             break;
         }
@@ -150,7 +150,7 @@ export const UserProvider = (props) => {
       .catch((error) => {
         switch (error.message.status) {
           case 500:
-            return message.warning('Can not connect to dbmI database', 5);
+            return message.warning('Cannot connect to dbmI database', 5);
           default:
             break;
         }
