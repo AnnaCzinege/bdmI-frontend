@@ -87,3 +87,7 @@ export const InputInfo = styled.p`
     color: white;
   }
 `;
+
+export const StyledLabel = styled.label`
+  font-size: 14px;
+`;
