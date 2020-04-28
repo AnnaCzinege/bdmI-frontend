@@ -7,7 +7,6 @@ import {
   StyledDetailsTitle as StyledTitle,
   StyledFooter,
   StyledInfoContainer as StyledPageHeader,
-  StyledRate,
 } from "./elements/MovieDetailsElements";
 import DefaultMoviePoster from "../resources/images/default_movie_poster.jpg";
 import CardActions from "@material-ui/core/CardActions";
@@ -68,7 +67,7 @@ const MovieDetails = (props) => {
   const { Meta } = Card;
 
   const clickedOnWatchlistBtn = (event) => {
-    if(getCurrentUser()) {
+    if (getCurrentUser()) {
       addMovieToWatchList(event, { id: movieId, movie: movieObject });
       addMovieToWatchListDb({
         userId: getCurrentUser().id,
@@ -76,14 +75,8 @@ const MovieDetails = (props) => {
         token: getCurrentUser().token,
       });
     } else {
-      message.warning("You are not logged in!")
+      message.warning("You are not logged in!");
     }
-  };
-
-  const rating = ["terrible", "bad", "normal", "good", "wonderful"];
-  const [ratingValue, setRatingValue] = useState(4);
-  const handleChange = (ratingValue) => {
-    setRatingValue(ratingValue);
   };
 
   return (
@@ -146,6 +139,9 @@ const MovieDetails = (props) => {
                   <Col>
                     <StyledCard hoverable title="Average vote" bordered={true}>
                       {movieVoteAverage}
+                      <div>
+                        <Rate count={10} allowHalf={true} defaultValue={2.5} />
+                      </div>
                     </StyledCard>
                   </Col>
                   <Col>
@@ -154,23 +150,6 @@ const MovieDetails = (props) => {
                     </StyledCard>
                   </Col>
                 </Row>
-                <StyledRate>
-                  <span>
-                    {"Rate this:"}
-                    <Rate
-                      tooltips={rating}
-                      onChange={handleChange}
-                      value={ratingValue}
-                    />
-                    {ratingValue ? (
-                      <span className="ant-rate-text">
-                        {rating[ratingValue - 1]}
-                      </span>
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                </StyledRate>
               </Col>
             </Row>
 
