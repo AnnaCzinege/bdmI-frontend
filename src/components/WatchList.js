@@ -4,8 +4,10 @@ import { StarFilled, DeleteFilled } from '@ant-design/icons';
 import DefaultMoviePoster from '../resources/images/default_movie_poster.jpg';
 import { Link } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
+import { MovieContext } from './contexts/MovieContext';
 
 const WatchList = (props) => {
+  const { setMovieId } = useContext(MovieContext);
   const {
     signInStatus,
     watchlist,
@@ -34,10 +36,8 @@ const WatchList = (props) => {
         <Link
           to={{
             pathname: `/movie/${row.id}`,
-            state: {
-              id: row.id,
-            },
           }}
+          onClick={() => setMovieId(row.id)}
         >
           {row.posterPath.length > 0 ? (
             <img
