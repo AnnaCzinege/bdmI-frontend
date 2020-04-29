@@ -9,7 +9,7 @@ export const UserProvider = (props) => {
   const [drawerType, setDrawerType] = useState("SignIn");
   const [signInStatus, setSignInStatus] = useState("out");
   const [watchlist, setWatchlist] = useState([]);
-  const DOMAIN_STRING = "https://bdmi-backend.herokuapp.com/";
+  const DOMAIN_STRING = "https://bdmi-backend.herokuapp.com/api/";
 
   const checkCookiesForLog = useCallback(() => {
     const cookies = new Cookies();

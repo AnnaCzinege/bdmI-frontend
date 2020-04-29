@@ -5,7 +5,7 @@ export const SearchMoviesContext = createContext();
 
 export const SearchMovieProvider = (props) => {
   const [allMovies, setAllMovies] = useState([]);
-  const DOMAIN_STRING = "https://bdmi-backend.herokuapp.com/";
+  const DOMAIN_STRING = "https://bdmi-backend.herokuapp.com/api/";
 
   const fetchAllMovies = useCallback(() => {
     Axios.get(`${DOMAIN_STRING}allmovies`).then((resp) => {
