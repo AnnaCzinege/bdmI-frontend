@@ -42,6 +42,7 @@ const MovieList = (props) => {
     movieVideo,
     isMovieDialogOpen,
     setMovieDialogOpenStatus,
+    DOMAIN_STRING,
   } = useContext(MovieContext);
   const [page, setPage] = useState(1);
   const pageTitle =
@@ -58,8 +59,8 @@ const MovieList = (props) => {
   };
 
   useEffect(() => {
-    fetchMovies(`https://localhost:44314/api/${props.url}/${page}`);
-  }, [fetchMovies, page, props.url]);
+    fetchMovies(`${DOMAIN_STRING}${props.url}/${page}`);
+  }, [fetchMovies, page, props.url, DOMAIN_STRING]);
 
   return (
     <div>

@@ -29,6 +29,7 @@ const MovieDetails = (props) => {
     movieVoteCount,
     moviePoster,
     fetchMovieDetails,
+    DOMAIN_STRING,
   } = useContext(MovieContext);
 
   const {
@@ -38,8 +39,8 @@ const MovieDetails = (props) => {
   } = useContext(UserContext);
 
   useEffect(() => {
-    fetchMovieDetails(`https://localhost:44314/api/moviedetails/${movieId}`);
-  }, [fetchMovieDetails, movieId]);
+    fetchMovieDetails(`${DOMAIN_STRING}moviedetails/${movieId}`);
+  }, [fetchMovieDetails, movieId, DOMAIN_STRING]);
 
   const genres = movieGenres.map((item) => {
     return <div>{item}</div>;

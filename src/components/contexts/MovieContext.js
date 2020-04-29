@@ -3,7 +3,7 @@ import Axios from "axios";
 
 export const MovieContext = createContext();
 
-export const MovieProvider = props => {
+export const MovieProvider = (props) => {
   const [movies, setMovies] = useState([]);
   const [moviePageNumber, setMoviePageNumber] = useState(0);
   const [movieVideo, setMovieVideo] = useState("");
@@ -19,16 +19,17 @@ export const MovieProvider = props => {
   const [movieVoteCount, setMovieVoteCount] = useState(0);
   const [moviePoster, setMoviePoster] = useState("");
   const [isMovieDialogOpen, setMovieDialogOpenStatus] = useState(false);
+  const DOMAIN_STRING = "https://localhost:44314/api/";
 
-  const fetchMovies = useCallback(url => {
-    Axios.get(url).then(resp => {
+  const fetchMovies = useCallback((url) => {
+    Axios.get(url).then((resp) => {
       setMovies(resp.data);
       setMoviePageNumber(500);
     });
   }, []);
 
-  const fetchMovieDetails = useCallback(url => {
-    Axios.get(url).then(resp => {
+  const fetchMovieDetails = useCallback((url) => {
+    Axios.get(url).then((resp) => {
       setMovieId(resp.data.id);
       setMovieOriginalId(resp.data.originalId);
       setMovieTitle(resp.data.originalTitle);
@@ -66,7 +67,8 @@ export const MovieProvider = props => {
         fetchMovieDetails,
         isMovieDialogOpen,
         setMovieDialogOpenStatus,
-        setMovieId
+        setMovieId,
+        DOMAIN_STRING,
       }}
     >
       {props.children}

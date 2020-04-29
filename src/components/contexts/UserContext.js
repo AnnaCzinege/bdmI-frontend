@@ -1,28 +1,29 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react';
-import Cookies from 'universal-cookie';
-import Axios from 'axios';
-import { message } from 'antd';
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import Cookies from "universal-cookie";
+import Axios from "axios";
+import { message } from "antd";
 
 export const UserContext = createContext();
 
 export const UserProvider = (props) => {
-  const [drawerType, setDrawerType] = useState('SignIn');
-  const [signInStatus, setSignInStatus] = useState('out');
+  const [drawerType, setDrawerType] = useState("SignIn");
+  const [signInStatus, setSignInStatus] = useState("out");
   const [watchlist, setWatchlist] = useState([]);
+  const DOMAIN_STRING = "https://localhost:44314/api/";
 
   const checkCookiesForLog = useCallback(() => {
     const cookies = new Cookies();
-    if (!cookies.get('c_user')) {
-      setSignInStatus('out');
+    if (!cookies.get("c_user")) {
+      setSignInStatus("out");
       setWatchlist([]);
     } else {
-      setSignInStatus('in');
+      setSignInStatus("in");
       getWatchlistOfUser(getCurrentUser());
     }
   }, []);
 
   const registerNewUser = (newUser) => {
-    Axios.post("https://localhost:44314/api/user/register", newUser)
+    Axios.post(`${DOMAIN_STRING}user/register`, newUser)
       .then((resp) => {
         if (resp.status === 200) {
           message.warning(
@@ -56,7 +57,7 @@ export const UserProvider = (props) => {
   };
 
   const logInUser = (User) => {
-    Axios.post("https://localhost:44314/api/user/login", User)
+    Axios.post(`${DOMAIN_STRING}user/login`, User)
       .then((resp) => {
         if (resp.status === 200) {
           new Cookies().set("c_user", resp.data);
@@ -77,7 +78,7 @@ export const UserProvider = (props) => {
 
   const logOutUser = () => {
     const cookies = new Cookies();
-    Axios.post("https://localhost:44314/api/user/logout", cookies.get("c_user"))
+    Axios.post(`${DOMAIN_STRING}user/logout`, cookies.get("c_user"))
       .then((resp) => {
         if (resp.status === 200) {
           cookies.remove("c_user");
@@ -96,24 +97,24 @@ export const UserProvider = (props) => {
       event.preventDefault();
       setWatchlist([...watchlist, { ...properties.movie }]);
     } else {
-      return message.warning('This movie is already in your watchlist!', 2);
+      return message.warning("This movie is already in your watchlist!", 2);
     }
   };
 
   const getCurrentUser = () => {
     const cookies = new Cookies();
-    return cookies.get('c_user');
+    return cookies.get("c_user");
   };
 
   const getWatchlistOfUser = (user) => {
-    Axios.post(`https://localhost:44314/api/watchlist/getWatchList`, user)
+    Axios.post(`${DOMAIN_STRING}watchlist/getWatchList`, user)
       .then((resp) => {
         setWatchlist(resp.data);
       })
       .catch((error) => {
         switch (error.message.status) {
           case 500:
-            return message.warning('Cannot connect to dbmI database', 5);
+            return message.warning("Cannot connect to dbmI database", 5);
           default:
             break;
         }
@@ -121,10 +122,7 @@ export const UserProvider = (props) => {
   };
 
   const addMovieToWatchListDb = (watchlisItem) => {
-    Axios.post(
-      `https://localhost:44314/api/watchlist/addToWatchList`,
-      watchlisItem
-    )
+    Axios.post(`${DOMAIN_STRING}watchlist/addToWatchList`, watchlisItem)
       .then((resp) => {
         if (resp.status === 200) {
         }
@@ -132,7 +130,7 @@ export const UserProvider = (props) => {
       .catch((error) => {
         switch (error.message.status) {
           case 500:
-            return message.warning('Cannot connect to dbmI database', 5);
+            return message.warning("Cannot connect to dbmI database", 5);
           default:
             break;
         }
@@ -141,7 +139,7 @@ export const UserProvider = (props) => {
 
   const deleteMovieFromWatchList = (userId, movieId) => {
     Axios.delete(
-      `https://localhost:44314/api/watchlist/deleteFromWatchList/${userId}/${movieId}`
+      `${DOMAIN_STRING}watchlist/deleteFromWatchList/${userId}/${movieId}`
     )
       .then((resp) => {
         if (resp.status === 200) {
@@ -150,7 +148,7 @@ export const UserProvider = (props) => {
       .catch((error) => {
         switch (error.message.status) {
           case 500:
-            return message.warning('Cannot connect to dbmI database', 5);
+            return message.warning("Cannot connect to dbmI database", 5);
           default:
             break;
         }

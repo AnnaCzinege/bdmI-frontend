@@ -3,14 +3,14 @@ import Axios from "axios";
 
 export const SearchMoviesContext = createContext();
 
-export const SearchMovieProvider = props => {
+export const SearchMovieProvider = (props) => {
   const [allMovies, setAllMovies] = useState([]);
+  const DOMAIN_STRING = "https://localhost:44314/api/";
 
   const fetchAllMovies = useCallback(() => {
-    Axios.get(`https://localhost:44314/api/allmovies`).then(resp => {
-      setAllMovies(resp.data)
-    }
-    );
+    Axios.get(`${DOMAIN_STRING}allmovies`).then((resp) => {
+      setAllMovies(resp.data);
+    });
   }, []);
 
   useEffect(() => {
