@@ -19,7 +19,7 @@ export const MovieProvider = (props) => {
   const [movieVoteCount, setMovieVoteCount] = useState(0);
   const [moviePoster, setMoviePoster] = useState("");
   const [isMovieDialogOpen, setMovieDialogOpenStatus] = useState(false);
-  const DOMAIN_STRING = "http://bdmi-backend.herokuapp.com/api/";
+  const DOMAIN_STRING = "https://bdmi-backend.herokuapp.com/api/";
 
   const fetchMovies = useCallback((url) => {
     Axios.get(url).then((resp) => {
