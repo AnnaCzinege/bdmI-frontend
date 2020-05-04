@@ -38,7 +38,8 @@ For the local run please clone the develop branch from this frontend repository 
 
 This project is also deployed on Netlify (Link is in description).
 
-The backend for this project is deployed on [Heroku](https://bdmi-backend.herokuapp.com/).
+The backend for this project is deployed on [Heroku](https://bdmi-backend.herokuapp.com/).</br>
+
 **Heroku tends to fall asleep when the application is not running, therefore it is advised to wait 20-30 seconds after launching the website so the backend has time to load**
 
 ## Contributors
