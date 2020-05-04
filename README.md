@@ -2,6 +2,52 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## The project
+
+This repository contains the frontend for the website called bdmI(similar to [Imdb](https://www.imdb.com/) collection of movies). It is a four sprint long project which aims to create a "one-pager" website that displays the dbmI web application.</br>
+
+### Used technologies
+
+⚬ [Node.js](https://nodejs.org/en/)</br>
+⚬ [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)</br>
+⚬ [Material UI](https://material-ui.com/)</br>
+⚬ [Ant Design](https://ant.design/)</br>
+⚬ Context API</br>
+⚬ React Hooks</br>
+⚬ Styled-Components</br>
+
+bdmI is a web application made for searching movies. By registraion you can manage your personal watchlist and view movies from the following categories:</br>
+⚬ Top Rated</br>
+⚬ Popular</br>
+⚬ Now Playing</br>
+⚬ Upcoming</br>
+
+## How to run
+
+First of all, Node.js have to be installed on your system to run the React application.
+
+To be able to run the React application you have to follow these simple steps:
+
+After cloning the repository, run `npm install` to get all the necessary Node packages
+Run `npm start` and the application will run
+
+Some Ant Design and Material UI packages are also needed to be installed to run this project. If the installation is needed, this packages will be displayed on the terminal after the first run attempt.
+
+You can run this project locally and it has a remote version as well.
+For the local run please clone the develop branch from this frontend repository and navigate to this repository ([bdmI-backend](https://github.com/AnnaCzinege/bdmI-backend)) and clone the master branch.
+
+This project is also deployed on Netlify (Link is in description).
+
+The backend for this project is deployed on [Heroku](https://bdmi-backend.herokuapp.com/).
+
+## Contributors
+
+The contributors of this project are all students of Codecool Ltd.
+
+⚬ [Anna Czinege](https://github.com/AnnaCzinege)</br>
+⚬ [Eszter Mázi](https://github.com/esztermazi)</br>
+⚬ [Norbert Benkó](https://github.com/Rasgacode)</br>
+
 ## Available Scripts
 
 In the project directory, you can run:
